@@ -3,7 +3,7 @@
 #include <lmic.h>
 #include <hal/hal.h>
 
-#include "boards.h"
+#include "PJU.h"
 
 // Chose LSB mode on the console and then copy it here.
 static const u1_t PROGMEM APPEUI[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -52,18 +52,21 @@ void os_getDevKey(u1_t *buf) {
 
 void do_send(osjob_t *j) {
     if (joinStatus == EV_JOINING) {
-        Serial.println(F("Not joined yet"));
+        Serial.println(F("[LoRaWAN] Not joined yet"));
         // Check if there is not a current TX/RX job running
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
 
     } else if (LMIC.opmode & OP_TXRXPEND) {
-        Serial.println(F("OP_TXRXPEND, not sending"));
+        Serial.println(F("[LoRaWAN] OP_TXRXPEND, not sending"));
     } else {
-        Serial.println(F("OP_TXRXPEND,sending ..."));
+        Serial.println(F("[LoRaWAN] OP_TXRXPEND,sending ..."));
         // JSON
         DynamicJsonDocument doc(1024);
-        doc["sensor"] = "gps";
-        doc["time"] = 1351824120;
+        doc["time"] = sensor_data.time.unixtime();
+        doc["temperature"] = sensor_data.temperature;
+        doc["voltage"] = sensor_data.voltage;
+        doc["current"] = sensor_data.current;
+        doc["light"] = sensor_data.light;
 
         String payload;
         serializeJson(doc, payload);
@@ -73,13 +76,12 @@ void do_send(osjob_t *j) {
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
 
 #ifdef HAS_DISPLAY
-        if (u8g2) {
-            char buf[256];
-            u8g2->clearBuffer();
-            snprintf(buf, sizeof(buf), "[%lu]data sending!", millis() / 1000);
-            u8g2->drawStr(0, 12, buf);
-            u8g2->sendBuffer();
-        }
+        char buf[256];
+        snprintf(buf, sizeof(buf), "[%i:%i:%i] Data sending!", sensor_data.time.hour(), sensor_data.time.minute(), sensor_data.time.second());
+        display.clearDisplay();
+        display.setCursor(0, 12);
+        display.println(buf);
+        display.display();
 #endif
     }
 }
@@ -89,10 +91,10 @@ void onEvent(ev_t ev) {
     Serial.print(": ");
     switch (ev) {
         case EV_TXCOMPLETE:
-            Serial.println(F("EV_TXCOMPLETE (includes waiting for RX windows)"));
+            Serial.println(F("[LoRaWAN] EV_TXCOMPLETE (includes waiting for RX windows)"));
 
             if (LMIC.txrxFlags & TXRX_ACK) {
-                Serial.println(F("Received ack"));
+                Serial.println(F("[LoRaWAN] Received ack"));
                 lora_msg = "Received ACK.";
             }
 
@@ -100,49 +102,46 @@ void onEvent(ev_t ev) {
 
             if (LMIC.dataLen) {
                 // data received in rx slot after tx
-                Serial.print(F("Data Received: "));
+                Serial.print(F("[LoRaWAN] Data Received: "));
                 Serial.write(LMIC.frame + LMIC.dataBeg, LMIC.dataLen);
                 Serial.println();
                 Serial.println(LMIC.dataLen);
-                Serial.println(F(" bytes of payload"));
+                Serial.println(F("[LoRaWAN]  bytes of payload"));
             }
             // Schedule next transmission
             os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
             break;
         case EV_JOINING:
-            Serial.println(F("EV_JOINING: -> Joining..."));
+            Serial.println(F("[LoRaWAN] EV_JOINING: -> Joining..."));
             lora_msg = "OTAA joining....";
             joinStatus = EV_JOINING;
 #ifdef HAS_DISPLAY
-            if (u8g2) {
-                u8g2->clearBuffer();
-                u8g2->drawStr(0, 12, "OTAA joining....");
-                u8g2->sendBuffer();
-            }
+            display.clearDisplay();
+            display.setCursor(0, 12);
+            display.println("OTAA joining....");
+            display.display();
 #endif
             break;
         case EV_JOIN_FAILED:
-            Serial.println(F("EV_JOIN_FAILED: -> Joining failed"));
+            Serial.println(F("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed"));
             lora_msg = "OTAA Joining failed";
 #ifdef HAS_DISPLAY
-            if (u8g2) {
-                u8g2->clearBuffer();
-                u8g2->drawStr(0, 12, "OTAA joining failed");
-                u8g2->sendBuffer();
-            }
+            display.clearDisplay();
+            display.setCursor(0, 12);
+            display.println("OTAA Joining failed");
+            display.display();
 #endif
             break;
         case EV_JOINED:
-            Serial.println(F("EV_JOINED"));
+            Serial.println(F("[LoRaWAN] EV_JOINED"));
             lora_msg = "Joined!";
             joinStatus = EV_JOINED;
 
 #ifdef HAS_DISPLAY
-            if (u8g2) {
-                u8g2->clearBuffer();
-                u8g2->drawStr(0, 12, "Joined TTN!");
-                u8g2->sendBuffer();
-            }
+            display.clearDisplay();
+            display.setCursor(0, 12);
+            display.println("Joined TTN!");
+            display.display();
 #endif
             delay(3);
             // Disable link check validation (automatically enabled
@@ -152,16 +151,16 @@ void onEvent(ev_t ev) {
             break;
         case EV_RXCOMPLETE:
             // data received in ping slot
-            Serial.println(F("EV_RXCOMPLETE"));
+            Serial.println(F("[LoRaWAN] EV_RXCOMPLETE"));
             break;
         case EV_LINK_DEAD:
-            Serial.println(F("EV_LINK_DEAD"));
+            Serial.println(F("[LoRaWAN] EV_LINK_DEAD"));
             break;
         case EV_LINK_ALIVE:
-            Serial.println(F("EV_LINK_ALIVE"));
+            Serial.println(F("[LoRaWAN] EV_LINK_ALIVE"));
             break;
         default:
-            Serial.println(F("Unknown event"));
+            Serial.println(F("[LoRaWAN] Unknown event"));
             break;
     }
 }
