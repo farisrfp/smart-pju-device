@@ -3,8 +3,6 @@
 #include <lmic.h>
 #include <hal/hal.h>
 
-#include "PJU.h"
-
 // Chose LSB mode on the console and then copy it here.
 static const u1_t PROGMEM APPEUI[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 // LSB mode

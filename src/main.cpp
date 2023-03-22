@@ -1,7 +1,4 @@
-#include "LED/led.h"
-#include "LoRaWAN/loramac.h"
 #include "PJU.h"
-#include "WiFI/wifipoint.h"
 
 struct sensor sensor_data {
     .temperature = 25,
@@ -17,18 +14,15 @@ unsigned long lastSend_2 = 0;
 void setup() {
     initBoard();
     initWiFiPoint();
-    // When the power is turned on, a delay is required.
-    delay(1500);
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
     setupLMIC();
-    pinMode(ADC_PIN, INPUT);
 }
 
 void loop() {
     loopLMIC();
+
     server.handleClient();
-    Serial.println(analogRead(ADC_PIN));
 
     // sensor_data.time = rtc.now();
     sensor_data.temperature = rtc.getTemperature();
@@ -55,14 +49,10 @@ void loop() {
         Serial.println(buffer);
     }
 
-    if (currentMillis - lastSend_2 >= 2500) {
+    if (currentMillis - lastSend_2 >= 25) {
         lastSend_2 = currentMillis;
 
+        FastLED.show();
         digitalWrite(BOARD_LED, !digitalRead(BOARD_LED));
     }
-
-    rainbowWithGlitter();
-
-    FastLED.show();
-    FastLED.delay(1000 / 120);
 }

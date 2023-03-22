@@ -1,55 +1,138 @@
 #include "led.h"
 
-uint8_t gCurrentPatternNumber = 0;  // Index number of which pattern is current
-uint8_t gHue = 0;                   // rotating "base color" used by many of the patterns
+LEDTask::LEDTask(uint8_t led) {
+    this->led = led;
 
-void rainbow() {
-    // FastLED's built-in rainbow generator
-    fill_rainbow(leds, NUM_LEDS, gHue, 7);
+    // Start task.
+    xTaskCreate(
+        [](void *obj) -> void {
+            static_cast<LEDTask *>(obj)->Task(obj);
+        },
+        String("LEDTask" + led).c_str(),
+        1000,
+        this,
+        0,
+        NULL);
 }
 
-void rainbowWithGlitter() {
-    // built-in FastLED rainbow, plus some random sparkly glitter
-    rainbow();
-    addGlitter(80);
-}
+void LEDTask::Task(void *pvParameters) {
+    for (;;) {
+        switch (mode) {
+            case FADE:
+                for (int j = 0; j <= brightness; j++) {
+                    switch (color) {
+                        case RED:
+                            leds[led] = CRGB(j, 0, 0);
+                            break;
+                        case GREEN:
+                            leds[led] = CRGB(0, j, 0);
+                            break;
+                        case BLUE:
+                            leds[led] = CRGB(0, 0, j);
+                            break;
+                    }
+                    vTaskDelay((onTime / brightness) / portTICK_PERIOD_MS);
+                }
+                for (int j = brightness; j >= 0; j--) {
+                    switch (color) {
+                        case RED:
+                            leds[led] = CRGB(j, 0, 0);
+                            break;
+                        case GREEN:
+                            leds[led] = CRGB(0, j, 0);
+                            break;
+                        case BLUE:
+                            leds[led] = CRGB(0, 0, j);
+                            break;
+                    }
+                    vTaskDelay((offTime / brightness) / portTICK_PERIOD_MS);
+                }
+                break;
+            case FLICKER:
+                switch (color) {
+                    case RED:
+                        leds[led] = CRGB(255, 0, 0);
+                        break;
+                    case GREEN:
+                        leds[led] = CRGB(0, 255, 0);
+                        break;
+                    case BLUE:
+                        leds[led] = CRGB(0, 0, 255);
+                        break;
+                }
+                vTaskDelay(onTime / portTICK_PERIOD_MS);
+                leds[led] = CRGB(0, 0, 0);
+                vTaskDelay(offTime / portTICK_PERIOD_MS);
+                break;
+            case ON:
+                switch (color) {
+                    case RED:
+                        leds[led] = CRGB(255, 0, 0);
+                        break;
+                    case GREEN:
+                        leds[led] = CRGB(0, 255, 0);
+                        break;
+                    case BLUE:
+                        leds[led] = CRGB(0, 0, 255);
+                        break;
+                }
+                vTaskDelay(500 / portTICK_PERIOD_MS);
+                break;
 
-void addGlitter(fract8 chanceOfGlitter) {
-    if (random8() < chanceOfGlitter) {
-        leds[random16(NUM_LEDS)] += CRGB::White;
+            case OFF_AFTER:
+                switch (color) {
+                    case RED:
+                        leds[led] = CRGB(255, 0, 0);
+                        break;
+                    case GREEN:
+                        leds[led] = CRGB(0, 255, 0);
+                        break;
+                    case BLUE:
+                        leds[led] = CRGB(0, 0, 255);
+                        break;
+                }
+                vTaskDelay(onTime / portTICK_PERIOD_MS);
+                leds[led] = CRGB(0, 0, 0);
+                break;
+
+            case OFF:
+                leds[led] = CRGB(0, 0, 0);
+                vTaskDelay(500 / portTICK_PERIOD_MS);
+                break;
+
+            default:
+                vTaskDelay(500 / portTICK_PERIOD_MS);
+                break;
+        }
     }
 }
 
-void confetti() {
-    // random colored speckles that blink in and fade smoothly
-    fadeToBlackBy(leds, NUM_LEDS, 10);
-    int pos = random16(NUM_LEDS);
-    leds[pos] += CHSV(gHue + random8(64), 200, 255);
+void LEDTask::setFade(uint8_t color, uint16_t fadeInTime, uint16_t fadeOutTime, uint8_t brightness) {
+    this->mode = FADE;
+    this->color = color;
+    this->onTime = fadeInTime;
+    this->offTime = fadeOutTime;
+    this->brightness = brightness;
 }
 
-void sinelon() {
-    // a colored dot sweeping back and forth, with fading trails
-    fadeToBlackBy(leds, NUM_LEDS, 20);
-    int pos = beatsin16(13, 0, NUM_LEDS - 1);
-    leds[pos] += CHSV(gHue, 255, 192);
+void LEDTask::setFlicker(uint8_t color, uint16_t onTime, uint16_t offTime) {
+    this->mode = FLICKER;
+    this->color = color;
+    this->onTime = onTime;
+    this->offTime = offTime;
 }
 
-void bpm() {
-    // colored stripes pulsing at a defined Beats-Per-Minute (BPM)
-    uint8_t BeatsPerMinute = 62;
-    CRGBPalette16 palette = PartyColors_p;
-    uint8_t beat = beatsin8(BeatsPerMinute, 64, 255);
-    for (int i = 0; i < NUM_LEDS; i++) {  // 9948
-        leds[i] = ColorFromPalette(palette, gHue + (i * 2), beat - gHue + (i * 10));
-    }
+void LEDTask::setOffAfter(uint8_t color, uint16_t onTime) {
+    this->mode = OFF_AFTER;
+    this->color = color;
+    this->onTime = onTime;
 }
 
-void juggle() {
-    // eight colored dots, weaving in and out of sync with each other
-    fadeToBlackBy(leds, NUM_LEDS, 20);
-    uint8_t dothue = 0;
-    for (int i = 0; i < 8; i++) {
-        leds[beatsin16(i + 7, 0, NUM_LEDS - 1)] |= CHSV(dothue, 200, 255);
-        dothue += 32;
-    }
+void LEDTask::turnOn(uint8_t color) {
+    this->mode = ON;
+    this->color = color;
+}
+
+void LEDTask::turnOff() {
+    mode = OFF;
 }
