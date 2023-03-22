@@ -3,6 +3,7 @@
 
 RTC_DS3231 rtc;
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
+CRGB leds[NUM_LEDS];
 
 void initBoard() {
     Serial.begin(115200);
@@ -15,6 +16,18 @@ void initBoard() {
 
     rtc.begin();
     display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
+    FastLED.addLeds<WS2812B, WS2812B_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setBrightness(BRIGHTNESS);
+
+
+    for (int dot = 0; dot < NUM_LEDS; dot++) {
+        leds[dot] = CRGB::Blue;
+        FastLED.show();
+        // clear this led for the next time around the loop
+        leds[dot] = CRGB::Black;
+        delay(100);
+    }
+    FastLED.show();
 
 #ifdef HAS_DISPLAY
     // Initialize the OLED display

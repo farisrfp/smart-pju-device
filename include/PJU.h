@@ -13,15 +13,25 @@
 struct sensor {
     float temperature;
     float voltage;
-    int16_t current;
-    uint8_t light;
+    int current;
+    int light;
     DateTime time;
 };
+
+#define NUM_LEDS 2
+#define BRIGHTNESS 96
+#define FRAMES_PER_SECOND 120
 
 /* Global Object/Variable */
 extern Adafruit_SSD1306 display;
 extern RTC_DS3231 rtc;
 extern sensor sensor_data;
+extern CRGB leds[NUM_LEDS];
+
+extern uint8_t gHue;                   // rotating "base color" used by many of the patterns
+extern uint8_t gCurrentPatternNumber;  // Index number of which pattern is currentD
+typedef void (*SimplePatternList[])();
+extern SimplePatternList gPatterns;
 
 /* Function */
 void initBoard();
@@ -49,7 +59,7 @@ void initBoard();
 
 #define BOARD_LED 25
 
-#define WS2812B_PIN 34
+#define WS2812B_PIN 2
 
 #define ADC_PIN 35
 

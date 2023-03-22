@@ -60,24 +60,34 @@ void do_send(osjob_t *j) {
         Serial.println(F("[LoRaWAN] OP_TXRXPEND, not sending"));
     } else {
         Serial.println(F("[LoRaWAN] OP_TXRXPEND,sending ..."));
-        // JSON
-        DynamicJsonDocument doc(1024);
-        doc["time"] = sensor_data.time.unixtime();
-        doc["temperature"] = sensor_data.temperature;
-        doc["voltage"] = sensor_data.voltage;
-        doc["current"] = sensor_data.current;
-        doc["light"] = sensor_data.light;
+        
+        uint32_t time = sensor_data.time.unixtime();
+        int16_t  temp = sensor_data.temperature * 100;
+        int16_t volt = sensor_data.voltage * 100;
+        int16_t curr = sensor_data.current;
+        uint16_t light = sensor_data.light;
 
-        String payload;
-        serializeJson(doc, payload);
+        byte payload[12];
+        payload[0] = (time >> 24) & 0xFF;
+        payload[1] = (time >> 16) & 0xFF;
+        payload[2] = (time >> 8) & 0xFF;
+        payload[3] = time & 0xFF;
+        payload[4] = highByte(temp);
+        payload[5] = lowByte(temp);
+        payload[6] = highByte(volt);
+        payload[7] = lowByte(volt);
+        payload[8] = highByte(curr);
+        payload[9] = lowByte(curr);
+        payload[10] = highByte(light);
+        payload[11] = lowByte(light);
 
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(1, (uint8_t *)payload.c_str(), payload.length(), 0);
+        LMIC_setTxData2(1, payload, sizeof(payload), 0);
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
 
 #ifdef HAS_DISPLAY
         char buf[256];
-        snprintf(buf, sizeof(buf), "[%i:%i:%i] Data sending!", sensor_data.time.hour(), sensor_data.time.minute(), sensor_data.time.second());
+        snprintf(buf, sizeof(buf), "[%lu] Data sending!", millis());
         display.clearDisplay();
         display.setCursor(0, 12);
         display.println(buf);
