@@ -24,28 +24,28 @@ void loop() {
 
     server.handleClient();
 
-    // sensor_data.time = rtc.now();
+    sensor_data.time = rtc.now();
     sensor_data.temperature = rtc.getTemperature();
     // sensor_data.voltage = analogRead(ADC_PIN) * 0.0048828125 * 100;
     // sensor_data.current = sensor_data.voltage / 0.1;
-    // sensor_data.light = analogRead(ADC_PIN) * 0.0048828125;
+    sensor_data.light = map(analogRead(ADC_PIN), 0, 4000, 0, 100);
 
     unsigned long currentMillis = millis();
     if (currentMillis - lastSend_1 >= 5000) {
         lastSend_1 = currentMillis;
 
         char buffer[256];
-        // snprintf(buffer, sizeof(buffer), "[Sensor] %d-%d-%d | %d:%d:%d | %.2f °C | %.2f V | %d mA | %d %%",
-        //          sensor_data.time.year(),
-        //          sensor_data.time.month(),
-        //          sensor_data.time.day(),
-        //          sensor_data.time.hour(),
-        //          sensor_data.time.minute(),
-        //          sensor_data.time.second(),
-        //          sensor_data.temperature,
-        //          sensor_data.voltage,
-        //          sensor_data.current,
-        //          sensor_data.light);
+        snprintf(buffer, sizeof(buffer), "[Sensor] %d-%d-%d | %d:%d:%d | %.2f °C | %.2f V | %d mA | %d %%",
+                 sensor_data.time.year(),
+                 sensor_data.time.month(),
+                 sensor_data.time.day(),
+                 sensor_data.time.hour(),
+                 sensor_data.time.minute(),
+                 sensor_data.time.second(),
+                 sensor_data.temperature,
+                 sensor_data.voltage,
+                 sensor_data.current,
+                 sensor_data.light);
         Serial.println(buffer);
     }
 

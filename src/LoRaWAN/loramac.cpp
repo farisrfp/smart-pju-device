@@ -1,7 +1,6 @@
 #include <Arduino.h>
-#include <ArduinoJson.h>
-#include <lmic.h>
-#include <hal/hal.h>
+
+#include "loramac.h"
 
 // Chose LSB mode on the console and then copy it here.
 static const u1_t PROGMEM APPEUI[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -58,9 +57,10 @@ void do_send(osjob_t *j) {
         Serial.println(F("[LoRaWAN] OP_TXRXPEND, not sending"));
     } else {
         Serial.println(F("[LoRaWAN] OP_TXRXPEND,sending ..."));
-        
+        led1.setOffAfter(GREEN, 250);
+
         uint32_t time = sensor_data.time.unixtime();
-        int16_t  temp = sensor_data.temperature * 100;
+        int16_t temp = sensor_data.temperature * 100;
         int16_t volt = sensor_data.voltage * 100;
         int16_t curr = sensor_data.current;
         uint16_t light = sensor_data.light;
@@ -121,6 +121,7 @@ void onEvent(ev_t ev) {
             break;
         case EV_JOINING:
             Serial.println(F("[LoRaWAN] EV_JOINING: -> Joining..."));
+            led1.setFade(COLOR::BLUE, 750, 500, 255);
             lora_msg = "OTAA joining....";
             joinStatus = EV_JOINING;
 #ifdef HAS_DISPLAY
@@ -132,6 +133,7 @@ void onEvent(ev_t ev) {
             break;
         case EV_JOIN_FAILED:
             Serial.println(F("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed"));
+            led1.setFade(COLOR::RED, 350, 150, 255);
             lora_msg = "OTAA Joining failed";
 #ifdef HAS_DISPLAY
             display.clearDisplay();
@@ -142,6 +144,7 @@ void onEvent(ev_t ev) {
             break;
         case EV_JOINED:
             Serial.println(F("[LoRaWAN] EV_JOINED"));
+            led1.turnOff();
             lora_msg = "Joined!";
             joinStatus = EV_JOINED;
 

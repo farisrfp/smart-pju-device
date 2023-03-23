@@ -2,6 +2,7 @@
 
 LEDTask::LEDTask(uint8_t led) {
     this->led = led;
+    this->mode = OFF;
 
     // Start task.
     xTaskCreate(
@@ -92,11 +93,11 @@ void LEDTask::Task(void *pvParameters) {
                         break;
                 }
                 vTaskDelay(onTime / portTICK_PERIOD_MS);
-                leds[led] = CRGB(0, 0, 0);
+                this->mode = OFF;
                 break;
 
             case OFF:
-                leds[led] = CRGB(0, 0, 0);
+                leds[led] = CRGB::Black;
                 vTaskDelay(500 / portTICK_PERIOD_MS);
                 break;
 
@@ -134,5 +135,5 @@ void LEDTask::turnOn(uint8_t color) {
 }
 
 void LEDTask::turnOff() {
-    mode = OFF;
+    this->mode = OFF;
 }

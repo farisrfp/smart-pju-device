@@ -22,8 +22,8 @@ void initBoard() {
     FastLED.addLeds<WS2812B, WS2812B_PIN, GRB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
 
-    leds[0] = CRGB::Purple;
-    leds[1] = CRGB::Blue;
+    leds[0] = CRGB::Blue;
+    leds[1] = CRGB::Black;
     FastLED.show();
 
 #ifdef HAS_DISPLAY

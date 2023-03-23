@@ -21,8 +21,6 @@ enum MODE {
 #define BRIGHTNESS 255
 
 extern CRGB leds[NUM_LEDS];
-extern LEDTask led1;
-extern LEDTask led2;
 
 class LEDTask {
    public:
@@ -74,7 +72,7 @@ class LEDTask {
 
    private:
     uint8_t led;
-    uint8_t mode = 3;
+    uint8_t mode;
     uint8_t color;
     uint16_t onTime;
     uint16_t offTime;
@@ -82,3 +80,6 @@ class LEDTask {
 
     void Task(void *pvParameters);
 };
+
+extern LEDTask led1;
+extern LEDTask led2;
