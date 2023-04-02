@@ -8,6 +8,8 @@
 #include <RTClib.h>
 #include <SPI.h>
 #include <Wire.h>
+#include <ZMPT101B.h>
+#include <ACS712.h>
 
 #include "LED/led.h"
 #include "LoRaWAN/loramac.h"
@@ -53,9 +55,11 @@ void initBoard();
 
 #define BOARD_LED 25
 
+// Custom Map
 #define WS2812B_PIN 2
-
-#define ADC_PIN 35
+#define RELAY_PIN 15
+#define ADC1_PIN 34
+#define ADC2_PIN 35
 
 #define HAS_DISPLAY
 #define SCREEN_WIDTH 128

@@ -1,5 +1,8 @@
 #include "PJU.h"
 
+ZMPT101B voltageSensor(ADC1_PIN);
+ACS712 currentSensor(ACS712_30A, ADC2_PIN);
+
 struct sensor sensor_data {
     .temperature = 25,
     .voltage = 220,
@@ -10,10 +13,19 @@ struct sensor sensor_data {
 
 unsigned long lastSend_1 = 0;
 unsigned long lastSend_2 = 0;
+unsigned long lastSend_3 = 0;
 
 void setup() {
     initBoard();
     initWiFiPoint();
+
+    pinMode(ADC1_PIN, INPUT);
+    pinMode(ADC2_PIN, INPUT);
+
+    voltageSensor.setVref(3.3);
+
+    voltageSensor.calibrate();
+    currentSensor.calibrate();
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
     setupLMIC();
@@ -26,12 +38,12 @@ void loop() {
 
     sensor_data.time = rtc.now();
     sensor_data.temperature = rtc.getTemperature();
-    // sensor_data.voltage = analogRead(ADC_PIN) * 0.0048828125 * 100;
-    // sensor_data.current = sensor_data.voltage / 0.1;
-    sensor_data.light = map(analogRead(ADC_PIN), 0, 4000, 0, 100);
+    sensor_data.voltage = voltageSensor.getVoltageAC();
+    sensor_data.current = currentSensor.getCurrentAC();
+    sensor_data.light = map(analogRead(ADC1_PIN), 0, 4000, 0, 100);
 
     unsigned long currentMillis = millis();
-    if (currentMillis - lastSend_1 >= 5000) {
+    if (currentMillis - lastSend_1 >= 2000) {
         lastSend_1 = currentMillis;
 
         char buffer[256];
@@ -54,5 +66,26 @@ void loop() {
 
         FastLED.show();
         digitalWrite(BOARD_LED, !digitalRead(BOARD_LED));
+    }
+
+    if (currentMillis - lastSend_3 >= 10) {
+        lastSend_3 = currentMillis;
+
+        // // Zero point (Without power input)
+        // int Z = voltageSensor.calibrate();
+
+        // // Zero point (With power input)
+        // int ZL = voltageSensor.calibrateLive();
+
+        // // Zero point voltage (With or without power input)
+        // float ZV = voltageSensor.calibrateVoltage();
+
+        // if (Z <= (ZL + 3) && Z >= (ZL - 3)) {
+        //     Serial.print(String("| ") + Z);
+        // } else {
+        //     Serial.print(String("| ---"));
+        // }
+        // Serial.print(String(" | ") + ZL);
+        // Serial.println(String(" |") + ZV + "V|");
     }
 }

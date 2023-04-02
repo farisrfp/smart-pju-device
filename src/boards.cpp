@@ -14,7 +14,6 @@ void initBoard() {
     SPI.begin(RADIO_SCLK_PIN, RADIO_MISO_PIN, RADIO_MOSI_PIN);
 
     pinMode(BOARD_LED, OUTPUT);
-    pinMode(ADC_PIN, INPUT);
     digitalWrite(BOARD_LED, HIGH);
 
     rtc.begin();
