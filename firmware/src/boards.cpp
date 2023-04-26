@@ -13,8 +13,8 @@ void initBoard() {
     Wire.begin(I2C_SDA, I2C_SCL);
     SPI.begin(RADIO_SCLK_PIN, RADIO_MISO_PIN, RADIO_MOSI_PIN);
 
-    pinMode(BOARD_LED, OUTPUT);
-    digitalWrite(BOARD_LED, HIGH);
+    // pinMode(BOARD_LED, OUTPUT);
+    // digitalWrite(BOARD_LED, HIGH);
 
     rtc.begin();
     display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);

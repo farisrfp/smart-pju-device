@@ -14,18 +14,21 @@ struct sensor sensor_data {
 unsigned long lastSend_1 = 0;
 unsigned long lastSend_2 = 0;
 unsigned long lastSend_3 = 0;
-
+ 
 void setup() {
-    initBoard();
-    initWiFiPoint();
+    // initBoard();
+    // initWiFiPoint();
 
-    pinMode(ADC1_PIN, INPUT);
-    pinMode(ADC2_PIN, INPUT);
+    Serial.begin(115200);
+    SPI.begin(RADIO_SCLK_PIN, RADIO_MISO_PIN, RADIO_MOSI_PIN);
 
-    voltageSensor.setVref(3.3);
+    // pinMode(ADC1_PIN, INPUT);
+    // pinMode(ADC2_PIN, INPUT);
 
-    voltageSensor.calibrate();
-    currentSensor.calibrate();
+    // voltageSensor.setVref(3.3);
+
+    // voltageSensor.calibrate();
+    // currentSensor.calibrate();
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
     setupLMIC();
@@ -34,13 +37,13 @@ void setup() {
 void loop() {
     loopLMIC();
 
-    server.handleClient();
+    // server.handleClient();
 
-    sensor_data.time = rtc.now();
-    sensor_data.temperature = rtc.getTemperature();
-    sensor_data.voltage = voltageSensor.getVoltageAC();
-    sensor_data.current = currentSensor.getCurrentAC();
-    sensor_data.light = map(analogRead(ADC1_PIN), 0, 4000, 0, 100);
+    // sensor_data.time = rtc.now();
+    // sensor_data.temperature = rtc.getTemperature();
+    // sensor_data.voltage = voltageSensor.getVoltageAC();
+    // sensor_data.current = currentSensor.getCurrentAC();
+    // sensor_data.light = map(analogRead(ADC1_PIN), 0, 4000, 0, 100);
 
     unsigned long currentMillis = millis();
     if (currentMillis - lastSend_1 >= 2000) {
@@ -65,7 +68,7 @@ void loop() {
         lastSend_2 = currentMillis;
 
         FastLED.show();
-        digitalWrite(BOARD_LED, !digitalRead(BOARD_LED));
+        // digitalWrite(BOARD_LED, !digitalRead(BOARD_LED));
     }
 
     if (currentMillis - lastSend_3 >= 10) {

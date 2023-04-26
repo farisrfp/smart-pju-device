@@ -39,29 +39,29 @@ void initBoard();
 #define I2C_SCL 22
 #define OLED_RST UNUSE_PIN
 
-#define RADIO_SCLK_PIN 5
-#define RADIO_MISO_PIN 19
-#define RADIO_MOSI_PIN 27
-#define RADIO_CS_PIN 18
-#define RADIO_DIO0_PIN 26
-#define RADIO_RST_PIN 23
-#define RADIO_DIO1_PIN 33
-#define RADIO_BUSY_PIN 32
+#define RADIO_SCLK_PIN 18
+#define RADIO_MISO_PIN 5
+#define RADIO_MOSI_PIN 17
+#define RADIO_CS_PIN 16
+#define RADIO_DIO0_PIN 15
+#define RADIO_RST_PIN 13
+#define RADIO_DIO1_PIN 2
+#define RADIO_BUSY_PIN 4
 
-#define SDCARD_MOSI 15
-#define SDCARD_MISO 2
-#define SDCARD_SCLK 14
-#define SDCARD_CS 13
+// #define SDCARD_MOSI 15
+// #define SDCARD_MISO 2
+// #define SDCARD_SCLK 14
+// #define SDCARD_CS 13
 
-#define BOARD_LED 25
+// #define BOARD_LED 25
 
 // Custom Map
-#define WS2812B_PIN 2
-#define RELAY_PIN 15
+#define WS2812B_PIN 19
+#define RELAY_PIN 14
 #define ADC1_PIN 34
 #define ADC2_PIN 35
 
-#define HAS_DISPLAY
+// #define HAS_DISPLAY
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_ADDR 0x3C

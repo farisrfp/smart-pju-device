@@ -692,6 +692,13 @@ void radio_init () {
 #else
 #error Missing CFG_sx1272_radio/CFG_sx1276_radio
 #endif
+// #ifdef CFG_sx1276_radio 
+//     if(v != 0x12 )  return 0; 
+// #elif CFG_sx1272_radio 
+//     if(v != 0x22) return 0;
+// #else 
+// #error Missing CFG_sx1272_radio/CFG_sx1276_radio 
+// #endif
     // seed 15-byte randomness via noise rssi
     rxlora(RXMODE_RSSI);
     while( (readReg(RegOpMode) & OPMODE_MASK) != OPMODE_RX ); // continuous rx
