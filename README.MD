@@ -12,7 +12,7 @@ Smart PJU ini merupakan project lanjutan dari X-Bright dengan penambahan fitur b
 | :-------------------------------: |
 | ![](pictures/board_v1.png "Yaya") |
 
-Dokuementasi lengkap dapat dilihat di [sini](hardware/README.md)
+Dokumentasi hardware dapat dilihat di [sini](hardware/README.md)
 
 ### **Firmware**
 
@@ -29,7 +29,7 @@ Key Features:
 - Real Time Clock and Temp with DS3231
 - On/Off Switch with SSR
 
-Dokuementasi lengkap dapat dilihat di [sini](firmware/README.md)
+Dokuementasi firmware dapat dilihat di [sini](firmware/README.md)
 
 ## **Contact**
 
