@@ -1,7 +1,6 @@
 #pragma once
 
 #include <FastLED.h>
-#include <PJU.h>
 
 enum COLOR {
     RED,
