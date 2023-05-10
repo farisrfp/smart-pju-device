@@ -1,10 +1,11 @@
 #pragma once
 
+#include "../boards.h"
+
 // LoRa_Serialization
 #include <LoraMessage.h>
 
-// Sensor Configuration
-#define PAYLOAD_SIZE 11
+extern RTC_DS3231 rtc;
 
 /****************************************************************************\
 |
@@ -23,16 +24,11 @@ class cSensor {
     uint16_t getCurrent(void);
     uint32_t getUnixTime(void);
 
-    void uplinkRequest(void) {
-        m_fUplinkRequest = true;
-    };
     ///
     /// \brief set up the sensor object
     ///
-    /// \param uplinkPeriodMs optional uplink interval. If not specified,
-    ///         transmit every six minutes.
     ///
-    void setup(std::uint32_t uplinkPeriodMs = 6 * 60 * 1000);
+    void begin();
 
     ///
     /// \brief update sensor loop.
@@ -54,12 +50,11 @@ class cSensor {
     uint32_t unix_time;       //<! unix time
 
    private:
-    void doUplink();
+    // void doUplink();
 
-    bool m_fUplinkRequest;           // set true when uplink is requested
-    bool m_fBusy;                    // set true while sending an uplink
-    std::uint32_t m_uplinkPeriodMs;  // uplink period in milliseconds
-    std::uint32_t m_tReference;      // time of last uplink
+    // bool m_fUplinkRequest;           // set true when uplink is requested
+    // bool m_fBusy;                    // set true while sending an uplink
+    uint32_t m_lastUpdate;  // millis() timestamp of last update
 };
 
 // The global sensor instance
