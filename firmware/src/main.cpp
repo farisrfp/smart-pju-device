@@ -23,14 +23,14 @@ void setup() {
     setupLMIC();
     DEBUG_PRINTF_TS("setupLMIC() - done\n");
 
-    mySensor.begin();
-    DEBUG_PRINTF_TS("mySensor.begin() - done\n");
+    // mySensor.begin();
+    // DEBUG_PRINTF_TS("mySensor.begin() - done\n");
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
 }
 
 void loop() {
     loopLMIC();
-    mySensor.loop();
+    // mySensor.loop();
 
 }

@@ -7,7 +7,7 @@ LEDTask led1(0);
 LEDTask led2(1);
 
 void initBoard() {
-    SPI.begin(RADIO_SCLK_PIN, RADIO_MISO_PIN, RADIO_MOSI_PIN, RADIO_CS_PIN);
+    SPI.begin(SPI_SCLK, SPI_MISO, SPI_MOSI);
 
     FastLED.addLeds<WS2812B, WS2812B_PIN, GRB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);

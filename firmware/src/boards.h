@@ -39,18 +39,18 @@ void initBoard();
 
 #ifdef PROTOTYPE
 
-#define RADIO_SCLK_PIN 5
-#define RADIO_MISO_PIN 19
-#define RADIO_MOSI_PIN 27
-#define RADIO_CS_PIN 18
-#define RADIO_RST_PIN 23
-#define RADIO_DIO0_PIN 26
-#define RADIO_DIO1_PIN 33
-#define RADIO_BUSY_PIN 32
+#define SPI_SCLK 5
+#define SPI_MISO 19
+#define SPI_MOSI 27
+#define PIN_NSS 18
+#define PIN_RST 23
+#define PIN_DIO0 26
+#define PIN_DIO1 33
+#define PIN_DIO2 32
 
 // Other
-#define WS2812B_PIN 19
-#define RELAY_PIN 14
+#define WS2812B_PIN 2
+#define RELAY_PIN 15
 #define ADC1_PIN 34
 #define ADC2_PIN 35
 
