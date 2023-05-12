@@ -32,5 +32,4 @@ void setup() {
 void loop() {
     loopLMIC();
     // mySensor.loop();
-
 }
