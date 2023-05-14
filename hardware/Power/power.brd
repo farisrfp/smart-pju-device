@@ -2191,6 +2191,17 @@
 <hole x="13.6" y="21.9" drill="0.6"/>
 <text x="22.2" y="-20.4" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
 <text x="15.6" y="-22.4" size="1" layer="21" ratio="11" rot="R180">V2</text>
+<hole x="-30" y="-5.5" drill="1"/>
+<hole x="12.8" y="27" drill="1"/>
+<hole x="28.5" y="-7.6" drill="1"/>
+<wire x1="-18" y1="-16.8" x2="-18" y2="-17.6" width="0.1016" layer="21"/>
+<wire x1="-18.3" y1="-17.2" x2="-17.7" y2="-17.2" width="0.1016" layer="21"/>
+<wire x1="-7.2" y1="-20.3" x2="-7.2" y2="-23.2" width="0.1016" layer="21"/>
+<wire x1="-2.4" y1="-22.7" x2="-0.7" y2="-22.7" width="0.1016" layer="21"/>
+<wire x1="-2.4" y1="-22.6" x2="-0.7" y2="-22.6" width="0.1016" layer="21"/>
+<wire x1="-7.1" y1="-20.3" x2="-7.1" y2="-23.2" width="0.1016" layer="21"/>
+<circle x="-26.8" y="-16" radius="0.1" width="0.508" layer="21"/>
+<circle x="8.5" y="-13" radius="0.1" width="0.254" layer="21"/>
 </plain>
 <libraries>
 <library name="Capacitor" urn="urn:adsk.eagle:library:16290819">
@@ -2747,29 +2758,6 @@ series 057 contact pc board low profile headers
 straight</description>
 <packageinstances>
 <packageinstance name="057-006-1"/>
-</packageinstances>
-</package3d>
-</packages3d>
-</library>
-<library name="PCB-Fasteners_Hardware" urn="urn:adsk.eagle:library:19556146">
-<description>&lt;B&gt;PC Board supports, Standoffs, Spacers</description>
-<packages>
-<package name="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220" urn="urn:adsk.eagle:footprint:19556177/1" library_version="5">
-<description>Male-Female Hex Standoff/Spacer with 2.20 mm hole diameter, 8.00 mm body height, 4.00 mm body width with post thread size M2x0.4 and inner thread size M2x0.4, plated mounting pad.
-&lt;p&gt;Male-Female Hex Standoff/Spacer package with 2.20 mm hole diameter, 8.00 mm body height, 4.00 mm body width with post thread size M2x0.4, 6.00 mm length and inner thread size M2x0.4, 4.00 mm depth, plated with 6.00 mm mounting pad.&lt;/p&gt;</description>
-<hole x="0" y="0" drill="2.2"/>
-<pad name="1" x="0" y="0" drill="2.2" diameter="6" thermals="no"/>
-<circle x="0" y="0" radius="2" width="0.12" layer="51"/>
-<text x="0" y="3.635" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-3.635" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
-</package>
-</packages>
-<packages3d>
-<package3d name="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220" urn="urn:adsk.eagle:package:19556199/2" type="model" library_version="5">
-<description>Male-Female Hex Standoff/Spacer with 2.20 mm hole diameter, 8.00 mm body height, 4.00 mm body width with post thread size M2x0.4 and inner thread size M2x0.4, plated mounting pad.
-&lt;p&gt;Male-Female Hex Standoff/Spacer package with 2.20 mm hole diameter, 8.00 mm body height, 4.00 mm body width with post thread size M2x0.4, 6.00 mm length and inner thread size M2x0.4, 4.00 mm depth, plated with 6.00 mm mounting pad.&lt;/p&gt;</description>
-<packageinstances>
-<packageinstance name="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -3539,59 +3527,19 @@ design rules under a new name.</description>
 <attribute name="TYPE" value="" x="-0.5356" y="-1.6239" size="1.778" layer="27" rot="R135" display="off"/>
 <attribute name="VALUE" x="0.631125" y="-0.457175" size="1" layer="27" rot="R135" align="top-center"/>
 </element>
-<element name="MP1" library="PCB-Fasteners_Hardware" library_urn="urn:adsk.eagle:library:19556146" package="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220" package3d_urn="urn:adsk.eagle:package:19556199/2" value="STANDOFF_M/F_M2_8MM" x="-30.1" y="-5.9" smashed="yes">
-<attribute name="CATEGORY" value="Standoff/Spacer" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="DESCRIPTION" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MANUFACTURER" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MATERIAL" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MPN" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="OPERATING_TEMP" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="ROHS_COMPLIANT" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SERIES" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SUB-CATEGORY" value="Male-Female" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="THREADED" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="TYPE" value="" x="-30.1" y="-5.9" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="VALUE" x="-30.1" y="-9.535" size="1.27" layer="27" align="top-center"/>
-</element>
-<element name="MP2" library="PCB-Fasteners_Hardware" library_urn="urn:adsk.eagle:library:19556146" package="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220" package3d_urn="urn:adsk.eagle:package:19556199/2" value="STANDOFF_M/F_M2_8MM" x="28.4" y="-10.3" smashed="yes">
-<attribute name="CATEGORY" value="Standoff/Spacer" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="DESCRIPTION" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MANUFACTURER" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MATERIAL" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MPN" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="OPERATING_TEMP" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="ROHS_COMPLIANT" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SERIES" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SUB-CATEGORY" value="Male-Female" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="THREADED" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="TYPE" value="" x="28.4" y="-10.3" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="VALUE" x="28.4" y="-13.935" size="1.27" layer="27" align="top-center"/>
-</element>
-<element name="MP3" library="PCB-Fasteners_Hardware" library_urn="urn:adsk.eagle:library:19556146" package="STANDOFF_HEX_MALE-FEMALE_400X800_M2X0.4_MTGP600H220" package3d_urn="urn:adsk.eagle:package:19556199/2" value="STANDOFF_M/F_M2_8MM" x="9.1" y="28.4" smashed="yes">
-<attribute name="CATEGORY" value="Standoff/Spacer" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="DESCRIPTION" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MANUFACTURER" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MATERIAL" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="MPN" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="OPERATING_TEMP" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="ROHS_COMPLIANT" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SERIES" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="SUB-CATEGORY" value="Male-Female" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="THREADED" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="TYPE" value="" x="9.1" y="28.4" size="1" layer="27" ratio="11" display="off"/>
-<attribute name="VALUE" x="9.1" y="24.765" size="1.27" layer="27" align="top-center"/>
-</element>
 </elements>
 <signals>
 <signal name="L" airwireshidden="yes">
 <contactref element="NEMA-7PIN" pad="L"/>
 <contactref element="F1" pad="1"/>
 <wire x1="8.5" y1="-2.3" x2="12.026790625" y2="-2.3" width="2.54" layer="1"/>
-<wire x1="12.026790625" y1="-2.3" x2="18.848" y2="4.5595" width="2.54" layer="1"/>
+<wire x1="18.848" y1="4.5595" x2="12.026790625" y2="-2.3" width="2.54" layer="1"/>
 <contactref element="V1" pad="1"/>
 <wire x1="8.5" y1="-2.3" x2="8.5" y2="-2.1886875" width="2.54" layer="1"/>
 <wire x1="8.5" y1="-2.3" x2="9.9386" y2="-0.8614" width="1.016" layer="1"/>
 <wire x1="9.9386" y1="-0.8614" x2="9.9386" y2="0.7727125" width="1.016" layer="1"/>
+<wire x1="12.026790625" y1="-2.3" x2="9.9386" y2="-0.211809375" width="2.54" layer="1"/>
+<wire x1="9.9386" y1="-0.211809375" x2="9.9386" y2="0.7727125" width="2.54" layer="1"/>
 </signal>
 <signal name="N$4">
 <contactref element="IC1" pad="7"/>
@@ -3707,14 +3655,13 @@ design rules under a new name.</description>
 <contactref element="C7" pad="2"/>
 <contactref element="IC2" pad="1"/>
 <wire x1="-26.5903" y1="19.2536" x2="-27.9" y2="17.9439" width="0.254" layer="1"/>
-<wire x1="-27.9" y1="17.9439" x2="-27.9" y2="15.7" width="0.254" layer="1"/>
-<via x="-27.9" y="15.7" extent="1-16" drill="0.6" diameter="1"/>
-<wire x1="-23" y1="15.7" x2="-27.9" y2="15.7" width="0.254" layer="16"/>
+<wire x1="-27.9" y1="17.9439" x2="-27.9" y2="16.1" width="0.254" layer="1"/>
+<via x="-27.9" y="16.1" extent="1-16" drill="0.6" diameter="1"/>
 <wire x1="-23" y1="14.72425" x2="-23.02255" y2="14.7017" width="0.254" layer="1"/>
-<via x="-23" y="15.7" extent="1-16" drill="0.6" diameter="1"/>
-<wire x1="-23" y1="15.7" x2="-23" y2="14.72425" width="0.254" layer="1"/>
-<wire x1="-27.9" y1="15.7" x2="-29" y2="15.7" width="0.254" layer="1"/>
-<wire x1="-29" y1="15.7" x2="-29.6" y2="15.1" width="0.254" layer="1"/>
+<via x="-23" y="16.1" extent="1-16" drill="0.6" diameter="1"/>
+<wire x1="-23" y1="16.1" x2="-23" y2="14.72425" width="0.254" layer="1"/>
+<wire x1="-27.9" y1="16.1" x2="-28.6" y2="16.1" width="0.254" layer="1"/>
+<wire x1="-28.6" y1="16.1" x2="-29.6" y2="15.1" width="0.254" layer="1"/>
 <wire x1="-29.6" y1="15.1" x2="-29.6" y2="7.9" width="0.254" layer="1"/>
 <wire x1="-29.6" y1="7.9" x2="-28.9007" y2="7.2007" width="0.254" layer="1"/>
 <wire x1="-28.9007" y1="7.2007" x2="-28.2499" y2="7.2007" width="0.254" layer="1"/>
@@ -3723,6 +3670,7 @@ design rules under a new name.</description>
 <wire x1="-21.9" y1="14.3" x2="-22.32425" y2="14.72425" width="0.254" layer="1"/>
 <wire x1="-22.32425" y1="14.72425" x2="-23" y2="14.72425" width="0.254" layer="1"/>
 <wire x1="-19.0417" y1="9.7417" x2="-21.9" y2="12.6" width="0.254" layer="1"/>
+<wire x1="-23" y1="16.1" x2="-27.9" y2="16.1" width="0.254" layer="16"/>
 </signal>
 <signal name="POS-A">
 <contactref element="T1" pad="4"/>
@@ -3908,8 +3856,8 @@ design rules under a new name.</description>
 <vertex x="12.8" y="-18.9"/>
 <vertex x="12.8" y="-35.4"/>
 <vertex x="12.6" y="-35.6"/>
-<vertex x="-18.8" y="-35.6"/>
-<vertex x="-35.6" y="-18.8"/>
+<vertex x="-15.3" y="-35.6"/>
+<vertex x="-35.6" y="-15.3"/>
 <vertex x="-35.6" y="15.4"/>
 <vertex x="-14.9" y="36.1"/>
 <vertex x="4.8" y="36.1"/>
@@ -3928,8 +3876,8 @@ design rules under a new name.</description>
 <vertex x="12.8" y="-18.9"/>
 <vertex x="12.8" y="-35.4"/>
 <vertex x="12.6" y="-35.6"/>
-<vertex x="-18.8" y="-35.6"/>
-<vertex x="-35.6" y="-18.8"/>
+<vertex x="-15.3" y="-35.6"/>
+<vertex x="-35.6" y="-15.3"/>
 <vertex x="-35.6" y="15.4"/>
 <vertex x="-14.9" y="36.1"/>
 <vertex x="4.8" y="36.1"/>
@@ -3938,7 +3886,7 @@ design rules under a new name.</description>
 </polygon>
 <via x="2.4" y="19.3" extent="1-16" drill="0.6" diameter="1"/>
 <via x="2.4" y="22.9" extent="1-16" drill="0.6" diameter="1"/>
-<via x="-19.8" y="16" extent="1-16" drill="0.6" diameter="1"/>
+<via x="-19.7" y="16.1" extent="1-16" drill="0.6" diameter="1"/>
 </signal>
 <signal name="N">
 <contactref element="NEMA-7PIN" pad="N"/>
@@ -3951,10 +3899,10 @@ design rules under a new name.</description>
 <wire x1="-2.80170625" y1="14.286578125" x2="-2.80170625" y2="10.80170625" width="1.016" layer="1"/>
 <wire x1="-2.80170625" y1="10.80170625" x2="-0.7" y2="8.7" width="1.016" layer="1"/>
 <wire x1="-0.8814" y1="8.5186" x2="-0.7" y2="8.7" width="2.54" layer="1"/>
-<wire x1="-0.7" y1="8.7" x2="0.2333125" y2="8.7" width="1.016" layer="1"/>
-<wire x1="0.2333125" y1="8.7" x2="2.3186" y2="6.6147125" width="1.016" layer="1"/>
 <wire x1="17.472596875" y1="10.872596875" x2="17.472596875" y2="21.050903125" width="1.016" layer="1"/>
 <wire x1="17.472596875" y1="21.050903125" x2="17.4462" y2="21.0773" width="1.016" layer="1"/>
+<wire x1="2.3186" y1="6.6147125" x2="0.2333125" y2="8.7" width="2.54" layer="1"/>
+<wire x1="0.2333125" y1="8.7" x2="-0.7" y2="8.7" width="2.54" layer="1"/>
 <wire x1="17.4462" y1="21.0773" x2="17.4462" y2="21.0773" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="DIM-">
