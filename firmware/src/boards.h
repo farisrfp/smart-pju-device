@@ -17,7 +17,7 @@
 #define DEBUG_PRINTF_TS(...)                                    \
     {                                                           \
         DEBUG_PORT.printf("%d ms: ", osticks2ms(os_getTime())); \
-        DEBUG_PORT.printf(__VA_ARGS__);                         \
+        DEBUG_PORT.printf(__VA_ARGS__);                        \
     }
 #else
 #define DEBUG_PRINTF(...) \
@@ -39,6 +39,9 @@ void initBoard();
 
 #ifdef PROTOTYPE
 
+#define I2C_SDA 21
+#define I2C_SCL 22
+
 #define SPI_SCLK 5
 #define SPI_MISO 19
 #define SPI_MOSI 27
@@ -49,12 +52,15 @@ void initBoard();
 #define PIN_DIO2 32
 
 // Other
-#define WS2812B_PIN 2
+#define WS2812B_PIN 14
 #define RELAY_PIN 15
 #define ADC1_PIN 34
 #define ADC2_PIN 35
 
 #else
+
+#define I2C_SDA 21
+#define I2C_SCL 22
 
 #define SPI_SCLK 18
 #define SPI_MISO 5

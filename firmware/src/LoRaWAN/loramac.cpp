@@ -14,7 +14,6 @@ static osjob_t sendjob;
 static int spreadFactor = DR_SF7;
 static int joinStatus = EV_JOINING;
 static const unsigned TX_INTERVAL = 30;
-static String lora_msg = "";
 
 void os_getArtEui(u1_t *buf) {
     memcpy_P(buf, appeui, 8);
@@ -30,15 +29,15 @@ void os_getDevKey(u1_t *buf) {
 
 void do_send(osjob_t *j) {
     if (joinStatus == EV_JOINING) {
-        DEBUG_PRINTF_TS("[LoRaWAN] Not joined yet");
+        DEBUG_PRINTF_TS("[LoRaWAN] Not joined yet\n");
         // Check if there is not a current TX/RX job running
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
 
     } else if (LMIC.opmode & OP_TXRXPEND) {
-        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND, not sending");
+        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND, not sending\n");
     } else {
-        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND,sending ...");
-        led1.setOffAfter(GREEN, 250);
+        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND,sending ...\n");
+        led1.setOffAfter(COLOR::BLUE, 250);
 
         byte loraData[10];
         LoraEncoder encoder(loraData);
@@ -49,53 +48,57 @@ void do_send(osjob_t *j) {
         encoder.writeUint16(mySensor.current_m_a);
 
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(1, loraData, sizeof(loraData) - 1, 0);
+        LMIC_setTxData2(1, loraData, sizeof(loraData), 1);
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
     }
 }
 
 void onEvent(ev_t ev) {
-    Serial.print(os_getTime());
-    Serial.print(": ");
     switch (ev) {
         case EV_TXCOMPLETE:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_TXCOMPLETE (includes waiting for RX windows)");
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_TXCOMPLETE, rssi: %d, snr: %d\n", LMIC.rssi, LMIC.snr);
 
             if (LMIC.txrxFlags & TXRX_ACK) {
-                DEBUG_PRINTF_TS("[LoRaWAN] Received ack");
-                lora_msg = "Received ACK.";
+                DEBUG_PRINTF_TS("[LoRaWAN] Received ack\n");
             }
-
-            lora_msg = "rssi:" + String(LMIC.rssi) + " snr: " + String(LMIC.snr);
 
             if (LMIC.dataLen) {
                 // data received in rx slot after tx
-                Serial.print(F("[LoRaWAN] Data Received: "));
-                Serial.write(LMIC.frame + LMIC.dataBeg, LMIC.dataLen);
-                DEBUG_PRINTF_TS("\n");
-                Serial.println(LMIC.dataLen);
-                DEBUG_PRINTF_TS("[LoRaWAN]  bytes of payload");
+                DEBUG_PRINTF_TS("[LoRaWAN] Data Received: %d bytes\n", LMIC.dataLen);
+
+                if (LMIC.dataLen == 1) {
+                    uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
+                    if (result == 0) {
+                        Serial.println("RESULT 0");
+                    }
+                    if (result == 1) {
+                        Serial.println("RESULT 1");
+                    }
+                    if (result == 2) {
+                        Serial.println("RESULT 2");
+                    }
+                    if (result == 3) {
+                        Serial.println("RESULT 3");
+                    }
+                }
             }
             // Schedule next transmission
             os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
             break;
         case EV_JOINING:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINING: -> Joining...");
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINING: -> Joining...\n");
             led1.setFade(COLOR::BLUE, 750, 500, 255);
-            lora_msg = "OTAA joining....";
             joinStatus = EV_JOINING;
 
             break;
         case EV_JOIN_FAILED:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed");
-            led1.setFade(COLOR::RED, 350, 150, 255);
-            lora_msg = "OTAA Joining failed";
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed\n");
+            led1.setOffAfter(COLOR::RED, 1000);
 
             break;
         case EV_JOINED:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINED");
-            led1.turnOff();
-            lora_msg = "Joined!";
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINED\n");
+            led1.setOffAfter(COLOR::GREEN, 1000);
             joinStatus = EV_JOINED;
 
             delay(3);
@@ -106,16 +109,16 @@ void onEvent(ev_t ev) {
             break;
         case EV_RXCOMPLETE:
             // data received in ping slot
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_RXCOMPLETE");
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_RXCOMPLETE\n");
             break;
         case EV_LINK_DEAD:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_DEAD");
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_DEAD\n");
             break;
         case EV_LINK_ALIVE:
-            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_ALIVE");
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_ALIVE\n");
             break;
         default:
-            DEBUG_PRINTF_TS("[LoRaWAN] Unknown event");
+            DEBUG_PRINTF_TS("[LoRaWAN] Unknown event\n");
             break;
     }
 }

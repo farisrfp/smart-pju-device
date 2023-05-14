@@ -39,6 +39,12 @@ class cSensor {
     ///
     void loop();
 
+    ///
+    /// \brief print sensor data to serial port
+    ///
+    void printData();    
+
+
     // Example sensor status flags
     bool data;   //<! sensor data validation
     bool relay;  //<! actuator relay status

@@ -12,24 +12,26 @@ void setup() {
 
 #ifdef DEBUG_MODE
     // wait for serial to be ready
-    while (!Serial)
-        yield();
+    while (!Serial) {
+        delay(1);
+    }
 #endif
 
     // initialize the board.
     initBoard();
     DEBUG_PRINTF_TS("initBoard() - done\n");
 
+    mySensor.begin();
+    DEBUG_PRINTF_TS("mySensor.begin() - done\n");
+
     setupLMIC();
     DEBUG_PRINTF_TS("setupLMIC() - done\n");
-
-    // mySensor.begin();
-    // DEBUG_PRINTF_TS("mySensor.begin() - done\n");
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
 }
 
 void loop() {
+    FastLED.show();
     loopLMIC();
-    // mySensor.loop();
+    mySensor.loop();
 }

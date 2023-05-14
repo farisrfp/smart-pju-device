@@ -8,7 +8,7 @@ enum COLOR {
     BLUE
 };
 
-enum MODE {
+enum LED {
     FADE,
     FLICKER,
     ON,
