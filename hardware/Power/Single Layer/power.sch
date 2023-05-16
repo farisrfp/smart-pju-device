@@ -5150,6 +5150,8 @@ straight</description>
 <part name="X1" library="con-panduit" library_urn="urn:adsk.eagle:library:169" deviceset="057-006-" device="1" package3d_urn="urn:adsk.eagle:package:9198/1"/>
 <part name="R20" library="Resistor" library_urn="urn:adsk.eagle:library:16378527" deviceset="R" device="AXIAL-7.2MM-PITCH" package3d_urn="urn:adsk.eagle:package:16378561/2" technology="_" value="330K"/>
 <part name="R19" library="Resistor" library_urn="urn:adsk.eagle:library:16378527" deviceset="R" device="AXIAL-7.2MM-PITCH" package3d_urn="urn:adsk.eagle:package:16378561/2" technology="_" value="330K"/>
+<part name="JP1" library="Resistor" library_urn="urn:adsk.eagle:library:16378527" deviceset="R" device="CHIP-0805(2012-METRIC)" package3d_urn="urn:adsk.eagle:package:16378559/2" technology="_" value="330"/>
+<part name="JP2" library="Resistor" library_urn="urn:adsk.eagle:library:16378527" deviceset="R" device="CHIP-0805(2012-METRIC)" package3d_urn="urn:adsk.eagle:package:16378559/2" technology="_" value="330"/>
 </parts>
 <sheets>
 <sheet>
@@ -5375,6 +5377,14 @@ straight</description>
 <attribute name="NAME" x="147.32" y="185.42" size="1.778" layer="95" align="center"/>
 <attribute name="VALUE" x="147.32" y="180.34" size="1.778" layer="96" align="center"/>
 </instance>
+<instance part="JP1" gate="G$1" x="167.64" y="71.12" smashed="yes" rot="R180">
+<attribute name="NAME" x="167.64" y="68.58" size="1.778" layer="95" rot="R180" align="center"/>
+<attribute name="VALUE" x="167.64" y="73.66" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="JP2" gate="G$1" x="167.64" y="63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="167.64" y="60.96" size="1.778" layer="95" rot="R180" align="center"/>
+<attribute name="VALUE" x="167.64" y="66.04" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -5546,6 +5556,16 @@ straight</description>
 <wire x1="60.96" y1="83.82" x2="63.5" y2="83.82" width="0.1524" layer="91" grouprefs="CON_POWER"/>
 <label x="63.5" y="83.82" size="1.778" layer="95" xref="yes" grouprefs="CON_POWER"/>
 </segment>
+<segment>
+<pinref part="JP1" gate="G$1" pin="1"/>
+<wire x1="172.72" y1="71.12" x2="175.26" y2="71.12" width="0.1524" layer="91"/>
+<label x="175.26" y="71.12" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP1" gate="G$1" pin="2"/>
+<wire x1="162.56" y1="71.12" x2="160.02" y2="71.12" width="0.1524" layer="91"/>
+<label x="160.02" y="71.12" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="N$4" class="0">
 <segment>
@@ -5648,6 +5668,16 @@ straight</description>
 <label x="195.58" y="137.16" size="1.778" layer="95" rot="R90" xref="yes" grouprefs="VOLTAGE_MODULE"/>
 <pinref part="R13" gate="G$1" pin="1"/>
 <pinref part="R14" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="1"/>
+<wire x1="172.72" y1="63.5" x2="175.26" y2="63.5" width="0.1524" layer="91"/>
+<label x="175.26" y="63.5" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="2"/>
+<wire x1="162.56" y1="63.5" x2="160.02" y2="63.5" width="0.1524" layer="91"/>
+<label x="157.48" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="OUT-A" class="0">

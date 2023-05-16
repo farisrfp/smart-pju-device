@@ -23,6 +23,7 @@ class cSensor {
     uint16_t getVoltage(void);
     uint16_t getCurrent(void);
     uint32_t getUnixTime(void);
+    uint8_t getLightLevel(void);
 
     ///
     /// \brief set up the sensor object
@@ -42,8 +43,7 @@ class cSensor {
     ///
     /// \brief print sensor data to serial port
     ///
-    void printData();    
-
+    void printData();
 
     // Example sensor status flags
     bool data;   //<! sensor data validation
@@ -51,9 +51,10 @@ class cSensor {
 
     // Example sensor data
     float temperature_deg_c;  //<! outdoor air temperature in °C
-    uint16_t voltage_v;       //<! battery voltage
+    float voltage_v;          //<! battery voltage
     uint16_t current_m_a;     //<! supply voltage
     uint32_t unix_time;       //<! unix time
+    uint8_t light_level;      //<! light level
 
    private:
     // void doUplink();

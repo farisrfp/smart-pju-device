@@ -6828,12 +6828,13 @@ straight</description>
 <wire x1="109.22" y1="66.04" x2="116.84" y2="66.04" width="0.1524" layer="91" grouprefs="DIMMING"/>
 </segment>
 </net>
-<net name="N$22" class="0">
+<net name="F_5V" class="0">
 <segment>
 <pinref part="AC-DC" gate="G$1" pin="+V0"/>
 <wire x1="165.1" y1="101.6" x2="165.1" y2="99.06" width="0.1524" layer="91" grouprefs="AC-DC_MODULE"/>
 <pinref part="F2" gate="G$1" pin="1"/>
 <wire x1="165.1" y1="99.06" x2="167.64" y2="99.06" width="0.1524" layer="91" grouprefs="AC-DC_MODULE"/>
+<label x="162.56" y="96.52" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="IO_DIMMING" class="0">

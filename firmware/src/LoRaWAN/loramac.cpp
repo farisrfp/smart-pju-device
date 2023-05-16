@@ -13,7 +13,7 @@ const lmic_pinmap lmic_pins = {
 static osjob_t sendjob;
 static int spreadFactor = DR_SF7;
 static int joinStatus = EV_JOINING;
-static const unsigned TX_INTERVAL = 30;
+static const unsigned TX_INTERVAL = 20;
 
 void os_getArtEui(u1_t *buf) {
     memcpy_P(buf, appeui, 8);
@@ -48,7 +48,7 @@ void do_send(osjob_t *j) {
         encoder.writeUint16(mySensor.current_m_a);
 
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(1, loraData, sizeof(loraData), 1);
+        LMIC_setTxData2(0, loraData, sizeof(loraData), 0);
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
     }
 }
@@ -66,20 +66,26 @@ void onEvent(ev_t ev) {
                 // data received in rx slot after tx
                 DEBUG_PRINTF_TS("[LoRaWAN] Data Received: %d bytes\n", LMIC.dataLen);
 
-                if (LMIC.dataLen == 1) {
-                    uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
-                    if (result == 0) {
-                        Serial.println("RESULT 0");
+                // if (LMIC.dataLen == 1) {
+                //     uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
+                //     if (result == 0) {
+                //         Serial.println("RESULT 0");
+                //     }
+                //     if (result == 1) {
+                //         Serial.println("RESULT 1");
+                //     }
+                //     if (result == 2) {
+                //         Serial.println("RESULT 2");
+                //     }
+                //     if (result == 3) {
+                //         Serial.println("RESULT 3");
+                //     }
+                // }
+                if (LMIC.dataLen) {
+                    for (int i = 0; i < LMIC.dataLen; i++) {
+                        Serial.printf("%02X ", LMIC.frame[LMIC.dataBeg + i]);
                     }
-                    if (result == 1) {
-                        Serial.println("RESULT 1");
-                    }
-                    if (result == 2) {
-                        Serial.println("RESULT 2");
-                    }
-                    if (result == 3) {
-                        Serial.println("RESULT 3");
-                    }
+                    Serial.println();
                 }
             }
             // Schedule next transmission

@@ -3,7 +3,9 @@
 #include "../boards.h"
 
 void cSensor::begin() {
+#ifndef DUMMY_DATA
     rtc.begin();
+#endif
 }
 
 void cSensor::loop(void) {
@@ -17,17 +19,17 @@ void cSensor::loop(void) {
         temperature_deg_c = getTemperature();
         voltage_v = getVoltage();
         current_m_a = getCurrent();
+        light_level = getLightLevel();
 
         printData();
     }
 }
 
 // Get Device AC Voltage
-uint16_t
-cSensor::getVoltage(void) {
+float cSensor::getVoltage(void) {
     const uint16_t voltage = random(21000, 23000);
 
-    return voltage;
+    return voltage / 100.00;
 }
 
 // Get Device AC Current
@@ -41,22 +43,35 @@ cSensor::getCurrent(void) {
 // Get Device Unix Time
 uint32_t
 cSensor::getUnixTime(void) {
+#ifndef DUMMY_DATA
     const uint32_t unixtime = rtc.now().unixtime();
-    // const uint32_t unixtime = 1619712000;
+#else
+    const uint32_t unixtime = 1684120499;
+#endif
 
     return unixtime;
 }
 
 // Get temperature (Stub)
 float cSensor::getTemperature(void) {
+#ifndef DUMMY_DATA
     const float temperature = rtc.getTemperature();
-    // const float temperature = 25.00;
+#else
+    const float temperature = random(20, 30);
+#endif
 
     return temperature;
 }
 
+// Get Light Level (Stub)
+uint8_t cSensor::getLightLevel(void) {
+    const uint8_t lightLevel = random(0, 100);
+
+    return lightLevel;
+}
+
 // Print Sensor Data
 void cSensor::printData(void) {
-    DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %dV\t| Current = %dmA\n", temperature_deg_c,
-                 unix_time, voltage_v / 100, current_m_a);
+    DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %.2fV\t| Current = %dmA\n", temperature_deg_c,
+                 unix_time, voltage_v, current_m_a);
 }
