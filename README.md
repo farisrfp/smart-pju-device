@@ -16,7 +16,7 @@ Smart PJU ini merupakan project lanjutan dari X-Bright dengan penambahan fitur b
 | :-----------------------------: |
 | ![](pictures/power.png "power") |
 
-Dokuementasi lengkap dapat dilihat di [sini](hardware/README.md)
+Dokuementasi lengkap dapat dilihat di [sini](./hardware/README.md)
 
 ### **Firmware**
 
