@@ -1,159 +1,112 @@
-#include <Arduino.h>
-
 #include "loramac.h"
 
-// Chose LSB mode on the console and then copy it here.
-static const u1_t PROGMEM APPEUI[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-// LSB mode
-// {0xFC, 0x46, 0x74, 0x79, 0x3E, 0xE6, 0x82, 0xDA}
-static const u1_t PROGMEM DEVEUI[8] = {0xDA, 0x82, 0xE6, 0x3E, 0x79, 0x74, 0x46, 0xFC};
-// MSB mode
-static const u1_t PROGMEM APPKEY[16] = {
-    0x93, 0x14, 0xD0, 0xA3, 0xFC, 0xDE, 0x71,
-    0x5B, 0xAF, 0x80, 0x73, 0x45, 0x2A, 0x09,
-    0x1B, 0x52};
+// Fill in your AppEUI, DevEUI and AppKey
+#include "secrets.h"
 
-// Pin mapping
-#ifdef STM32L073xx
 const lmic_pinmap lmic_pins = {
-    .nss = RADIO_CS_PIN,
-    .rxtx = RADIO_SWITCH_PIN,
-    .rst = RADIO_RST_PIN,
-    .dio = {RADIO_DIO0_PIN, RADIO_DIO1_PIN, RADIO_DIO2_PIN},
-    .rx_level = HIGH};
-#else
-const lmic_pinmap lmic_pins = {
-    .nss = RADIO_CS_PIN,
+    .nss = PIN_NSS,
     .rxtx = LMIC_UNUSED_PIN,
-    .rst = RADIO_RST_PIN,
-    .dio = {RADIO_DIO0_PIN, RADIO_DIO1_PIN, RADIO_BUSY_PIN}};
-#endif
+    .rst = PIN_RST,
+    .dio = {PIN_DIO0, PIN_DIO1, PIN_DIO2},
+};
 
 static osjob_t sendjob;
 static int spreadFactor = DR_SF7;
 static int joinStatus = EV_JOINING;
-static const unsigned TX_INTERVAL = 30;
-static String lora_msg = "";
+static const unsigned TX_INTERVAL = 20;
 
 void os_getArtEui(u1_t *buf) {
-    memcpy_P(buf, APPEUI, 8);
+    memcpy_P(buf, appeui, 8);
 }
 
 void os_getDevEui(u1_t *buf) {
-    memcpy_P(buf, DEVEUI, 8);
+    memcpy_P(buf, deveui, 8);
 }
 
 void os_getDevKey(u1_t *buf) {
-    memcpy_P(buf, APPKEY, 16);
+    memcpy_P(buf, appkey, 16);
 }
 
 void do_send(osjob_t *j) {
     if (joinStatus == EV_JOINING) {
-        Serial.println(F("[LoRaWAN] Not joined yet"));
+        DEBUG_PRINTF_TS("[LoRaWAN] Not joined yet\n");
         // Check if there is not a current TX/RX job running
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
 
     } else if (LMIC.opmode & OP_TXRXPEND) {
-        Serial.println(F("[LoRaWAN] OP_TXRXPEND, not sending"));
+        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND, not sending\n");
     } else {
-        Serial.println(F("[LoRaWAN] OP_TXRXPEND,sending ..."));
-        led1.setOffAfter(GREEN, 250);
+        DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND,sending ...\n");
+        led1.setOffAfter(COLOR::BLUE, 250);
 
-        uint32_t time = sensor_data.time.unixtime();
-        int16_t temp = sensor_data.temperature * 100;
-        int16_t volt = sensor_data.voltage * 100;
-        int16_t curr = sensor_data.current;
-        uint16_t light = sensor_data.light;
-
-        byte payload[12];
-        payload[0] = (time >> 24) & 0xFF;
-        payload[1] = (time >> 16) & 0xFF;
-        payload[2] = (time >> 8) & 0xFF;
-        payload[3] = time & 0xFF;
-        payload[4] = highByte(temp);
-        payload[5] = lowByte(temp);
-        payload[6] = highByte(volt);
-        payload[7] = lowByte(volt);
-        payload[8] = highByte(curr);
-        payload[9] = lowByte(curr);
-        payload[10] = highByte(light);
-        payload[11] = lowByte(light);
+        byte loraData[10];
+        LoraEncoder encoder(loraData);
+        // encoder.writeBitmap
+        encoder.writeUnixtime(mySensor.unix_time);
+        encoder.writeTemperature(mySensor.temperature_deg_c);
+        encoder.writeUint16(mySensor.voltage_v);
+        encoder.writeUint16(mySensor.current_m_a);
 
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(1, payload, sizeof(payload), 0);
+        LMIC_setTxData2(0, loraData, sizeof(loraData), 0);
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
-
-#ifdef HAS_DISPLAY
-        char buf[256];
-        snprintf(buf, sizeof(buf), "[%lu] Data sending!", millis());
-        display.clearDisplay();
-        display.setCursor(0, 12);
-        display.println(buf);
-        display.display();
-#endif
     }
 }
 
 void onEvent(ev_t ev) {
-    Serial.print(os_getTime());
-    Serial.print(": ");
     switch (ev) {
         case EV_TXCOMPLETE:
-            Serial.println(F("[LoRaWAN] EV_TXCOMPLETE (includes waiting for RX windows)"));
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_TXCOMPLETE, rssi: %d, snr: %d\n", LMIC.rssi, LMIC.snr);
 
             if (LMIC.txrxFlags & TXRX_ACK) {
-                Serial.println(F("[LoRaWAN] Received ack"));
-                lora_msg = "Received ACK.";
+                DEBUG_PRINTF_TS("[LoRaWAN] Received ack\n");
             }
-
-            lora_msg = "rssi:" + String(LMIC.rssi) + " snr: " + String(LMIC.snr);
 
             if (LMIC.dataLen) {
                 // data received in rx slot after tx
-                Serial.print(F("[LoRaWAN] Data Received: "));
-                Serial.write(LMIC.frame + LMIC.dataBeg, LMIC.dataLen);
-                Serial.println();
-                Serial.println(LMIC.dataLen);
-                Serial.println(F("[LoRaWAN]  bytes of payload"));
+                DEBUG_PRINTF_TS("[LoRaWAN] Data Received: %d bytes\n", LMIC.dataLen);
+
+                // if (LMIC.dataLen == 1) {
+                //     uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
+                //     if (result == 0) {
+                //         Serial.println("RESULT 0");
+                //     }
+                //     if (result == 1) {
+                //         Serial.println("RESULT 1");
+                //     }
+                //     if (result == 2) {
+                //         Serial.println("RESULT 2");
+                //     }
+                //     if (result == 3) {
+                //         Serial.println("RESULT 3");
+                //     }
+                // }
+                if (LMIC.dataLen) {
+                    for (int i = 0; i < LMIC.dataLen; i++) {
+                        Serial.printf("%02X ", LMIC.frame[LMIC.dataBeg + i]);
+                    }
+                    Serial.println();
+                }
             }
             // Schedule next transmission
             os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
             break;
         case EV_JOINING:
-            Serial.println(F("[LoRaWAN] EV_JOINING: -> Joining..."));
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINING: -> Joining...\n");
             led1.setFade(COLOR::BLUE, 750, 500, 255);
-            lora_msg = "OTAA joining....";
             joinStatus = EV_JOINING;
-#ifdef HAS_DISPLAY
-            display.clearDisplay();
-            display.setCursor(0, 12);
-            display.println("OTAA joining....");
-            display.display();
-#endif
+
             break;
         case EV_JOIN_FAILED:
-            Serial.println(F("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed"));
-            led1.setFade(COLOR::RED, 350, 150, 255);
-            lora_msg = "OTAA Joining failed";
-#ifdef HAS_DISPLAY
-            display.clearDisplay();
-            display.setCursor(0, 12);
-            display.println("OTAA Joining failed");
-            display.display();
-#endif
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOIN_FAILED: -> Joining failed\n");
+            led1.setOffAfter(COLOR::RED, 1000);
+
             break;
         case EV_JOINED:
-            Serial.println(F("[LoRaWAN] EV_JOINED"));
-            led1.turnOff();
-            lora_msg = "Joined!";
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_JOINED\n");
+            led1.setOffAfter(COLOR::GREEN, 1000);
             joinStatus = EV_JOINED;
 
-#ifdef HAS_DISPLAY
-            display.clearDisplay();
-            display.setCursor(0, 12);
-            display.println("Joined TTN!");
-            display.display();
-#endif
             delay(3);
             // Disable link check validation (automatically enabled
             // during join, but not supported by TTN at this time).
@@ -162,16 +115,16 @@ void onEvent(ev_t ev) {
             break;
         case EV_RXCOMPLETE:
             // data received in ping slot
-            Serial.println(F("[LoRaWAN] EV_RXCOMPLETE"));
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_RXCOMPLETE\n");
             break;
         case EV_LINK_DEAD:
-            Serial.println(F("[LoRaWAN] EV_LINK_DEAD"));
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_DEAD\n");
             break;
         case EV_LINK_ALIVE:
-            Serial.println(F("[LoRaWAN] EV_LINK_ALIVE"));
+            DEBUG_PRINTF_TS("[LoRaWAN] EV_LINK_ALIVE\n");
             break;
         default:
-            Serial.println(F("[LoRaWAN] Unknown event"));
+            DEBUG_PRINTF_TS("[LoRaWAN] Unknown event\n");
             break;
     }
 }

@@ -2187,9 +2187,7 @@
 <hole x="4.6" y="20.3" drill="0.6"/>
 <hole x="5" y="20.3" drill="0.6"/>
 <hole x="5.4" y="20.3" drill="0.6"/>
-<hole x="13.6" y="20.3" drill="0.6"/>
-<hole x="13.6" y="21.9" drill="0.6"/>
-<text x="22.2" y="-20.4" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
+<text x="21.8" y="-20.7" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
 <text x="15.6" y="-22.4" size="1" layer="21" ratio="11" rot="R180">V2</text>
 <hole x="-30" y="-5.5" drill="1"/>
 <hole x="12.8" y="27" drill="1"/>
@@ -3635,6 +3633,7 @@ design rules under a new name.</description>
 <wire x1="-25.000009375" y1="7.790809375" x2="-26.9499" y2="9.7407" width="0.254" layer="1"/>
 <wire x1="-28.2499" y1="9.7407" x2="-26.9499" y2="9.7407" width="0.254" layer="1"/>
 <wire x1="-25.000009375" y1="7.790809375" x2="-25.000009375" y2="-0.351921875" width="0.254" layer="1"/>
+<wire x1="-25.000009375" y1="-0.351921875" x2="-25.000009375" y2="-0.35191875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="POS-B">
 <contactref element="R13" pad="1"/>
@@ -4022,6 +4021,7 @@ design rules under a new name.</description>
 <contactref element="R19" pad="2"/>
 <wire x1="-3.095325" y1="0.935828125" x2="-4.078671875" y2="1.919175" width="1.016" layer="1"/>
 <wire x1="-4.078671875" y1="1.919175" x2="-4.078671875" y2="2.003671875" width="1.016" layer="1"/>
+<wire x1="-3.095325" y1="0.935828125" x2="-3.095325" y2="0.935825" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="C7" pad="1"/>

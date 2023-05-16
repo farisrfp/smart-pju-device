@@ -1,7 +1,6 @@
 #pragma once
 
 #include <FastLED.h>
-#include <PJU.h>
 
 enum COLOR {
     RED,
@@ -9,7 +8,7 @@ enum COLOR {
     BLUE
 };
 
-enum MODE {
+enum LED {
     FADE,
     FLICKER,
     ON,
