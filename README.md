@@ -8,12 +8,12 @@ Smart PJU ini merupakan project lanjutan dari X-Bright dengan penambahan fitur b
 
 ### **Hardware**
 
-|            Controller V2            |
-| :---------------------------------: |
+|               Controller V2               |
+| :---------------------------------------: |
 | ![](pictures/controller.png "controller") |
 
-|            Power V2            |
-| :----------------------------: |
+|            Power V2             |
+| :-----------------------------: |
 | ![](pictures/power.png "power") |
 
 Dokuementasi lengkap dapat dilihat di [sini](hardware/README.md)
