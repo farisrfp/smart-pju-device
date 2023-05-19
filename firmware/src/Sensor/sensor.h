@@ -20,7 +20,7 @@ class cSensor {
 
     // Sensor data function stubs
     float getTemperature(void);
-    uint16_t getVoltage(void);
+    float getVoltage(void);
     uint16_t getCurrent(void);
     uint32_t getUnixTime(void);
     uint8_t getLightLevel(void);

@@ -2194,6 +2194,14 @@
 <hole x="-30" y="-5.5" drill="1"/>
 <hole x="12.8" y="27" drill="1"/>
 <hole x="28.5" y="-7.6" drill="1"/>
+<wire x1="-18" y1="-16.8" x2="-18" y2="-17.6" width="0.1016" layer="21"/>
+<wire x1="-18.3" y1="-17.2" x2="-17.7" y2="-17.2" width="0.1016" layer="21"/>
+<wire x1="-7.2" y1="-20.3" x2="-7.2" y2="-23.2" width="0.1016" layer="21"/>
+<wire x1="-2.4" y1="-22.7" x2="-0.7" y2="-22.7" width="0.1016" layer="21"/>
+<wire x1="-2.4" y1="-22.6" x2="-0.7" y2="-22.6" width="0.1016" layer="21"/>
+<wire x1="-7.1" y1="-20.3" x2="-7.1" y2="-23.2" width="0.1016" layer="21"/>
+<circle x="-26.8" y="-16" radius="0.1" width="0.508" layer="21"/>
+<circle x="8.5" y="-13" radius="0.1" width="0.254" layer="21"/>
 </plain>
 <libraries>
 <library name="Capacitor" urn="urn:adsk.eagle:library:16290819">

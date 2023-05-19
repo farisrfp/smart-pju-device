@@ -3208,7 +3208,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Capacitor" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-16.1356" y="-3.0608" size="1" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="NAME" x="-17.8608" y="-1.4644" size="1" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PART_STATUS" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="ROHS_COMPLIANT" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3269,7 +3269,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Resistor" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-16.2533" y="2.895" size="1" layer="25" align="bottom-center"/>
+<attribute name="NAME" x="-17.795" y="1.2467" size="1" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="PART_STATUS" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="RATING" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
@@ -3386,7 +3386,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Capacitor" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
-<attribute name="NAME" x="-16.2701" y="2.0716" size="1" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="NAME" x="-18.7716" y="3.8299" size="1" layer="25" rot="R270" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="PART_STATUS" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="ROHS_COMPLIANT" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>

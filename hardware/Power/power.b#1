@@ -2187,8 +2187,6 @@
 <hole x="4.6" y="20.3" drill="0.6"/>
 <hole x="5" y="20.3" drill="0.6"/>
 <hole x="5.4" y="20.3" drill="0.6"/>
-<hole x="13.6" y="20.3" drill="0.6"/>
-<hole x="13.6" y="21.9" drill="0.6"/>
 <text x="22.2" y="-20.4" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
 <text x="15.6" y="-22.4" size="1" layer="21" ratio="11" rot="R180">V2</text>
 <hole x="-30" y="-5.5" drill="1"/>
