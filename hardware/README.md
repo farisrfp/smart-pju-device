@@ -2,28 +2,66 @@
 
 ## **BOM**
 
-The BOM (Bill of Material) for this project can be seen in the table below.
+The BoM (Bill of Material) for this project can be seen in the table below.
 
-**Controller Board**
-| Eagle Designator | Q'ty | Package | Description |
-| :--------------: | :--: | :-----: | :-------------: |
-| U3 | 1 | SOT-223 | ESP32-WROOM 32D |
-| AMS1117 | 1 | SOT-223 | AMS1117-5.0V |
-| U1 | 1 | - | RA-01H |
-| IC1 | 1 | SOIC-16 | DS3231 |
-| U2 | 1 | SOIC-8 | AT24C32N |
-| BT2 | 1 | - | Battery Holder CR2032 |
-| IC2 | 1 | SOIC-16 | PC817 |
-| D2, D5 | 2 | - | WS2812B |
-| D4 | 1 | 0603 | LED Blue |
-| Q2, Q3 | 2 | SOT23 | Mosfet BSS138 |
-| D1 | 1 | SOD-323 | Diode 1N5819 |
-| R17, R18, R19, R31, R32, R33 | 15 | 1206 | Resistor 10K |
-| R6, R7, R9, R12, R15,R16 | 15 | 0603 | Resistor 10K |
-| R5, R8 | 2 | 0603 | Resistor 100 |
-| C4 | 1 | 2412 | Capacitor 100µ |
-| C3, C5 | 2 | 0603 | Capacitor 10µ |
-| C2 | 1 | 0603 | Capacitor 100n |
-| C1 | 1 | 0603 | Capacitor 1µ |
+### **Power Board**
 
-**Power Board**
+| Designator | Quantity | Description |
+| :--------: | :------: | :---------: |
+|   AC-DC    |    1     |  AC to DC   |
+|     V1     |    1     |  Varistor   |
+|     F1     |    1     | Fuse Holder |
+|     F2     |    1     |  Fuse PTC   |
+|    DIM     |    1     |    PC817    |
+|    IC1     |    1     | ACS712-05B  |
+|    IC2     |    1     |   LM358N    |
+|     T1     |    1     |  ZMPT101B   |
+|    SSR     |    1     |  G3MB-202P  |
+
+**Passive Components**
+
+| Designator | Quantity |  Package  |  Value  |
+| :--------: | :------: | :-------: | :-----: |
+|     Q1     |    1     |  SOT-23   | SS8550  |
+|     D1     |    1     |  SOD-123  | 1N4448W |
+|     D2     |    1     | DO-214AC  |   M4    |
+|    LED     |    1     |   0805    |  Blue   |
+|     R7     |    1     |   3296    |  100K   |
+|     R1     |    1     |   0805    |   100   |
+|   R2 - 3   |    2     |   0805    |   330   |
+|     R4     |    1     |   0805    |   2K    |
+|   R5 - 6   |    2     |   0805    |  4,7K   |
+|   R8 - 9   |    2     |   0805    |  100K   |
+|  R10 - 17  |    8     |   0805    |   10K   |
+|  R19 - 20  |    2     | Axial-7.2 |  330K   |
+|   C1 - 2   |    2     |   0805    |   1u    |
+|   C3 - 4   |    2     |   0805    |  100n   |
+|   C5 - 8   |    4     |   0805    |   1n    |
+
+<br>
+
+### **Controller Board**
+
+| Designator | Quantity |       Description        |
+| :--------: | :------: | :----------------------: |
+|   ESP32    |    1     |       ESP32-WROOM        |
+|  REG-3V3   |    1     |       AMS1117-3V3        |
+|   RA-01H   |    1     |    AI-Thinker RA-01H     |
+|   DS3231   |    1     |    RTC DS3231 Module     |
+|   NEO 1    |    2     |         WS2812B          |
+|   S1 - 2   |    2     |       Micro Button       |
+|     S3     |    1     |        DIP Switch        |
+|    PH1     |    1     | Light Dependent Resistor |
+
+**Passive Components**
+
+| Designator | Quantity | Package | Value |
+| :--------: | :------: | :-----: | :---: |
+|    LED     |    1     |  0805   |  Red  |
+|   R1 - 2   |    2     |  0805   |  1K   |
+|     R3     |    1     |  0805   |  2K   |
+|   R4 - 6   |    3     |  0805   |  10K  |
+|     C1     |    1     |  0805   | 100n  |
+|     C2     |    1     |  0805   |  1u   |
+|   C3 - 4   |    2     |  0805   |  10u  |
+|     C6     |    1     |  2412   | 100u  |

@@ -1,10 +1,14 @@
 # **SMART PJU X-CAMP**
 
-Created by [Faris Rafi](www.linkedin.com/in/farisrfp/), last updated on 26 April 2023
+_Created by [Faris Rafi](https://www.linkedin.com/in/farisrafp/), last updated on 20 May 2023_
 
 ## **About SMART PJU**
 
-Smart PJU ini merupakan project lanjutan dari X-Bright dengan penambahan fitur baru seperti komunikasi menggunakan LoRa, penggunaan sensor baru, dan penggunaan modul baru. Smart PJU ini juga menggunakan konsep IoT (Internet of Things) yang memungkinkan pengguna dapat mengontrol lampu jalan umum ini melalui internet.
+This Smart PJU is a continuation of X-Bright with the addition of new features such as communication using LoRa, the use of new sensors, and the use of new modules. This Smart PJU also uses the concept of IoT (Internet of Things) which allows users to control this street lamp through the dashboard provided.
+
+### **Wiring Diagram**
+
+![](pictures/nema_wiring.png "wiring")
 
 ### **Hardware**
 
@@ -16,24 +20,15 @@ Smart PJU ini merupakan project lanjutan dari X-Bright dengan penambahan fitur b
 | :-----------------------------: |
 | ![](pictures/power.png "power") |
 
-Dokuementasi lengkap dapat dilihat di [sini](./hardware/README.md)
+Documentation can be seen [here](./hardware/)
 
 ### **Firmware**
 
-Firmware ini dibuat menggunakan PlatformIO dan Arduino Framework.
+Here is the sensor diagram and pinout used on Controller V2.
 
-Key Features:
+![](pictures/client_sensor.png "sensor")
 
-- LoRaWAN with LoRa Module
-- Dimming Control
-- 7 Pin NEMA Socket
-- ESP32 Dual Core
-- Voltage Monitoring with ZMPT101B
-- Current Monitoring with ACS712
-- Real Time Clock and Temp with DS3231
-- On/Off Switch with SSR
-
-Dokuementasi lengkap dapat dilihat di [sini](firmware/README.md)
+Documentation can be seen [here](./firmware/)
 
 ## **Contact**
 
