@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="17" fill="1" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="18" fill="1" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="19" fill="1" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="25" fill="1" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="26" fill="1" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="27" fill="1" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="28" fill="1" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="29" fill="1" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="30" fill="1" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="20" fill="1" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="21" fill="1" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="23" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,20 +53,20 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="1" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="7" fill="1" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="t3D" color="7" fill="5" visible="yes" active="no"/>
-<layer number="58" name="b3D" color="7" fill="4" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="1" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="7" fill="1" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="t3D" color="7" fill="5" visible="no" active="no"/>
+<layer number="58" name="b3D" color="7" fill="4" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
@@ -953,7 +953,7 @@
 <pad name="N" x="17.478" y="-16.462" drill="0.6" diameter="1.9304" shape="octagon"/>
 <text x="1" y="-2" size="1.27" layer="21" ratio="3">&gt;NAME</text>
 </package>
-<package name="AC-DC_3.5W(VER)" urn="urn:adsk.eagle:footprint:39943963/3" library_version="21">
+<package name="AC-DC_3.5W(VER)" urn="urn:adsk.eagle:footprint:39943963/4" library_version="26">
 <wire x1="11.9" y1="6.3" x2="-11.6" y2="6.3" width="0.127" layer="21"/>
 <wire x1="-11.6" y1="6.3" x2="-11.6" y2="-7.7" width="0.127" layer="21"/>
 <wire x1="-11.6" y1="-7.7" x2="11.9" y2="-7.7" width="0.127" layer="21"/>
@@ -994,6 +994,20 @@
 <pad name="3" x="42.5" y="7.5" drill="1" diameter="1.5"/>
 <pad name="4" x="42.5" y="-15.3" drill="1" diameter="1.5"/>
 </package>
+<package name="AC-DC_3.5W(PTH)" urn="urn:adsk.eagle:footprint:40433505/2" locally_modified="yes" library_version="27" library_locally_modified="yes">
+<wire x1="11.9" y1="6.3" x2="-11.6" y2="6.3" width="0.127" layer="21"/>
+<wire x1="-11.6" y1="6.3" x2="-11.6" y2="-7.7" width="0.127" layer="21"/>
+<wire x1="-11.6" y1="-7.7" x2="11.9" y2="-7.7" width="0.127" layer="21"/>
+<wire x1="11.9" y1="-7.7" x2="11.9" y2="6.3" width="0.127" layer="21"/>
+<wire x1="-10.5" y1="3.8" x2="-6.4" y2="3.8" width="1.7" layer="46"/>
+<wire x1="3.9" y1="3.8" x2="6.9" y2="3.8" width="1.7" layer="46"/>
+<wire x1="8.9" y1="3.8" x2="11.9" y2="3.8" width="1.7" layer="46"/>
+<text x="-3.99" y="-3.21" size="1.27" layer="21">AC to DC</text>
+<pad name="5V" x="-7" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+<pad name="GND" x="-9.8" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+<pad name="N" x="5.4" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+<pad name="L" x="10.4" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="SOIC127P600X175-8N" urn="urn:adsk.eagle:package:39544963/1" type="model">
@@ -1022,7 +1036,7 @@
 <packageinstance name="MOV-10D561"/>
 </packageinstances>
 </package3d>
-<package3d name="AC-DC_3.5W(VER)" urn="urn:adsk.eagle:package:39943964/3" type="box" library_version="21">
+<package3d name="AC-DC_3.5W(VER)" urn="urn:adsk.eagle:package:39943964/4" type="box" library_version="26">
 <packageinstances>
 <packageinstance name="AC-DC_3.5W(VER)"/>
 </packageinstances>
@@ -1036,6 +1050,11 @@
 <package3d name="AC-DC_3.5W" urn="urn:adsk.eagle:package:39900626/3" type="model" library_version="21">
 <packageinstances>
 <packageinstance name="AC-DC_3.5W"/>
+</packageinstances>
+</package3d>
+<package3d name="AC-DC_3.5W(PTH)" urn="urn:adsk.eagle:package:40433506/2" type="box" library_version="27" library_locally_modified="yes">
+<packageinstances>
+<packageinstance name="AC-DC_3.5W(PTH)"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -1289,7 +1308,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="HI-LINK" urn="urn:adsk.eagle:component:39528519/8" prefix="PS" library_version="21">
+<deviceset name="HI-LINK" urn="urn:adsk.eagle:component:39528519/10" prefix="PS" library_version="27" library_locally_modified="yes">
 <description>&lt;h1&gt; HI-LINK HLK-10M05 &lt;/h1&gt;
 &lt;p&gt;&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
 
@@ -1356,7 +1375,21 @@ Source: &lt;a href="https://datasheet.lcsc.com/szlcsc/1909111105_HI-LINK-HLK-10M
 <connect gate="G$1" pin="AC_2" pad="N_B N_T"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:39943964/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:39943964/4"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="AC-DC_3.5W(PTH)" package="AC-DC_3.5W(PTH)">
+<connects>
+<connect gate="G$1" pin="+V0" pad="5V"/>
+<connect gate="G$1" pin="-V0" pad="GND"/>
+<connect gate="G$1" pin="AC_1" pad="L"/>
+<connect gate="G$1" pin="AC_2" pad="N"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:40433506/2"/>
 </package3dinstances>
 <technologies>
 <technology name=""/>
@@ -5136,7 +5169,7 @@ straight</description>
 <part name="F1" library="Fuse Holder" library_urn="urn:adsk.eagle:library:15336057" deviceset="4527" device="" package3d_urn="urn:adsk.eagle:package:15272109/2" value="HOLDER 5x20"/>
 <part name="IC2" library="IC_Linear" library_urn="urn:adsk.eagle:library:16378340" deviceset="LM358" device="_SOIC" package3d_urn="urn:adsk.eagle:package:16378355/3"/>
 <part name="SUPPLY1" library="Power_Symbols" deviceset="GND-EARTH" device="" value="GND"/>
-<part name="AC-DC" library="XLKM#4" library_urn="urn:adsk.eagle:library:39528286" deviceset="HI-LINK" device="VERTICAL" package3d_urn="urn:adsk.eagle:package:39943964/3" value=""/>
+<part name="AC-DC" library="XLKM#4" library_urn="urn:adsk.eagle:library:39528286" deviceset="HI-LINK" device="AC-DC_3.5W(PTH)" package3d_urn="urn:adsk.eagle:package:40433506/2" value="HI-LINKAC-DC_3.5W(PTH)"/>
 <part name="C6" library="Capacitor" library_urn="urn:adsk.eagle:library:16290819" deviceset="C" device="CHIP-0805(2012-METRIC)" package3d_urn="urn:adsk.eagle:package:16290897/2" technology="_" value="1n"/>
 <part name="SUPPLY37" library="Power_Symbols" deviceset="GND-EARTH" device="" value="GND"/>
 <part name="LED" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-B" device="_0805" package3d_urn="urn:adsk.eagle:package:24294759/1" value="LED_BLUE"/>

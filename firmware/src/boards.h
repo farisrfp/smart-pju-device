@@ -9,6 +9,10 @@
 #include <Wire.h>
 #include <ZMPT101B.h>
 
+// Calibration Data
+#define ACS712_ZP 2048
+#define ZMPT101B_ZP 2048
+
 // Debug printing
 #define DEBUG_PORT Serial
 #if defined(DEBUG_MODE)
@@ -17,7 +21,7 @@
 #define DEBUG_PRINTF_TS(...)                                    \
     {                                                           \
         DEBUG_PORT.printf("%d ms: ", osticks2ms(os_getTime())); \
-        DEBUG_PORT.printf(__VA_ARGS__);                        \
+        DEBUG_PORT.printf(__VA_ARGS__);                         \
     }
 #else
 #define DEBUG_PRINTF(...) \
@@ -54,8 +58,9 @@ void initBoard();
 // Other
 #define WS2812B_PIN 14
 #define RELAY_PIN 15
-#define ADC1_PIN 34
-#define ADC2_PIN 35
+#define ADC_CURRENT 34
+#define ADC_VOLTAGE 35
+#define ADC_LIGTH
 
 #else
 
@@ -73,8 +78,9 @@ void initBoard();
 // Other
 #define WS2812B_PIN 19
 #define RELAY_PIN 14
-#define ADC1_PIN 34
-#define ADC2_PIN 35
+#define ADC_CURRENT 34
+#define ADC_VOLTAGE 35
+#define ADC_LIGTH
 
 #endif
 

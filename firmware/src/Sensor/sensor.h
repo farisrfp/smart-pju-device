@@ -3,9 +3,12 @@
 #include "../boards.h"
 
 // LoRa_Serialization
+#include <ACS712.h>
 #include <LoraMessage.h>
 
 extern RTC_DS3231 rtc;
+extern ACS712 acs712;
+extern ZMPT101B zmpt101b;
 
 /****************************************************************************\
 |

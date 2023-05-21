@@ -2,9 +2,6 @@
 
 #include "boards.h"
 
-// Global Object/Variable
-cSensor mySensor;
-
 void setup() {
     // Wait for serial to be ready
     Serial.begin(115200);

@@ -1,7 +1,12 @@
 #include "boards.h"
 
+// Global Object/Variable
+cSensor mySensor;
+
 // Sensor Variables
 RTC_DS3231 rtc;
+ACS712 acs712(ACS712_05B, ADC_CURRENT);
+ZMPT101B zmpt101b(ADC_VOLTAGE);
 
 CRGB leds[NUM_LEDS];
 LEDTask led1(0);

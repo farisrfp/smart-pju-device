@@ -5,6 +5,8 @@
 void cSensor::begin() {
 #ifndef DUMMY_DATA
     rtc.begin();
+    acs712.setZeroPoint(ACS712_ZP);
+    zmpt101b.setZeroPoint(ZMPT101B_ZP);
 #endif
 }
 
@@ -27,15 +29,23 @@ void cSensor::loop(void) {
 
 // Get Device AC Voltage
 float cSensor::getVoltage(void) {
-    const uint16_t voltage = random(21000, 23000);
+#ifndef DUMMY_DATA
+    const float voltage = zmpt101b.getVoltageAC();
+#else
+    const float voltage = random(220, 240);
+#endif
 
-    return voltage / 100.00;
+    return voltage;
 }
 
 // Get Device AC Current
 uint16_t
 cSensor::getCurrent(void) {
+#ifndef DUMMY_DATA
+    const uint16_t current = acs712.getCurrentAC();
+#else
     const uint16_t current = random(800, 1500);
+#endif
 
     return current;
 }
@@ -63,7 +73,7 @@ float cSensor::getTemperature(void) {
     return temperature;
 }
 
-// Get Light Level (Stub)
+// Get Light Level 
 uint8_t cSensor::getLightLevel(void) {
     const uint8_t lightLevel = random(0, 100);
 

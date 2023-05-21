@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -2187,9 +2187,7 @@
 <hole x="4.6" y="20.3" drill="0.6"/>
 <hole x="5" y="20.3" drill="0.6"/>
 <hole x="5.4" y="20.3" drill="0.6"/>
-<hole x="13.6" y="20.3" drill="0.6"/>
-<hole x="13.6" y="21.9" drill="0.6"/>
-<text x="22.2" y="-20.4" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
+<text x="21.8" y="-20.7" size="1" layer="21" ratio="11" rot="R180">Power Board</text>
 <text x="15.6" y="-22.4" size="1" layer="21" ratio="11" rot="R180">V2</text>
 <hole x="-30" y="-5.5" drill="1"/>
 <hole x="12.8" y="27" drill="1"/>
@@ -3210,7 +3208,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Capacitor" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-16.1356" y="-3.0608" size="1" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="NAME" x="-17.8608" y="-1.4644" size="1" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PART_STATUS" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="ROHS_COMPLIANT" value="" x="-16.1356" y="-1.3791" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3271,7 +3269,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Resistor" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-16.2533" y="2.895" size="1" layer="25" align="bottom-center"/>
+<attribute name="NAME" x="-17.795" y="1.2467" size="1" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="PART_STATUS" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
 <attribute name="RATING" value="" x="-16.2533" y="1.2359" size="1.778" layer="27" display="off"/>
@@ -3356,9 +3354,9 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-6.450003125" y="-23.80868125" size="1" layer="27" rot="R0.6" align="top-center"/>
 </element>
 <element name="NEMA-7PIN" library="XLKM#4" library_urn="urn:adsk.eagle:library:39528286" package="NEMA-7P" package3d_urn="urn:adsk.eagle:package:39900404/6" value="NEMA-7P" x="0" y="0" smashed="yes"/>
-<element name="V1" library="XLKM#4" library_urn="urn:adsk.eagle:library:39528286" package="MOV-10D561" package3d_urn="urn:adsk.eagle:package:39528416/2" value="10D471K" x="6.1286" y="3.6937125" smashed="yes" rot="R90">
-<attribute name="NAME" x="6.9086" y="4.3217125" size="1" layer="25" ratio="10" rot="R180"/>
-<attribute name="VALUE" x="5.3666" y="-0.8782875" size="1" layer="27" ratio="10" rot="R180"/>
+<element name="V1" library="XLKM#4" library_urn="urn:adsk.eagle:library:39528286" package="MOV-10D561" package3d_urn="urn:adsk.eagle:package:39528416/2" value="10D471K" x="2.9937125" y="2.1714" smashed="yes" rot="R44.5">
+<attribute name="NAME" x="3.988340625" y="2.055234375" size="1" layer="25" ratio="10" rot="R134.5"/>
+<attribute name="VALUE" x="-0.8013625" y="-0.489659375" size="1" layer="27" ratio="10" rot="R134.5"/>
 </element>
 <element name="F1" library="Fuse Holder" library_urn="urn:adsk.eagle:library:15336057" package="4527" package3d_urn="urn:adsk.eagle:package:15272109/2" value="HOLDER 5x20" x="18.848" y="-7.7905" smashed="yes" rot="R270">
 <attribute name="CREATED_BY" value="PCBLayout.com" x="18.848" y="-7.7905" size="1.778" layer="27" rot="R270" display="off"/>
@@ -3388,7 +3386,7 @@ design rules under a new name.</description>
 <attribute name="CATEGORY" value="Capacitor" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
-<attribute name="NAME" x="-16.2701" y="2.0716" size="1" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="NAME" x="-18.7716" y="3.8299" size="1" layer="25" rot="R270" align="bottom-center"/>
 <attribute name="OPERATING_TEMP" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="PART_STATUS" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
 <attribute name="ROHS_COMPLIANT" value="" x="-17.4701" y="3.7533" size="0.6" layer="27" ratio="13" rot="R180" display="off"/>
@@ -3531,16 +3529,15 @@ design rules under a new name.</description>
 <signals>
 <signal name="L" airwireshidden="yes">
 <contactref element="NEMA-7PIN" pad="L"/>
-<contactref element="F1" pad="1"/>
 <wire x1="8.5" y1="-2.3" x2="12.026790625" y2="-2.3" width="2.54" layer="1"/>
-<contactref element="V1" pad="1"/>
 <wire x1="8.5" y1="-2.3" x2="8.5" y2="-2.1886875" width="2.54" layer="1"/>
-<wire x1="8.5" y1="-2.3" x2="9.9386" y2="-0.8614" width="1.016" layer="1"/>
-<wire x1="9.9386" y1="-0.8614" x2="9.9386" y2="0.7727125" width="1.016" layer="1"/>
-<wire x1="12.026790625" y1="-2.3" x2="9.9386" y2="-0.211809375" width="2.54" layer="1"/>
-<wire x1="9.9386" y1="-0.211809375" x2="9.9386" y2="0.7727125" width="2.54" layer="1"/>
 <wire x1="8.5" y1="-2.3" x2="13.3885" y2="-2.3" width="2.54" layer="1"/>
+<contactref element="F1" pad="1"/>
 <wire x1="13.3885" y1="-2.3" x2="18.848" y2="3.1595" width="2.54" layer="1"/>
+<wire x1="8.5" y1="-2.3" x2="13.4" y2="-2.3" width="2.54" layer="16"/>
+<wire x1="13.4" y1="-2.3" x2="18.2" y2="2.5" width="2.54" layer="16"/>
+<via x="13.1" y="-2.2" extent="1-16" drill="0.35"/>
+<wire x1="12.026790625" y1="-2.3" x2="13.1" y2="-2.2" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="IC1" pad="7"/>
@@ -3635,6 +3632,7 @@ design rules under a new name.</description>
 <wire x1="-25.000009375" y1="7.790809375" x2="-26.9499" y2="9.7407" width="0.254" layer="1"/>
 <wire x1="-28.2499" y1="9.7407" x2="-26.9499" y2="9.7407" width="0.254" layer="1"/>
 <wire x1="-25.000009375" y1="7.790809375" x2="-25.000009375" y2="-0.351921875" width="0.254" layer="1"/>
+<wire x1="-25.000009375" y1="-0.351921875" x2="-25.000009375" y2="-0.35191875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="POS-B">
 <contactref element="R13" pad="1"/>
@@ -3721,6 +3719,8 @@ design rules under a new name.</description>
 <wire x1="0.563434375" y1="-11.839809375" x2="4.710609375" y2="-11.839809375" width="2.54" layer="1"/>
 <wire x1="4.710609375" y1="-11.839809375" x2="4.71751875" y2="-11.8329" width="2.54" layer="1"/>
 <wire x1="4.71751875" y1="-11.8329" x2="5" y2="-11.8329" width="2.54" layer="1"/>
+<via x="3.1" y="-11.8" extent="1-16" drill="0.35"/>
+<wire x1="4.71751875" y1="-11.8329" x2="3.1" y2="-11.8" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="D2" pad="1"/>
@@ -3912,8 +3912,11 @@ design rules under a new name.</description>
 <wire x1="-0.8814" y1="8.5186" x2="-0.7" y2="8.7" width="2.54" layer="1"/>
 <wire x1="17.472596875" y1="10.872596875" x2="17.472596875" y2="21.050903125" width="1.016" layer="1"/>
 <wire x1="17.472596875" y1="21.050903125" x2="17.4462" y2="21.0773" width="1.016" layer="1"/>
-<wire x1="2.3186" y1="6.6147125" x2="0.2333125" y2="8.7" width="2.54" layer="1"/>
 <wire x1="0.2333125" y1="8.7" x2="-0.7" y2="8.7" width="2.54" layer="1"/>
+<wire x1="-0.7" y1="8.7" x2="1.0637625" y2="6.9362375" width="2.54" layer="1"/>
+<wire x1="1.0637625" y1="6.9362375" x2="2.40665" y2="6.9362375" width="2.54" layer="1"/>
+<wire x1="-0.7" y1="8.7" x2="1.1" y2="6.9" width="2.54" layer="16"/>
+<wire x1="1.1" y1="6.9" x2="1.8" y2="6.9" width="2.54" layer="16"/>
 <wire x1="17.4462" y1="21.0773" x2="17.4462" y2="21.0773" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="DIM-">
@@ -3937,32 +3940,47 @@ design rules under a new name.</description>
 <contactref element="NEMA-7PIN" pad="V"/>
 <wire x1="-7.05645625" y1="-11.799909375" x2="-7.05645625" y2="-5.15645625" width="2.54" layer="1"/>
 <wire x1="-7.05645625" y1="-5.15645625" x2="-7" y2="-5.7" width="2.54" layer="1"/>
+<wire x1="-7.05645625" y1="-11.799909375" x2="-7.05645625" y2="-6.35645625" width="2.54" layer="16"/>
+<wire x1="-7.05645625" y1="-6.35645625" x2="-7" y2="-6.3" width="2.54" layer="16"/>
+<via x="-7.1" y="-9.4" extent="1-16" drill="0.35"/>
+<wire x1="-7.05645625" y1="-11.799909375" x2="-7.1" y2="-9.4" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="L_FUSE" airwireshidden="yes">
-<contactref element="F1" pad="2"/>
 <contactref element="IC1" pad="1"/>
 <contactref element="IC1" pad="2"/>
 <contactref element="R19" pad="1"/>
-<contactref element="AC-DC" pad="L_B"/>
-<contactref element="AC-DC" pad="L_T"/>
-<wire x1="25.2" y1="19.4" x2="23.5227" y2="21.0773" width="1.016" layer="1"/>
-<wire x1="23.5227" y1="21.0773" x2="22.4462" y2="21.0773" width="1.016" layer="1"/>
 <wire x1="7.25751875" y1="-11.8329" x2="7.25751875" y2="-11.24248125" width="0.508" layer="1"/>
 <wire x1="7.25751875" y1="-11.24248125" x2="7.4" y2="-11.1" width="0.508" layer="1"/>
 <wire x1="7.4" y1="-11.1" x2="9.6" y2="-11.1" width="0.508" layer="1"/>
 <wire x1="7.25751875" y1="-11.8329" x2="7.25751875" y2="-12.55751875" width="0.508" layer="1"/>
 <wire x1="7.25751875" y1="-12.55751875" x2="7.273" y2="-12.573" width="0.508" layer="1"/>
 <wire x1="7.273" y1="-12.573" x2="9.647" y2="-12.573" width="0.508" layer="1"/>
-<wire x1="10.9711625" y1="-11.614" x2="8.52751875" y2="-11.614" width="2.54" layer="1"/>
-<wire x1="18.848" y1="-18.7405" x2="18.0976625" y2="-18.7405" width="2.54" layer="1"/>
-<wire x1="18.0976625" y1="-18.7405" x2="10.9711625" y2="-11.614" width="2.54" layer="1"/>
-<wire x1="25.2" y1="19.4" x2="25.2" y2="-12.3885" width="1.016" layer="1"/>
-<wire x1="25.2" y1="-12.3885" x2="18.848" y2="-18.7405" width="1.016" layer="1"/>
-<wire x1="2.024125" y1="-4.183625" x2="8.52751875" y2="-10.68701875" width="1.016" layer="1"/>
-<wire x1="8.52751875" y1="-10.68701875" x2="8.52751875" y2="-11.8329" width="1.016" layer="1"/>
+<contactref element="F1" pad="2"/>
+<wire x1="8.52751875" y1="-11.614" x2="8.52751875" y2="-11.8329" width="1.016" layer="1"/>
+<wire x1="11.6711625" y1="-11.614" x2="8.52751875" y2="-11.614" width="2.54" layer="1"/>
+<wire x1="18.848" y1="-18.7405" x2="18.7976625" y2="-18.7405" width="2.54" layer="1"/>
+<contactref element="V1" pad="1"/>
+<contactref element="AC-DC" pad="L_T"/>
+<contactref element="AC-DC" pad="L_B"/>
+<wire x1="18.7976625" y1="-18.7405" x2="11.6711625" y2="-11.614" width="2.54" layer="1"/>
+<wire x1="3.580771875" y1="-2.5934375" x2="3.5143125" y2="-2.5934375" width="2.54" layer="1"/>
+<wire x1="3.5143125" y1="-2.5934375" x2="2.024125" y2="-4.083625" width="2.54" layer="1"/>
+<wire x1="2.024125" y1="-4.083625" x2="2.024125" y2="-4.183625" width="2.54" layer="1"/>
+<wire x1="2.024125" y1="-4.183625" x2="8.52751875" y2="-10.68701875" width="2.54" layer="1"/>
+<wire x1="8.52751875" y1="-10.68701875" x2="8.52751875" y2="-11.614" width="2.54" layer="1"/>
+<wire x1="18.848" y1="-18.7405" x2="11.7215" y2="-11.614" width="2.54" layer="16"/>
+<wire x1="8.3" y1="-11.614" x2="11.7215" y2="-11.614" width="2.54" layer="16"/>
+<wire x1="2.024125" y1="-4.183625" x2="8.3" y2="-10.4595" width="2.54" layer="16"/>
+<wire x1="8.3" y1="-10.4595" x2="8.3" y2="-11.614" width="2.54" layer="16"/>
+<wire x1="3.580771875" y1="-2.5934375" x2="2.474209375" y2="-3.7" width="2.54" layer="16"/>
+<wire x1="2.474209375" y1="-3.7" x2="2.4" y2="-3.7" width="2.54" layer="16"/>
+<wire x1="18.848" y1="-18.7405" x2="25" y2="-12.5885" width="1.016" layer="1"/>
+<wire x1="25" y1="18.5235" x2="22.4462" y2="21.0773" width="1.016" layer="1"/>
+<wire x1="25" y1="-12.5885" x2="25" y2="18.5235" width="1.016" layer="1"/>
+<via x="11.6" y="-11.8" extent="1-16" drill="0.35"/>
 <wire x1="22.4462" y1="21.0773" x2="22.4462" y2="21.0773" width="0" layer="19" extent="1-16"/>
-<wire x1="8.52751875" y1="-11.8329" x2="8.52751875" y2="-11.614" width="0" layer="19" extent="1-1"/>
-<wire x1="9.6" y1="-11.1" x2="8.52751875" y2="-11.614" width="0" layer="19" extent="1-1"/>
+<wire x1="7.25751875" y1="-11.8329" x2="8.52751875" y2="-11.8329" width="0" layer="19" extent="1-1"/>
+<wire x1="11.6" y1="-11.8" x2="9.6" y2="-11.1" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$15">
 <contactref element="Q1" pad="3"/>
@@ -4022,6 +4040,7 @@ design rules under a new name.</description>
 <contactref element="R19" pad="2"/>
 <wire x1="-3.095325" y1="0.935828125" x2="-4.078671875" y2="1.919175" width="1.016" layer="1"/>
 <wire x1="-4.078671875" y1="1.919175" x2="-4.078671875" y2="2.003671875" width="1.016" layer="1"/>
+<wire x1="-3.095325" y1="0.935828125" x2="-3.095325" y2="0.935825" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="C7" pad="1"/>
@@ -4059,7 +4078,7 @@ design rules under a new name.</description>
 <via x="17.7" y="20.3" extent="1-16" drill="0.6" diameter="1"/>
 </signal>
 <signal name="N$20">
-<via x="18" y="20.3" extent="1-16" drill="0.6" diameter="1"/>
+<via x="18" y="20.3" extent="1-16" drill="1" diameter="1"/>
 </signal>
 <signal name="N$21">
 <via x="18.3" y="20.3" extent="1-16" drill="0.6" diameter="1"/>
@@ -4089,7 +4108,7 @@ design rules under a new name.</description>
 <via x="17.7" y="21.9" extent="1-16" drill="0.6" diameter="1"/>
 </signal>
 <signal name="N$32">
-<via x="18" y="21.9" extent="1-16" drill="0.6" diameter="1"/>
+<via x="18" y="21.9" extent="1-16" drill="1" diameter="1"/>
 </signal>
 <signal name="N$33">
 <via x="18.3" y="21.9" extent="1-16" drill="0.6" diameter="1"/>
