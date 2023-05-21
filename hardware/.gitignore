@@ -2,3 +2,5 @@ JLC/
 CAMOutputs/
 # ignore *.b#1, *.b#2, etc.
 *.b#*
+Backup/
+Single Layer/
