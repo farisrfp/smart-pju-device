@@ -33,7 +33,7 @@
 #include "LED/led.h"
 #include "LoRaWAN/loramac.h"
 #include "Sensor/sensor.h"
-#include "WiFI/wifipoint.h"
+#include "WiFI/webserver.h"
 
 /* Function */
 void initBoard();
@@ -61,6 +61,7 @@ void initBoard();
 #define ADC_CURRENT 34
 #define ADC_VOLTAGE 35
 #define ADC_LIGTH
+#define LED_BOARD 25
 
 #else
 
@@ -81,6 +82,7 @@ void initBoard();
 #define ADC_CURRENT 34
 #define ADC_VOLTAGE 35
 #define ADC_LIGTH
+#define LED_BOARD 2
 
 #endif
 

@@ -893,15 +893,15 @@
 <pad name="2" x="-2.54" y="1.4" drill="1" rot="R180"/>
 <pad name="1" x="-10.16" y="1.4" drill="1" shape="square" rot="R180"/>
 </package>
-<package name="NEMA-7P" urn="urn:adsk.eagle:footprint:39900402/6" locally_modified="yes" library_version="27" library_locally_modified="yes">
+<package name="NEMA-7P" urn="urn:adsk.eagle:footprint:39900402/6" library_version="24">
 <circle x="0" y="0" radius="35" width="0.127" layer="21"/>
-<pad name="L" x="8.5" y="-2.3" drill="2.2" diameter="4" shape="octagon"/>
-<pad name="N" x="-0.7" y="8.7" drill="2.2" diameter="4" shape="octagon"/>
-<pad name="V" x="-7" y="-5.7" drill="2.2" diameter="4" shape="octagon"/>
-<pad name="DIM+" x="-21" y="6.98" drill="1" shape="octagon"/>
-<pad name="DIM-" x="-21" y="-6" drill="1" shape="octagon"/>
-<pad name="OPS1" x="24.5" y="6.4" drill="1" shape="octagon"/>
-<pad name="OPS2" x="24.5" y="-4" drill="1" shape="octagon"/>
+<pad name="L" x="8.5" y="-2.3" drill="2" diameter="4" shape="octagon"/>
+<pad name="N" x="-0.7" y="8.7" drill="2" diameter="4" shape="octagon"/>
+<pad name="V" x="-7" y="-5.7" drill="2" diameter="4" shape="octagon"/>
+<pad name="DIM+" x="-21" y="6.98" drill="0.7" shape="octagon"/>
+<pad name="DIM-" x="-21" y="-6" drill="0.7" shape="octagon"/>
+<pad name="OPS1" x="19.7" y="5.9" drill="1" shape="octagon"/>
+<pad name="OPS2" x="20.7" y="-4.6" drill="1" shape="octagon"/>
 </package>
 <package name="MOV-10D561" urn="urn:adsk.eagle:footprint:39528414/1" library_version="14">
 <description>&lt;b&gt;VARISTOR&lt;/b&gt;</description>
@@ -1003,8 +1003,8 @@
 <wire x1="3.9" y1="3.8" x2="6.9" y2="3.8" width="1.7" layer="46"/>
 <wire x1="8.9" y1="3.8" x2="11.9" y2="3.8" width="1.7" layer="46"/>
 <text x="-3.99" y="-3.21" size="1.27" layer="21">AC to DC</text>
-<pad name="5V" x="-6.9" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
-<pad name="GND" x="-9.9" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+<pad name="5V" x="-7" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
+<pad name="GND" x="-9.8" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
 <pad name="N" x="5.4" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
 <pad name="L" x="10.4" y="3.8" drill="1.7" diameter="2" shape="long" rot="R90"/>
 </package>
@@ -1025,7 +1025,7 @@
 <packageinstance name="SSR_G3MB-202P"/>
 </packageinstances>
 </package3d>
-<package3d name="NEMA-7P" urn="urn:adsk.eagle:package:39900404/6" type="model" library_version="27" library_locally_modified="yes">
+<package3d name="NEMA-7P" urn="urn:adsk.eagle:package:39900404/6" type="model" library_version="24">
 <packageinstances>
 <packageinstance name="NEMA-7P"/>
 </packageinstances>
@@ -1265,7 +1265,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="NEMA-7P" urn="urn:adsk.eagle:component:39900406/6" library_version="27" library_locally_modified="yes">
+<deviceset name="NEMA-7P" urn="urn:adsk.eagle:component:39900406/6" library_version="24">
 <gates>
 <gate name="NEMA-7PIN" symbol="CON-7P" x="-2.54" y="2.54" swaplevel="1"/>
 </gates>

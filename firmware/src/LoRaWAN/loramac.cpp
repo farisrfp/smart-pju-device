@@ -66,26 +66,16 @@ void onEvent(ev_t ev) {
                 // data received in rx slot after tx
                 DEBUG_PRINTF_TS("[LoRaWAN] Data Received: %d bytes\n", LMIC.dataLen);
 
-                // if (LMIC.dataLen == 1) {
-                //     uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
-                //     if (result == 0) {
-                //         Serial.println("RESULT 0");
-                //     }
-                //     if (result == 1) {
-                //         Serial.println("RESULT 1");
-                //     }
-                //     if (result == 2) {
-                //         Serial.println("RESULT 2");
-                //     }
-                //     if (result == 3) {
-                //         Serial.println("RESULT 3");
-                //     }
-                // }
                 if (LMIC.dataLen) {
                     for (int i = 0; i < LMIC.dataLen; i++) {
                         Serial.printf("%02X ", LMIC.frame[LMIC.dataBeg + i]);
                     }
                     Serial.println();
+
+                    uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
+                    if (result == 1) {
+                        digitalWrite(LED_BOARD, !digitalRead(LED_BOARD));
+                    }
                 }
             }
             // Schedule next transmission

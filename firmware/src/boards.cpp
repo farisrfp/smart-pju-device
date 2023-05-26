@@ -13,6 +13,8 @@ LEDTask led1(0);
 LEDTask led2(1);
 
 void initBoard() {
+    pinMode(LED_BOARD, OUTPUT);
+
     SPI.begin(SPI_SCLK, SPI_MISO, SPI_MOSI);
     Wire.begin(I2C_SDA, I2C_SCL);
 

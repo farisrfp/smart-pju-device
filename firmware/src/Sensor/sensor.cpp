@@ -10,11 +10,11 @@ void cSensor::begin() {
 #endif
 }
 
-void cSensor::loop(void) {
+void cSensor::loop() {
     auto const tNow = millis();
     auto const deltaT = tNow - this->m_lastUpdate;
 
-    if (deltaT >= 10000) {
+    if (deltaT >= 5000) {
         this->m_lastUpdate = tNow;
 
         unix_time = getUnixTime();
@@ -73,7 +73,7 @@ float cSensor::getTemperature(void) {
     return temperature;
 }
 
-// Get Light Level 
+// Get Light Level
 uint8_t cSensor::getLightLevel(void) {
     const uint8_t lightLevel = random(0, 100);
 
@@ -84,4 +84,13 @@ uint8_t cSensor::getLightLevel(void) {
 void cSensor::printData(void) {
     DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %.2fV\t| Current = %dmA\n", temperature_deg_c,
                  unix_time, voltage_v, current_m_a);
+    // print esp32 temp
+    DEBUG_PRINTF("ESP32 CPU Temp = %.1f°C\n", temperatureRead());
+    char dataBuff[256];
+    sprintf(dataBuff, "{\"type\":\"message\",\"temp\":%.1f,\"intensity\":%d,\"voltage\":%.2f,\"current\":%d,\"time\":%d}",
+            temperature_deg_c, light_level, voltage_v, current_m_a, unix_time);
+
+    if (wsClient != nullptr && wsClient->canSend()) {
+        wsClient->text(dataBuff);
+    }
 }
