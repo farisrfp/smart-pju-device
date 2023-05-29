@@ -90,7 +90,7 @@ void cSensor::printData(void) {
     sprintf(dataBuff, "{\"type\":\"message\",\"temp\":%.1f,\"intensity\":%d,\"voltage\":%.2f,\"current\":%d,\"time\":%d}",
             temperature_deg_c, light_level, voltage_v, current_m_a, unix_time);
 
-    if (wsClient != nullptr && wsClient->canSend()) {
-        wsClient->text(dataBuff);
-    }
+    // if (wsClient != nullptr && wsClient->canSend()) {
+        // wsClient->text(dataBuff);
+    // }
 }

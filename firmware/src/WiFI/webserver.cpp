@@ -1,12 +1,15 @@
 #include "webserver.h"
 
+#include "ESP8266React.h"
+
 const IPAddress apIP(192, 168, 2, 1);
 const IPAddress gateway(255, 255, 255, 0);
 
 DNSServer dnsServer;
 AsyncWebServer server(80);
+// ESP8266React react(&server);
 AsyncWebSocket websocket("/ws");
-AsyncWebSocketClient *wsClient; 
+AsyncWebSocketClient *wsClient;
 
 void wsInit(void) {
     WiFi.disconnect();    // added to start with the wifi off, avoid crashing
@@ -22,60 +25,41 @@ void wsInit(void) {
     Serial.println("IP address: ");
     Serial.println(WiFi.softAPIP());
 
-    if (!LittleFS.begin()) {
-        Serial.println("An Error has occurred while mounting LittleFS");
-        return;
-    }
+    //     if (!LittleFS.begin()) {
+    //         Serial.println("An Error has occurred while mounting LittleFS");
+    //         return;
+    //     }
 
     // bind websocket to async web server
-    websocket.onEvent(wsEventHandler);
-    server.addHandler(&websocket);
+    // websocket.onEvent(wsEventHandler);
+    // server.addHandler(&websocket);
 
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-        Serial.println("Serving file:  /index.html");
-        AsyncWebServerResponse *response = request->beginResponse(LittleFS, "/index.html", "text/html");
-        response->addHeader("Content-Encoding", "gzip");
-        request->send(response);
-    });
+    // server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+    //     Serial.println("Serving file:  /index.html");
+    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", ESP_REACT_DATA_7, sizeof(ESP_REACT_DATA_7));
+    //     response->addHeader("Content-Encoding", "gzip");
+    //     request->send(response);
+    // });
 
-    File root = LittleFS.open("/");
-    while (File file = root.openNextFile()) {
-        String filename = "/" + String(file.name());
-        server.on(filename.c_str(), HTTP_GET, [filename](AsyncWebServerRequest *request) {
-            Serial.println("Serving file: " + filename);
+    // server.on("/css/179.d38e.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+    //     Serial.println("Serving file:  /css/179.d38e.css");
+    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "text/css", ESP_REACT_DATA_8, sizeof(ESP_REACT_DATA_8));
+    //     response->addHeader("Content-Encoding", "gzip");
+    //     request->send(response);
+    // });
 
-            String contentType = filename.substring(filename.length() - 3);
-            if (contentType == "tml" || contentType == "htm")
-                contentType = "text/html";
-            else if (contentType == "css")
-                contentType = "text/css";
-            else if (contentType == ".js")
-                contentType = "text/javascript";
-            else if (contentType == "son")
-                contentType = "application/json";
-            else if (contentType == "jpg" || contentType == "peg")
-                contentType = "image/jpeg";
-            else if (contentType == "png")
-                contentType = "image/png";
-            else if (contentType == "svg")
-                contentType = "image/svg+xml";
-            else if (contentType == "ttf")
-                contentType = "application/x-font-truetype";
-            else if (contentType == "otf")
-                contentType = "application/x-font-opentype";
-            else
-                contentType = "text/plain";
-            AsyncWebServerResponse *response = request->beginResponse(LittleFS, filename, contentType);
-            response->addHeader("Content-Encoding", "gzip");
-            request->send(response);
-        });
-    };
+    // server.on("/js/179.45b6.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+    //     Serial.println("Serving file:  /js/179.45b6.js");
+    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", ESP_REACT_DATA_6, sizeof(ESP_REACT_DATA_6));
+    //     response->addHeader("Content-Encoding", "gzip");
+    //     request->send(response);
+    // });
 
-    // Captive portal to keep the client
-    server.on("*", HTTP_GET, [](AsyncWebServerRequest *request) { request->redirect("http://" + apIP.toString()); });
-    server.begin();
+    // // Captive portal to keep the client
+    // server.on("*", HTTP_GET, [](AsyncWebServerRequest *request) { request->redirect("http://" + apIP.toString()); });
+    // server.begin();
 
-    Serial.println("Server Started");
+    // Serial.println("Server Started");
 };
 
 // allocate memory for recieved json data

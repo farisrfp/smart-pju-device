@@ -15,12 +15,12 @@ def renameReactAssets( source, target, env ):
     os.chdir(react_proj_dir)
     print( '\nReact build: Starting the build process for the React webapp...\n' )
     
-    print('\nRunning `npm install`')
-    if os.system("npm install") != 0:
+    print('\nRunning `pnpm install`')
+    if os.system("pnpm install") != 0:
         print(f"Error installing dependencies for react application in ./{react_proj_dir}")
         return    
-    print('\nRunning `npm run build`')
-    if os.system("npm run build") != 0:
+    print('\nRunning `pnpm build`')
+    if os.system("pnpm build") != 0:
         print(f"Error building react application in ./{react_proj_dir}")
         return    
     os.chdir('..')    
