@@ -3383,16 +3383,16 @@ straight</description>
 <instance part="X1" gate="-2" x="-127" y="-33.02" smashed="yes" rot="R180">
 <attribute name="NAME" x="-128.016" y="-32.258" size="1.524" layer="95" rot="R180"/>
 </instance>
-<instance part="X1" gate="-3" x="-139.7" y="-38.1" smashed="yes">
+<instance part="X1" gate="-4" x="-139.7" y="-38.1" smashed="yes">
 <attribute name="NAME" x="-138.684" y="-38.862" size="1.524" layer="95"/>
 </instance>
-<instance part="X1" gate="-4" x="-127" y="-38.1" smashed="yes" rot="R180">
+<instance part="X1" gate="-3" x="-127" y="-38.1" smashed="yes" rot="R180">
 <attribute name="NAME" x="-128.016" y="-37.338" size="1.524" layer="95" rot="R180"/>
 </instance>
-<instance part="X1" gate="-5" x="-139.7" y="-43.18" smashed="yes">
+<instance part="X1" gate="-6" x="-139.7" y="-43.18" smashed="yes">
 <attribute name="NAME" x="-138.684" y="-43.942" size="1.524" layer="95"/>
 </instance>
-<instance part="X1" gate="-6" x="-127" y="-43.18" smashed="yes" rot="R180">
+<instance part="X1" gate="-5" x="-127" y="-43.18" smashed="yes" rot="R180">
 <attribute name="NAME" x="-128.016" y="-42.418" size="1.524" layer="95" rot="R180"/>
 </instance>
 </instances>
@@ -3557,7 +3557,7 @@ straight</description>
 <label x="68.58" y="33.02" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="X1" gate="-5" pin="S"/>
+<pinref part="X1" gate="-6" pin="S"/>
 <wire x1="-144.78" y1="-43.18" x2="-147.32" y2="-43.18" width="0.1524" layer="91"/>
 <label x="-147.32" y="-43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3729,7 +3729,7 @@ straight</description>
 <label x="-152.4" y="66.04" size="1.016" layer="95" rot="R180" xref="yes" grouprefs="MCU"/>
 </segment>
 <segment>
-<pinref part="X1" gate="-3" pin="S"/>
+<pinref part="X1" gate="-4" pin="S"/>
 <wire x1="-144.78" y1="-38.1" x2="-147.32" y2="-38.1" width="0.1524" layer="91"/>
 <label x="-147.32" y="-38.1" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3741,9 +3741,9 @@ straight</description>
 <label x="-170.18" y="60.96" size="1.016" layer="95" rot="R90" xref="yes" grouprefs="MCU"/>
 </segment>
 <segment>
-<pinref part="X1" gate="-2" pin="S"/>
-<wire x1="-121.92" y1="-33.02" x2="-119.38" y2="-33.02" width="0.1524" layer="91"/>
-<label x="-119.38" y="-33.02" size="1.778" layer="95" xref="yes"/>
+<pinref part="X1" gate="-1" pin="S"/>
+<wire x1="-144.78" y1="-33.02" x2="-147.32" y2="-33.02" width="0.1524" layer="91"/>
+<label x="-147.32" y="-33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -3765,7 +3765,7 @@ straight</description>
 </net>
 <net name="IO_RELAY" class="0">
 <segment>
-<pinref part="X1" gate="-4" pin="S"/>
+<pinref part="X1" gate="-3" pin="S"/>
 <wire x1="-121.92" y1="-38.1" x2="-119.38" y2="-38.1" width="0.1524" layer="91"/>
 <label x="-119.38" y="-38.1" size="1.778" layer="95" xref="yes"/>
 </segment>
@@ -3824,7 +3824,7 @@ straight</description>
 </net>
 <net name="IO_DIMMING" class="0">
 <segment>
-<pinref part="X1" gate="-6" pin="S"/>
+<pinref part="X1" gate="-5" pin="S"/>
 <wire x1="-121.92" y1="-43.18" x2="-119.38" y2="-43.18" width="0.1524" layer="91"/>
 <label x="-119.38" y="-43.18" size="1.778" layer="95" xref="yes"/>
 </segment>
@@ -3875,9 +3875,9 @@ straight</description>
 <label x="-66.04" y="45.72" size="1.016" layer="95" rot="R90" xref="yes" grouprefs="LED_INDICATOR"/>
 </segment>
 <segment>
-<pinref part="X1" gate="-1" pin="S"/>
-<wire x1="-144.78" y1="-33.02" x2="-147.32" y2="-33.02" width="0.1524" layer="91"/>
-<label x="-147.32" y="-33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="X1" gate="-2" pin="S"/>
+<wire x1="-121.92" y1="-33.02" x2="-119.38" y2="-33.02" width="0.1524" layer="91"/>
+<label x="-119.38" y="-33.02" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ADC_LIGHT" class="0">

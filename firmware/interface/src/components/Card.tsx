@@ -8,22 +8,22 @@ interface CardProps {
 
 const pickedType: any = {
 	voltage: {
-		color: 'bg-red-500',
+		color: 'bg-bluish',
 		besaran: 'V',
 		label: 'Voltage',
 	},
 	current: {
-		color: 'bg-blue-500',
+		color: 'bg-purplish',
 		besaran: 'mA',
 		label: 'Current',
 	},
 	temperature: {
-		color: 'bg-yellow-500',
+		color: 'bg-pinkish',
 		besaran: '°C',
 		label: 'Temperature',
 	},
 	'light level': {
-		color: 'bg-green-500',
+		color: 'bg-orangish',
 		besaran: 'lux',
 		label: 'Light Level',
 	},
@@ -31,11 +31,14 @@ const pickedType: any = {
 
 const Card: React.FC<CardProps> = ({ type, value, icon }) => {
 	return (
-		<div className="mx-auto -mt-20 w-5/12 rounded-xl bg-primary">
+		<div className="rounded-xl bg-primary">
 			<div className="flex flex-wrap justify-between p-4">
 				{/* Icon */}
-				<div className={`inline-block h-fit rounded-lg ${pickedType[type].color}`}>
-					<img src={icon} alt="XCamp" className="h-10 p-2" />
+				<div className="relative h-fit w-fit">
+					<div className={`absolute -inset-0 z-10 rounded-sm blur-sm ${pickedType[type].color}`} />
+					<div className={`relative z-20 rounded-lg ${pickedType[type].color}`}>
+						<img src={icon} alt="XCamp" className="h-10 w-10 p-2" />
+					</div>
 				</div>
 				{/* Value */}
 				<div className="w-8/12 ">
@@ -44,7 +47,9 @@ const Card: React.FC<CardProps> = ({ type, value, icon }) => {
 					</p>
 				</div>
 				{/* Label */}
-				<div className="text-md mt-4 font-bold text-white">{pickedType[type].label}</div>
+				<div className="mt-4 text-sm font-bold tracking-wider text-white">
+					{pickedType[type].label}
+				</div>
 			</div>
 		</div>
 	);

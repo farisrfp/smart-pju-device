@@ -14,7 +14,7 @@ void cSensor::loop() {
     auto const tNow = millis();
     auto const deltaT = tNow - this->m_lastUpdate;
 
-    if (deltaT >= 5000) {
+    if (deltaT >= 1000) {
         this->m_lastUpdate = tNow;
 
         unix_time = getUnixTime();
@@ -87,10 +87,11 @@ void cSensor::printData(void) {
     // print esp32 temp
     DEBUG_PRINTF("ESP32 CPU Temp = %.1f°C\n", temperatureRead());
     char dataBuff[256];
-    sprintf(dataBuff, "{\"type\":\"message\",\"temp\":%.1f,\"intensity\":%d,\"voltage\":%.2f,\"current\":%d,\"time\":%d}",
+    sprintf(dataBuff, "{\"type\":\"message\",\"temperature\":%.1f,\"light\":%d,\"voltage\":%.2f,\"current\":%d,\"time\":%d}",
             temperature_deg_c, light_level, voltage_v, current_m_a, unix_time);
 
-    // if (wsClient != nullptr && wsClient->canSend()) {
-        // wsClient->text(dataBuff);
-    // }
+    if (wsClient != nullptr && wsClient->canSend()) {
+        Serial.println("Sending data to client by websocket");
+        wsClient->text(dataBuff);
+    }
 }

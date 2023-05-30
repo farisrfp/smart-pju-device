@@ -7,7 +7,6 @@ const IPAddress gateway(255, 255, 255, 0);
 
 DNSServer dnsServer;
 AsyncWebServer server(80);
-// ESP8266React react(&server);
 AsyncWebSocket websocket("/ws");
 AsyncWebSocketClient *wsClient;
 
@@ -31,35 +30,35 @@ void wsInit(void) {
     //     }
 
     // bind websocket to async web server
-    // websocket.onEvent(wsEventHandler);
-    // server.addHandler(&websocket);
+    websocket.onEvent(wsEventHandler);
+    server.addHandler(&websocket);
 
-    // server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    //     Serial.println("Serving file:  /index.html");
-    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", ESP_REACT_DATA_7, sizeof(ESP_REACT_DATA_7));
-    //     response->addHeader("Content-Encoding", "gzip");
-    //     request->send(response);
-    // });
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+        Serial.println("Serving file:  /index.html");
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", ESP_REACT_DATA_7, sizeof(ESP_REACT_DATA_7));
+        response->addHeader("Content-Encoding", "gzip");
+        request->send(response);
+    });
 
-    // server.on("/css/179.d38e.css", HTTP_GET, [](AsyncWebServerRequest *request) {
-    //     Serial.println("Serving file:  /css/179.d38e.css");
-    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "text/css", ESP_REACT_DATA_8, sizeof(ESP_REACT_DATA_8));
-    //     response->addHeader("Content-Encoding", "gzip");
-    //     request->send(response);
-    // });
+    server.on("/css/179.bb70.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+        Serial.println("Serving file:  /css/179.bb70.css");
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/css", ESP_REACT_DATA_8, sizeof(ESP_REACT_DATA_8));
+        response->addHeader("Content-Encoding", "gzip");
+        request->send(response);
+    });
 
-    // server.on("/js/179.45b6.js", HTTP_GET, [](AsyncWebServerRequest *request) {
-    //     Serial.println("Serving file:  /js/179.45b6.js");
-    //     AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", ESP_REACT_DATA_6, sizeof(ESP_REACT_DATA_6));
-    //     response->addHeader("Content-Encoding", "gzip");
-    //     request->send(response);
-    // });
+    server.on("/js/179.de3f.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+        Serial.println("Serving file:  /js/179.45b6.js");
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", ESP_REACT_DATA_6, sizeof(ESP_REACT_DATA_6));
+        response->addHeader("Content-Encoding", "gzip");
+        request->send(response);
+    });
 
     // // Captive portal to keep the client
-    // server.on("*", HTTP_GET, [](AsyncWebServerRequest *request) { request->redirect("http://" + apIP.toString()); });
-    // server.begin();
+    server.on("*", HTTP_GET, [](AsyncWebServerRequest *request) { request->redirect("http://" + apIP.toString()); });
+    server.begin();
 
-    // Serial.println("Server Started");
+    Serial.println("Server Started");
 };
 
 // allocate memory for recieved json data

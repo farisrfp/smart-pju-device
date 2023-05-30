@@ -6,6 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@fseehawer/react-circular-slider": "^2.6.1",
     "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
@@ -27,7 +28,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sockette": "^2.0.6",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -88,6 +90,7 @@
     ]
   },
   "devDependencies": {
+    "@types/websocket": "^1.0.5",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2"
