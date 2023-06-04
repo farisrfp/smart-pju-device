@@ -13,7 +13,7 @@ const lmic_pinmap lmic_pins = {
 static osjob_t sendjob;
 static int spreadFactor = DR_SF7;
 static int joinStatus = EV_JOINING;
-static const unsigned TX_INTERVAL = 20;
+static const unsigned TX_INTERVAL = 15;
 
 void os_getArtEui(u1_t *buf) {
     memcpy_P(buf, appeui, 8);
@@ -39,13 +39,15 @@ void do_send(osjob_t *j) {
         DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND,sending ...\n");
         led1.setOffAfter(COLOR::BLUE, 250);
 
-        byte loraData[10];
+        byte loraData[12];
         LoraEncoder encoder(loraData);
-        // encoder.writeBitmap
         encoder.writeUnixtime(mySensor.unix_time);
         encoder.writeTemperature(mySensor.temperature_deg_c);
         encoder.writeUint16(mySensor.voltage_v);
         encoder.writeUint16(mySensor.current_m_a);
+        encoder.writeUint8(mySensor.light_level);
+        encoder.writeUint8(mySensor.relay);
+        encoder.writeUint8(mySensor.dimmer);
 
         // Prepare upstream data transmission at the next possible time.
         LMIC_setTxData2(0, loraData, sizeof(loraData), 0);
@@ -72,9 +74,19 @@ void onEvent(ev_t ev) {
                     }
                     Serial.println();
 
-                    uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
-                    if (result == 1) {
-                        digitalWrite(LED_BOARD, !digitalRead(LED_BOARD));
+                    uint8_t method = LMIC.frame[LMIC.dataBeg + 0];
+                    switch (method) {
+                        case 0x00:
+                            DEBUG_PRINTF_TS("[LoRaWAN] Command: 0x00 -> On/Off\n");
+                            mySensor.turnRelay(LMIC.frame[LMIC.dataBeg + 1]);
+                            break;
+                        case 0x01:
+                            DEBUG_PRINTF_TS("[LoRaWAN] Command: 0x01 -> Dimmer\n");
+                            ledcWrite(0, LMIC.frame[LMIC.dataBeg + 1]);
+                            break;
+
+                        default:
+                            break;
                     }
                 }
             }

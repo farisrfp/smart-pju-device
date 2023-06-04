@@ -11,7 +11,7 @@
 
 // Calibration Data
 #define ACS712_ZP 2048
-#define ZMPT101B_ZP 2048
+#define VOLTAGE_SENSITIVITY 280.0f
 
 // Debug printing
 #define DEBUG_PORT Serial
@@ -43,7 +43,7 @@ void initBoard();
 
 #ifdef PROTOTYPE
 
-#define I2C_SDA 21
+#define I2C_SDA 23
 #define I2C_SCL 22
 
 #define SPI_SCLK 5
@@ -58,14 +58,15 @@ void initBoard();
 // Other
 #define WS2812B_PIN 14
 #define RELAY_PIN 15
+#define DIMMER_PIN 13
 #define ADC_CURRENT 34
 #define ADC_VOLTAGE 35
-#define ADC_LIGTH
+#define ADC_LIGHT 36
 #define LED_BOARD 25
 
 #else
 
-#define I2C_SDA 21
+#define I2C_SDA 23
 #define I2C_SCL 22
 
 #define SPI_SCLK 18
@@ -77,11 +78,12 @@ void initBoard();
 #define PIN_DIO1 2
 #define PIN_DIO2 4
 // Other
-#define WS2812B_PIN 19
-#define RELAY_PIN 14
+#define WS2812B_PIN 14
+#define RELAY_PIN 26
+#define DIMMER_PIN 27
 #define ADC_CURRENT 34
 #define ADC_VOLTAGE 35
-#define ADC_LIGTH
+#define ADC_LIGHT 36
 #define LED_BOARD 2
 
 #endif

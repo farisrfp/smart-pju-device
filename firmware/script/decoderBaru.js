@@ -20,6 +20,14 @@ function ttn_decoder_fp(bytes) {
     return i;
   };
 
+  var bytesToBool = function (bytes) {
+    var i = 0;
+    for (var x = 0; x < bytes.length; x++) {
+      i |= +(bytes[x] << (x * 8));
+    }
+    return !!i;
+  };
+
   var unixtime = function (bytes) {
     if (bytes.length !== unixtime.BYTES) {
       throw new Error("Unix time must have exactly 4 bytes");
@@ -35,6 +43,14 @@ function ttn_decoder_fp(bytes) {
     return bytesToInt(bytes);
   };
   uint8.BYTES = 1;
+
+  var uint8bool = function (bytes) {
+    if (bytes.length !== uint8bool.BYTES) {
+      throw new Error("int must have exactly 1 byte");
+    }
+    return bytesToBool(bytes);
+  };
+  uint8bool.BYTES = 1;
 
   var uint16 = function (bytes) {
     if (bytes.length !== uint16.BYTES) {
@@ -133,7 +149,7 @@ function ttn_decoder_fp(bytes) {
     }
     var i = bytesToInt(byte);
     var bm = ("00000000" + Number(i).toString(2)).substr(-8).split("").map(Number).map(Boolean);
-    return ["res4", "res3", "res2", "res1", "res0", "runtime_exp", "data_ok", "battery_ok"].reduce(function (obj, pos, index) {
+    return ["res4", "res3", "res2", "res1", "res0", "res5", "data_ok", "relay"].reduce(function (obj, pos, index) {
       obj[pos] = bm[index];
       return obj;
     }, {});
@@ -165,6 +181,7 @@ function ttn_decoder_fp(bytes) {
     module.exports = {
       unixtime: unixtime,
       uint8: uint8,
+      uint8bool: uint8bool,
       uint16: uint16,
       uint32: uint32,
       temperature: temperature,
@@ -178,14 +195,12 @@ function ttn_decoder_fp(bytes) {
   }
 
   // see assignment to 'bitmap' variable for status bit names
-  return decode(bytes, [unixtime, temperature, uint16, uint16], ["time", "temp", "voltage", "current"]);
+  return decode(bytes, [unixtime, temperature, uint16, uint16, uint8, uint8bool, uint8], ["time", "temp", "voltage", "current", "light", "status", "dimmer"]);
 }
 
 function decodeUplink(input) {
   return {
-    data: {
-      bytes: ttn_decoder_fp(input.bytes),
-    },
+    data: ttn_decoder_fp(input.bytes),
     warnings: [],
     errors: [],
   };

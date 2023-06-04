@@ -18,7 +18,10 @@ extern ZMPT101B zmpt101b;
 
 class cSensor {
    public:
-    /// \brief the constructor. Deliberately does very little.
+    /**
+     * @brief Construct a new cSensor object
+     *
+     */
     cSensor(){};
 
     // Sensor data function stubs
@@ -28,36 +31,34 @@ class cSensor {
     uint32_t getUnixTime(void);
     uint8_t getLightLevel(void);
 
-    ///
-    /// \brief set up the sensor object
-    ///
-    ///
+    // turn on relay
+    bool turnRelay(bool);
+    /**
+     * @brief Initialize the sensor
+     */
     void begin();
 
-    ///
-    /// \brief update sensor loop.
-    ///
-    /// \details
-    ///     This should be called from the global loop(); it periodically
-    ///     gathers and transmits sensor data.
-    ///
+    /**
+     * @brief Update the sensor data
+     */
     void loop();
 
-    ///
-    /// \brief print sensor data to serial port
-    ///
+    /**
+     * @brief Print the sensor data
+     */
     void printData();
 
-    // Example sensor status flags
-    bool data;   //<! sensor data validation
-    bool relay;  //<! actuator relay status
+    // Sensor status flags
+    bool data;
+    bool relay = false;
+    uint8_t dimmer = 0;
 
-    // Example sensor data
-    float temperature_deg_c;  //<! outdoor air temperature in °C
-    float voltage_v;          //<! battery voltage
-    uint16_t current_m_a;     //<! supply voltage
-    uint32_t unix_time;       //<! unix time
-    uint8_t light_level;      //<! light level
+    // Sensor data
+    float temperature_deg_c;  // outdoor air temperature in °C
+    float voltage_v;          // battery voltage
+    uint16_t current_m_a;     // supply voltage
+    uint32_t unix_time;       // unix time
+    uint8_t light_level;      // light level
 
    private:
     // void doUplink();

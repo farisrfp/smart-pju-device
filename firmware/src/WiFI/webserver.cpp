@@ -35,21 +35,28 @@ void wsInit(void) {
 
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
         Serial.println("Serving file:  /index.html");
-        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", ESP_REACT_DATA_7, sizeof(ESP_REACT_DATA_7));
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/html", ESP_REACT_DATA_8, sizeof(ESP_REACT_DATA_8));
         response->addHeader("Content-Encoding", "gzip");
         request->send(response);
     });
 
-    server.on("/css/179.bb70.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+    server.on("/css/179.3ade.css", HTTP_GET, [](AsyncWebServerRequest *request) {
         Serial.println("Serving file:  /css/179.bb70.css");
-        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/css", ESP_REACT_DATA_8, sizeof(ESP_REACT_DATA_8));
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "text/css", ESP_REACT_DATA_9, sizeof(ESP_REACT_DATA_9));
         response->addHeader("Content-Encoding", "gzip");
         request->send(response);
     });
 
-    server.on("/js/179.de3f.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+    server.on("/js/179.8527.js", HTTP_GET, [](AsyncWebServerRequest *request) {
         Serial.println("Serving file:  /js/179.45b6.js");
         AsyncWebServerResponse *response = request->beginResponse_P(200, "application/javascript", ESP_REACT_DATA_6, sizeof(ESP_REACT_DATA_6));
+        response->addHeader("Content-Encoding", "gzip");
+        request->send(response);
+    });
+
+    server.on("/static/media/Group 20.a299069e3828ebb880fb.png", HTTP_GET, [](AsyncWebServerRequest *request) {
+        Serial.println("Serving file:  /static/media/Group 20.a299069e.png");
+        AsyncWebServerResponse *response = request->beginResponse_P(200, "image/png", ESP_REACT_DATA_7, sizeof(ESP_REACT_DATA_7));
         response->addHeader("Content-Encoding", "gzip");
         request->send(response);
     });
@@ -65,7 +72,7 @@ void wsInit(void) {
 #define BUFFER_SIZE 512
 StaticJsonDocument<BUFFER_SIZE> recievedJson;
 // initial device state
-char dataBuffer[BUFFER_SIZE] = "{\"type\":\"message\",\"temp\":25,\"intensity\":80,\"voltage\":220,\"current\":800}";
+char dataBuffer[BUFFER_SIZE] = "{\"type\":\"message\",\"temp\":25.0,\"light\":50,\"voltage\":3.3,\"current\":1000,\"rtc\":1111111111}";
 AsyncWebSocketClient *clients[16];
 
 void wsEventHandler(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
