@@ -4,11 +4,12 @@ import GlowingText from '../components/utils/GlowingText';
 
 const Upload: React.FC = () => {
 	return (
-		<div className="">
-			<GlowingText className="text-6xl font-bold text-pinkish" blur="blur-sm">
-				TEST
-			</GlowingText>
-		</div>
+		<>
+			<div className="py-5" />
+			<div className="mx-auto h-[75%] w-[350px] rounded-2xl bg-primary text-center">
+				<h1 className="mb-14 pt-10 text-2xl font-bold tracking-widest text-white">UPLOAD</h1>
+			</div>
+		</>
 	);
 };
 

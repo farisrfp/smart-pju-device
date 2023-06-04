@@ -20,8 +20,8 @@ def flagExists(flag):
 
 def buildWeb():
     os.chdir("interface")
-    print("Building interface with npm")
-    try:
+    print("Building interface with pnpm")
+    try: 
         env.Execute("pnpm install")
         env.Execute("pnpm build")
         buildPath = Path("build")
