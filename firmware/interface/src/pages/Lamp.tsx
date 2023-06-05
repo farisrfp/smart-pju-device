@@ -4,6 +4,8 @@ import CircularSlider from '@fseehawer/react-circular-slider';
 
 // import { SparklesIcon } from '@heroicons/react/24/outline';
 import volIcon from '../asset/image 10.png';
+// import from material ui
+import Switch from '@mui/material/Switch';
 
 const Lamp: React.FC = () => {
 	return (
@@ -33,12 +35,16 @@ const Lamp: React.FC = () => {
 
 				<div className="mx-auto mt-10 h-20 w-5/6 rounded-lg bg-[#2F2F5C] px-5">
 					<div className="flex h-full items-center justify-between">
-						<div className="relative h-fit w-fit">
-							<div className={`absolute -inset-0 z-10 rounded-sm bg-bluish blur-sm`} />
-							<div className={`relative z-20 rounded-lg bg-bluish`}>
-								<img src={volIcon} alt="XCamp" className="h-10 w-10 p-2" />
+						<div className="flex items-center">
+							<div className="relative h-fit w-fit">
+								<div className={`absolute -inset-0 z-10 rounded-sm bg-bluish blur-sm`} />
+								<div className={`relative z-20 rounded-lg bg-bluish`}>
+									<img src={volIcon} alt="XCamp" className="h-10 w-10 p-2" />
+								</div>
 							</div>
+							<h2 className="ml-5 text-lg font-bold tracking-wider text-white">Power</h2>
 						</div>
+						<Switch />
 					</div>
 				</div>
 			</div>

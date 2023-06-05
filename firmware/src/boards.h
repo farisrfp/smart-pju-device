@@ -4,10 +4,13 @@
 #include <ACS712.h>
 #include <Arduino.h>
 #include <FastLED.h>
+#include <Preferences.h>
 #include <RTClib.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <ZMPT101B.h>
+
+extern Preferences preferences;
 
 // Calibration Data
 #define ACS712_ZP 2048

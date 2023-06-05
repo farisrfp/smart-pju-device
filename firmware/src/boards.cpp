@@ -1,5 +1,8 @@
 #include "boards.h"
 
+// Memory
+Preferences preferences;
+
 // Global Object/Variable
 cSensor mySensor;
 
@@ -21,7 +24,6 @@ void initBoard() {
     // ledcAttachPin(LED_BOARD, 0);
 
     SPI.begin(SPI_SCLK, SPI_MISO, SPI_MOSI);
-    // Wire.begin(I2C_SDA, I2C_SCL);
 
     FastLED.addLeds<WS2812B, WS2812B_PIN, GRB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
