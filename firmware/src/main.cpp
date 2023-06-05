@@ -24,8 +24,8 @@ void setup() {
     // wsInit();
     // DEBUG_PRINTF_TS("wsInit() - done\n");
 
-    // setupLMIC();
-    // DEBUG_PRINTF_TS("setupLMIC() - done\n");
+    setupLMIC();
+    DEBUG_PRINTF_TS("setupLMIC() - done\n");
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
 }
