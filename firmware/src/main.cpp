@@ -31,8 +31,8 @@ void setup() {
 }
 
 void loop() {
-    // FastLED.show();
-    // loopLMIC();
+    FastLED.show();
+    loopLMIC();
     mySensor.loop();
     // dnsServer.processNextRequest();
 
