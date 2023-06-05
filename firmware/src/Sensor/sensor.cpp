@@ -11,8 +11,14 @@ void cSensor::begin() {
 #endif
     I2C_RTC.begin(I2C_SDA, I2C_SCL, 100000);
     rtc.begin(&I2C_RTC);
-    acs712.setZeroPoint(ACS712_ZP);
-    zmpt101b.setSensitivity(VOLTAGE_SENSITIVITY);
+
+    preferences.begin("sensor", false);
+
+    uint16_t currentZP = preferences.getUShort("CURRENT", ACS712_ZP);
+    uint16_t voltageSensitivity = preferences.getUShort("VOLTAGE", VOLTAGE_SENSITIVITY);
+
+    acs712.setZeroPoint(currentZP);
+    zmpt101b.setSensitivity(voltageSensitivity);
     pinMode(ADC_LIGHT, INPUT);
 }
 
@@ -137,10 +143,8 @@ bool cSensor::turnRelay(bool state) {
 
 // Print Sensor Data
 void cSensor::printData(void) {
-    DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %.2fV\t| Current = %dmA| Light = %d%%\n",
-                 temperature_deg_c, unix_time, voltage_v, current_m_a, light_level);
-    // print esp32 temp
-    DEBUG_PRINTF("ESP32 CPU Temp = %.1f°C\n", temperatureRead());
+    DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %.2fV\t| Current = %dmA| Light = %d | ESP32 Temp = %.1f°C | Relay = %d | Dimmer = %d\n",
+                 temperature_deg_c, unix_time, voltage_v, current_m_a, light_level, temperatureRead(), mySensor.relay, mySensor.dimmer);
     // Data to websocket
     char dataBuff[256];
     sprintf(dataBuff, "{\"type\":\"message\",\"temperature\":%.1f,\"light\":%d,\"voltage\":%.2f,\"current\":%d,\"rtc\":%d}",

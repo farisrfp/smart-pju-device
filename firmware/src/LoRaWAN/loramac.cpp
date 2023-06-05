@@ -16,15 +16,36 @@ static int joinStatus = EV_JOINING;
 static const unsigned TX_INTERVAL = 15;
 
 void os_getArtEui(u1_t *buf) {
-    memcpy_P(buf, appeui, 8);
+    preferences.begin("lorawan", false);
+    uint8_t artEui[8];
+    preferences.getBytes("artEui", artEui, 8);
+    if (artEui[0] == 0) {
+        memcpy_P(buf, APPEUI, 8);
+    } else {
+        memcpy(buf, artEui, 8);
+    }
 }
 
 void os_getDevEui(u1_t *buf) {
-    memcpy_P(buf, deveui, 8);
+    preferences.begin("lorawan", false);
+    uint8_t devEui[8];
+    preferences.getBytes("devEui", devEui, 8);
+    if (devEui[0] == 0) {
+        memcpy_P(buf, DEVEUI, 8);
+    } else {
+        memcpy(buf, devEui, 8);
+    }
 }
 
 void os_getDevKey(u1_t *buf) {
-    memcpy_P(buf, appkey, 16);
+    preferences.begin("lorawan", false);
+    uint8_t devKey[16];
+    preferences.getBytes("devKey", devKey, 16);
+    if (devKey[0] == 0) {
+        memcpy_P(buf, APPKEY, 16);
+    } else {
+        memcpy(buf, devKey, 16);
+    }
 }
 
 void do_send(osjob_t *j) {
