@@ -50,7 +50,7 @@ class cSensor {
 
     // Sensor status flags
     bool data;
-    bool relay = false;
+    bool relay = true;
     uint8_t dimmer = 0;
 
     // Sensor data

@@ -5,7 +5,6 @@
 
 #define ADC_SCALE 4095.0
 #define VREF 3.3
-#define DEFAULT_FREQUENCY 50
 
 enum ACS712_type { ACS712_05B,
                    ACS712_20A,

@@ -18,34 +18,42 @@ static const unsigned TX_INTERVAL = 15;
 void os_getArtEui(u1_t *buf) {
     preferences.begin("lorawan", false);
     uint8_t artEui[8];
-    preferences.getBytes("artEui", artEui, 8);
-    if (artEui[0] == 0) {
-        memcpy_P(buf, APPEUI, 8);
-    } else {
+
+    if (preferences.getBytes("artEui", artEui, 8) != 0) {
         memcpy(buf, artEui, 8);
+    } else {
+        memcpy_P(buf, APPEUI, 8);
     }
+    Serial.printf("appEui: %02X%02X%02X%02X%02X%02X%02X%02X\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6],
+                  buf[7]);
 }
 
 void os_getDevEui(u1_t *buf) {
     preferences.begin("lorawan", false);
     uint8_t devEui[8];
-    preferences.getBytes("devEui", devEui, 8);
-    if (devEui[0] == 0) {
-        memcpy_P(buf, DEVEUI, 8);
-    } else {
+
+    if (preferences.getBytes("devEui", devEui, 8)) {
         memcpy(buf, devEui, 8);
+    } else {
+        memcpy_P(buf, DEVEUI, 8);
     }
+    Serial.printf("devEui: %02X%02X%02X%02X%02X%02X%02X%02X\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6],
+                  buf[7]);
 }
 
 void os_getDevKey(u1_t *buf) {
     preferences.begin("lorawan", false);
-    uint8_t devKey[16];
-    preferences.getBytes("devKey", devKey, 16);
-    if (devKey[0] == 0) {
-        memcpy_P(buf, APPKEY, 16);
+    uint8_t appKey[16];
+    if (preferences.getBytes("appKey", appKey, 16) != 0) {
+        memcpy(buf, appKey, 16);
     } else {
-        memcpy(buf, devKey, 16);
+        memcpy_P(buf, APPKEY, 16);
     }
+    Serial.printf(
+        "appKey: %02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"
+        "%02X%02X%02X%02X%02X%02X\n",
+        buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6], buf[7], buf[8], buf[9], buf[10],
+        buf[11], buf[12], buf[13], buf[14], buf[15]);
 }
 
 void do_send(osjob_t *j) {
@@ -60,7 +68,7 @@ void do_send(osjob_t *j) {
         DEBUG_PRINTF_TS("[LoRaWAN] OP_TXRXPEND,sending ...\n");
         led1.setOffAfter(COLOR::BLUE, 250);
 
-        byte loraData[12];
+        byte loraData[13];
         LoraEncoder encoder(loraData);
         encoder.writeUnixtime(mySensor.unix_time);
         encoder.writeTemperature(mySensor.temperature_deg_c);
@@ -71,7 +79,7 @@ void do_send(osjob_t *j) {
         encoder.writeUint8(mySensor.dimmer);
 
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(0, loraData, sizeof(loraData), 0);
+        LMIC_setTxData2(1, loraData, sizeof(loraData), 0);
         os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
     }
 }
@@ -97,15 +105,18 @@ void onEvent(ev_t ev) {
 
                     uint8_t method = LMIC.frame[LMIC.dataBeg + 0];
                     switch (method) {
+                        int dim;
                         case 0x00:
                             DEBUG_PRINTF_TS("[LoRaWAN] Command: 0x00 -> On/Off\n");
-                            mySensor.turnRelay(LMIC.frame[LMIC.dataBeg + 1]);
+                            if (mySensor.turnRelay(LMIC.frame[LMIC.dataBeg + 1])) Serial.println("Relay state changed");
                             break;
                         case 0x01:
                             DEBUG_PRINTF_TS("[LoRaWAN] Command: 0x01 -> Dimmer\n");
-                            ledcWrite(0, LMIC.frame[LMIC.dataBeg + 1]);
+                            dim = map(LMIC.frame[LMIC.dataBeg + 1], 0, 100, 255, 0);
+                            mySensor.dimmer = dim;
+                            ledcWrite(0, mySensor.dimmer);
+                            Serial.printf("Dimmer state changed to %d%\n", mySensor.dimmer);
                             break;
-
                         default:
                             break;
                     }

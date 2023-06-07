@@ -19,14 +19,16 @@ void initBoard() {
     pinMode(LED_BOARD, OUTPUT);
     pinMode(RELAY_PIN, OUTPUT);
     // DIMER PIN as PWM Pin
-    ledcSetup(0, 5000, 8);
-    ledcAttachPin(RELAY_PIN, 0);
-    // ledcAttachPin(LED_BOARD, 0);
+    ledcSetup(0, 1000, 8);
+    ledcAttachPin(DIMMER_PIN, 0);
 
     SPI.begin(SPI_SCLK, SPI_MISO, SPI_MOSI);
 
     FastLED.addLeds<WS2812B, WS2812B_PIN, GRB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
+
+    // Turn relay on
+    digitalWrite(RELAY_PIN, LOW);
 
     leds[0] = CRGB::Blue;
     leds[1] = CRGB::Red;

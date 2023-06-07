@@ -24,10 +24,10 @@ void wsInit(void) {
     Serial.println("IP address: ");
     Serial.println(WiFi.softAPIP());
 
-    //     if (!LittleFS.begin()) {
-    //         Serial.println("An Error has occurred while mounting LittleFS");
-    //         return;
-    //     }
+        if (!LittleFS.begin()) {
+            Serial.println("An Error has occurred while mounting LittleFS");
+            return;
+        }
 
     // bind websocket to async web server
     websocket.onEvent(wsEventHandler);

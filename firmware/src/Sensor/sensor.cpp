@@ -38,14 +38,14 @@ void cSensor::loop() {
         printData();
     }
 
-    // Schedule on-off power
-    if (datetime.second() % 2 == 0) {
-        // Serial.printf("Minute Even : %d\n", datetime.second());
-        turnRelay(true);
-    } else {
-        // Serial.printf("Minute Odd : %d\n", datetime.second());
-        turnRelay(false);
-    }
+    // // Schedule on-off power
+    // if (datetime.second() % 2 == 0) {
+    //     // Serial.printf("Minute Even : %d\n", datetime.second());
+    //     turnRelay(true);
+    // } else {
+    //     // Serial.printf("Minute Odd : %d\n", datetime.second());
+    //     turnRelay(false);
+    // }
 }
 
 // Get Device AC Voltage
@@ -65,7 +65,7 @@ cSensor::getCurrent(void) {
 #ifdef DUMMY_DATA
     const uint16_t current = random(800, 1500);
 #else
-    const uint16_t current = acs712.getCurrentAC();
+    const uint16_t current = acs712.getCurrentAC() * 1000;
 #endif
 
     return current;
@@ -101,8 +101,9 @@ uint8_t cSensor::getLightLevel(void) {
 #ifdef DUMMY_DATA
     const uint8_t lightLevel = random(0, 100);
 #else
-    const uint8_t lightLevel = analogRead(ADC_LIGHT);
-    light_level = map(lightLevel, 0, 4023, 100, 0);
+    const uint16_t lightLevel = analogRead(ADC_LIGHT);
+    // Convert to percentage
+    const uint8_t lightPercentage = map(lightLevel, 0, 4095, 0, 100);
 #endif
 
     return lightLevel;
@@ -114,11 +115,11 @@ bool cSensor::turnRelay(bool state) {
         if (mySensor.relay) {
             return false;
         } else {
-            Serial.println("Turn on relay");
+            Serial.println("Turn on PJU");
 #ifdef PROTOTYPE
             digitalWrite(LED_BOARD, HIGH);
 #else
-            digitalWrite(RELAY_PIN, LOW);
+            ledcWrite(0, 0);
 #endif
             mySensor.relay = true;
             return true;
@@ -130,10 +131,9 @@ bool cSensor::turnRelay(bool state) {
 #ifdef PROTOTYPE
             digitalWrite(LED_BOARD, LOW);
 #else
-            digitalWrite(RELAY_PIN, HIGH);
+            ledcWrite(0, 255);
 #endif
             mySensor.relay = false;
-
             return true;
         } else {
             return false;
@@ -143,7 +143,7 @@ bool cSensor::turnRelay(bool state) {
 
 // Print Sensor Data
 void cSensor::printData(void) {
-    DEBUG_PRINTF("Temp = %.1f°C\t| Time = %d\t| Voltage = %.2fV\t| Current = %dmA| Light = %d | ESP32 Temp = %.1f°C | Relay = %d | Dimmer = %d\n",
+    DEBUG_PRINTF("Temp = %.1f°C | Time = %d | Voltage = %.2fV | Current = %dmA | Light = %d% | ESP32 Temp = %.1f°C | Relay = %d | Dimmer = %d\n",
                  temperature_deg_c, unix_time, voltage_v, current_m_a, light_level, temperatureRead(), mySensor.relay, mySensor.dimmer);
     // Data to websocket
     char dataBuff[256];

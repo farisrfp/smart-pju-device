@@ -11,7 +11,7 @@ from re import sub
 # Comprime los archivos definidos de 'data_src/' en 'data/'
 def renameReactAssets( source, target, env ):
     # Build the react web application
-    react_proj_dir = "webserver"
+    react_proj_dir = "interface"
     os.chdir(react_proj_dir)
     print( '\nReact build: Starting the build process for the React webapp...\n' )
     

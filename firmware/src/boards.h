@@ -13,8 +13,8 @@
 extern Preferences preferences;
 
 // Calibration Data
-#define ACS712_ZP 2048
-#define VOLTAGE_SENSITIVITY 280.0f
+#define ACS712_ZP 2400
+#define VOLTAGE_SENSITIVITY 1200.0f
 
 // Debug printing
 #define DEBUG_PORT Serial
@@ -33,10 +33,10 @@ extern Preferences preferences;
     {}
 #endif
 
+#include "AP/webserver.h"
 #include "LED/led.h"
 #include "LoRaWAN/loramac.h"
 #include "Sensor/sensor.h"
-#include "WiFI/webserver.h"
 
 /* Function */
 void initBoard();
