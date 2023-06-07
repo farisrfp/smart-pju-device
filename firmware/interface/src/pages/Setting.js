@@ -1,38 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-import { Settings, readSettings, updateSettings } from '../api/api';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionSummary from '@mui/material/AccordionSummary';
+// import AccordionDetails from '@mui/material/AccordionDetails';
+// import Typography from '@mui/material/Typography';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import TextField from '@mui/material/TextField';
+// import Button from '@mui/material/Button';
 
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-
-const Setting: React.FC = () => {
+const Setting = () => {
 	const [voltage, setVoltage] = useState(256);
 	const [current, setCurrent] = useState(59);
 	const [appEUI, setAppEUI] = useState('0000000000000000');
 	const [devEUI, setDevEUI] = useState('C3E005D07ED5B370');
 	const [appKey, setAppKey] = useState('44F393F26FA81504493D6699523E2251');
 
-	const saveData = async () => {
-		const data: Settings = {
-			voltage,
-			current,
-			appEUI,
-			devEUI,
-			appKey,
-		};
-		await updateSettings(data);
-	};
-
 	return (
 		<>
 			<div className="py-5" />
 			<div className="mx-auto h-[75%] w-[350px] rounded-2xl bg-primary text-center">
-				<h1 className="mb-14 pt-10 text-2xl font-bold tracking-widest text-white">SETTING</h1>
+				{/* <h1 className="mb-14 pt-10 text-2xl font-bold tracking-widest text-white">SETTING</h1>
 				<Accordion>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
@@ -91,9 +78,7 @@ const Setting: React.FC = () => {
 					</AccordionDetails>
 				</Accordion>
 
-				<Button variant="contained" onClick={() => saveData()}>
-					Save
-				</Button>
+				<Button variant="contained">Save</Button> */}
 			</div>
 		</>
 	);

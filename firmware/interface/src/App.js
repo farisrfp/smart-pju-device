@@ -11,10 +11,15 @@ import Navbar from './components/Navbar';
 
 import './App.css';
 
+// import font
+import './fonts/AxiataBold.TTF';
+import './fonts/AxiataMedium.TTF';
+import './fonts/AxiataRegular.TTF';
+
 function App() {
 	return (
 		<>
-			<div className="h-screen bg-gradient-to-br from-primary via-secondary to-primary">
+			<div className="h-screen bg-gradient-to-br from-primary via-secondary to-primary font-axiata">
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />

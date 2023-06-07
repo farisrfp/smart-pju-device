@@ -21,8 +21,8 @@ void setup() {
     mySensor.begin();
     DEBUG_PRINTF_TS("mySensor.begin() - done\n");
 
-    // wsInit();
-    // DEBUG_PRINTF_TS("wsInit() - done\n");
+    wsInit();
+    DEBUG_PRINTF_TS("wsInit() - done\n");
 
     setupLMIC();
     DEBUG_PRINTF_TS("setupLMIC() - done\n");
@@ -34,7 +34,7 @@ void loop() {
     FastLED.show();
     loopLMIC();
     mySensor.loop();
-    // dnsServer.processNextRequest();
+    dnsServer.processNextRequest();
 
     // vTaskDelay(1000);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import xcamp from '../asset/xcamp.png';
 
-const Login: React.FC = () => {
+const Login = () => {
 	return (
 		<div className="mx-auto -mt-20 w-80 rounded-xl bg-primary">
 			<div className="my-10 flex-col">
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
 					<input
 						type="submit"
 						value="LOGIN"
-						className="bg-secondary float-right mb-10 rounded-full bg-slate-500 px-6 py-2 tracking-widest text-white"
+						className="float-right mb-10 rounded-full bg-secondary bg-slate-500 px-6 py-2 tracking-widest text-white"
 					/>
 				</div>
 			</div>

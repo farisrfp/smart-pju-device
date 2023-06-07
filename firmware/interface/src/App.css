@@ -1,3 +1,20 @@
+@font-face {
+	font-family: 'Axiata';
+	src: local('AxiataRegular'), url('./fonts/AxiataRegular.TTF') format('truetype');
+}
+@font-face {
+	font-family: 'Axiata';
+	src: local('AxiataBold'), url('./fonts/AxiataBold.TTF') format('truetype');
+}
+@font-face {
+	font-family: 'Axiata';
+	src: local('AxiataMedium'), url('./fonts/AxiataMedium.TTF') format('truetype');
+}
+/* @font-face {
+	font-family: 'Axiata';
+	src: local('AxiataItalic'), url('./fonts/AxiataItalic.OTF') format('opentype');
+} */
+
 .emulated-flex-gap.emulated-flex-gap {
 	--gap: 12px;
 	display: inline-flex;

@@ -8,7 +8,7 @@ import {
 	Squares2X2Icon,
 } from '@heroicons/react/24/outline';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
 	const [active, setActive] = useState('home');
 
 	return (

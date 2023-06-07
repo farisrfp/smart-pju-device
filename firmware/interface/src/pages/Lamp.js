@@ -7,7 +7,7 @@ import volIcon from '../asset/image 10.png';
 // import from material ui
 import Switch from '@mui/material/Switch';
 
-const Lamp: React.FC = () => {
+const Lamp = () => {
 	return (
 		<>
 			<div className="py-5" />

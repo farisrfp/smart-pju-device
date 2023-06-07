@@ -1,8 +1,8 @@
 import React from 'react';
 
-import GlowingText from '../components/utils/GlowingText';
+// import GlowingText from '../components/utils/GlowingText';
 
-const Upload: React.FC = () => {
+const Upload = () => {
 	return (
 		<>
 			<div className="py-5" />

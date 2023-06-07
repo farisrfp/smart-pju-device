@@ -18,7 +18,7 @@ extern Preferences preferences;
 
 // Debug printing
 #define DEBUG_PORT Serial
-#if defined(DEBUG_MODE)
+#if defined(VERBOSE)
 #define DEBUG_PRINTF(...) \
     { DEBUG_PORT.printf(__VA_ARGS__); }
 #define DEBUG_PRINTF_TS(...)                                    \

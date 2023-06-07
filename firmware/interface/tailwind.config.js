@@ -3,6 +3,9 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				axiata: ['Axiata', 'sans-serif'],
+			},
 			colors: {
 				primary: '#1D1E42',
 				secondary: '#404086',
