@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // import Accordion from '@mui/material/Accordion';
 // import AccordionSummary from '@mui/material/AccordionSummary';
@@ -9,18 +9,18 @@ import React, { useState, useEffect } from 'react';
 // import Button from '@mui/material/Button';
 
 const Setting = () => {
-	const [voltage, setVoltage] = useState(256);
-	const [current, setCurrent] = useState(59);
-	const [appEUI, setAppEUI] = useState('0000000000000000');
-	const [devEUI, setDevEUI] = useState('C3E005D07ED5B370');
-	const [appKey, setAppKey] = useState('44F393F26FA81504493D6699523E2251');
+	// const [voltage, setVoltage] = useState(256);
+	// const [current, setCurrent] = useState(59);
+	// const [appEUI, setAppEUI] = useState('0000000000000000');
+	// const [devEUI, setDevEUI] = useState('C3E005D07ED5B370');
+	// const [appKey, setAppKey] = useState('44F393F26FA81504493D6699523E2251');
 
 	return (
 		<>
 			<div className="py-5" />
 			<div className="mx-auto h-[75%] w-[350px] rounded-2xl bg-primary text-center">
-				{/* <h1 className="mb-14 pt-10 text-2xl font-bold tracking-widest text-white">SETTING</h1>
-				<Accordion>
+				<h1 className="mb-14 pt-10 text-2xl font-bold tracking-widest text-white">SETTING</h1>
+				{/* <Accordion>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls="panel1a-content"

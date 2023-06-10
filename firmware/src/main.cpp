@@ -7,7 +7,7 @@ void setup() {
     Serial.begin(115200);
     delay(500);
 
-#ifdef DEBUG_MODE
+#ifdef VERBOSE
     // wait for serial to be ready
     while (!Serial) {
         delay(1);
@@ -16,25 +16,22 @@ void setup() {
 
     // initialize the board.
     initBoard();
-    DEBUG_PRINTF_TS("initBoard() - done\n");
+    DEBUG_PRINTF_TS("[SETUP_1] initBoard() - done\n");
 
     mySensor.begin();
-    DEBUG_PRINTF_TS("mySensor.begin() - done\n");
+    DEBUG_PRINTF_TS("[SETUP_2] mySensor.begin() - done\n");
 
     wsInit();
-    DEBUG_PRINTF_TS("wsInit() - done\n");
+    DEBUG_PRINTF_TS("[SETUP_3] wsInit() - done\n");
 
     setupLMIC();
-    DEBUG_PRINTF_TS("setupLMIC() - done\n");
+    DEBUG_PRINTF_TS("[SETUP_4] setupLMIC() - done\n");
 
     Serial.println("[XLKM#4 PJU] Device is Ready for Serial");
 }
 
 void loop() {
-    FastLED.show();
     loopLMIC();
     mySensor.loop();
     dnsServer.processNextRequest();
-
-    // vTaskDelay(1000);
 }

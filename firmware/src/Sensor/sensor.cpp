@@ -25,9 +25,19 @@ void cSensor::begin() {
 void cSensor::loop() {
     auto const tNow = millis();
     auto const deltaT = tNow - this->m_lastUpdate;
+    static bool prevStatus;
+    static uint8_t prevDimmer;
+
+    // Check if data is not same as previous
+    if (prevDimmer != dimmer) updateDimmer();
+    prevDimmer = dimmer;
+
+    if (prevStatus != status) updateStatus();
+    prevStatus = status;
 
     if (deltaT >= 5000) {
         this->m_lastUpdate = tNow;
+        led2.setOffAfter(CRGB::Orange, 500);
 
         unix_time = getUnixTime();
         temperature_deg_c = getTemperature();
@@ -49,11 +59,11 @@ void cSensor::loop() {
 }
 
 // Get Device AC Voltage
-float cSensor::getVoltage(void) {
+uint8_t cSensor::getVoltage(void) {
 #ifdef DUMMY_DATA
-    const float voltage = random(220, 240);
+    const uint8_t voltage = random(215, 225);
 #else
-    const float voltage = zmpt101b.getRmsVoltage();
+    const uint8_t voltage = zmpt101b.getRmsVoltage();
 #endif
 
     return voltage;
@@ -75,11 +85,11 @@ cSensor::getCurrent(void) {
 uint32_t
 cSensor::getUnixTime(void) {
 #ifdef DUMMY_DATA
-    const uint32_t unixtime = 1684120499;
+    uint32_t unixtime = 1684120499;
 #else
     // Get current time
     datetime = rtc.now();
-    const uint32_t unixtime = datetime.unixtime();
+    uint32_t unixtime = datetime.unixtime();
 #endif
 
     return unixtime;
@@ -88,9 +98,9 @@ cSensor::getUnixTime(void) {
 // Get temperature (Stub)
 float cSensor::getTemperature(void) {
 #ifdef DUMMY_DATA
-    const float temperature = random(20, 30);
+    float temperature = random(20, 30);
 #else
-    const float temperature = rtc.getTemperature();
+    float temperature = rtc.getTemperature();
 #endif
 
     return temperature;
@@ -99,59 +109,41 @@ float cSensor::getTemperature(void) {
 // Get Light Level
 uint8_t cSensor::getLightLevel(void) {
 #ifdef DUMMY_DATA
-    const uint8_t lightLevel = random(0, 100);
+    uint8_t lightLevel = random(0, 100);
 #else
-    const uint16_t lightLevel = analogRead(ADC_LIGHT);
     // Convert to percentage
-    const uint8_t lightPercentage = map(lightLevel, 0, 4095, 0, 100);
+    uint8_t lightLevel = map(analogRead(ADC_LIGHT), 0, 4095, 0, 100);
 #endif
 
     return lightLevel;
 }
 
-// Turn on relay
-bool cSensor::turnRelay(bool state) {
-    if (state) {
-        if (mySensor.relay) {
-            return false;
-        } else {
-            Serial.println("Turn on PJU");
-#ifdef PROTOTYPE
-            digitalWrite(LED_BOARD, HIGH);
-#else
-            ledcWrite(0, 0);
-#endif
-            mySensor.relay = true;
-            return true;
-        }
+// Turn PJU On/Off
+void cSensor::updateStatus() {
+    if (status)
+        dimmer = 100;
+    else
+        dimmer = 0;
 
-    } else {
-        if (mySensor.relay) {
-            Serial.println("Turn off relay");
-#ifdef PROTOTYPE
-            digitalWrite(LED_BOARD, LOW);
-#else
-            ledcWrite(0, 255);
-#endif
-            mySensor.relay = false;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    uint8_t dim_8bit = dimmer == 100 ? 0 : 255;
+    ledcWrite(0, dim_8bit);
+
+    DEBUG_PRINTF("[SENSOR] Status Changed to %d\n", status);
+}
+
+// Update PJU Dimmer
+void cSensor::updateDimmer() {
+    if (!status) return;
+
+    uint8_t dim_8bit = map(dimmer, 0, 100, 255, 0);
+    ledcWrite(0, dim_8bit);
+
+    DEBUG_PRINTF("[SENSOR] Dimmer Changed to %d\n", dimmer);
 }
 
 // Print Sensor Data
 void cSensor::printData(void) {
-    DEBUG_PRINTF("Temp = %.1f°C | Time = %d | Voltage = %.2fV | Current = %dmA | Light = %d% | ESP32 Temp = %.1f°C | Relay = %d | Dimmer = %d\n",
-                 temperature_deg_c, unix_time, voltage_v, current_m_a, light_level, temperatureRead(), mySensor.relay, mySensor.dimmer);
-    // Data to websocket
-    char dataBuff[256];
-    sprintf(dataBuff, "{\"type\":\"message\",\"temperature\":%.1f,\"light\":%d,\"voltage\":%.2f,\"current\":%d,\"rtc\":%d}",
-            temperature_deg_c, light_level, voltage_v, current_m_a, unix_time);
-
-    if (wsClient != nullptr && wsClient->canSend()) {
-        Serial.println("Sending data to client by websocket");
-        wsClient->text(dataBuff);
-    }
+    // Print Data Sensor
+    DEBUG_PRINTF("[SENSOR] ESP32 Temp: %.1f°C | Time = %d | %.2f V | %d mA | %.1f°C | %d Lux | Status = %d | Dimmer = %d\n",
+                 temperatureRead(), unix_time, voltage_v, current_m_a, light_level, temperature_deg_c, mySensor.status, mySensor.dimmer);
 }

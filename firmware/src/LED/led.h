@@ -36,9 +36,8 @@ class LEDTask {
      * @param color warna yang akan digunakan.
      * @param fadeInTime Durasi (dalam milidetik) untuk menyala semakin terang.
      * @param fadeOutTime Durasi (dalam milidetik) untuk padam semakin redup.
-     * @param brightness Nilai maksimum brightness yang diinginkan.
      */
-    void setFade(uint8_t, uint16_t, uint16_t, uint8_t);
+    void setFade(uint8_t, uint16_t, uint16_t);
 
     /**
      * Fungsi untuk mengaktifkan komponen dengan mode flicker.
@@ -47,14 +46,14 @@ class LEDTask {
      * @param onTime Durasi (dalam milidetik) untuk menyala.
      * @param offTime Durasi (dalam milidetik) untuk padam.
      */
-    void setFlicker(uint8_t, uint16_t, uint16_t);
+    void setFlicker(int, uint16_t, uint16_t);
 
     /**
      * @brief Fungsi untuk menyalakan komponen.
      *
      * @param color warna yang akan digunakan.
      */
-    void turnOn(uint8_t);
+    void turnOn(int);
 
     /**
      * @brief Fungsi untuk menyalakan dan mematikan komponen.
@@ -62,7 +61,7 @@ class LEDTask {
      * @param color warna yang akan digunakan.
      * @param onTime Durasi (dalam milidetik) untuk menyala.
      */
-    void setOffAfter(uint8_t, uint16_t);
+    void setOffAfter(int, uint16_t);
 
     /**
      * @brief Fungsi untuk mematikan komponen.
@@ -72,10 +71,11 @@ class LEDTask {
    private:
     uint8_t led;
     uint8_t mode;
-    uint8_t color;
+    int color;
     uint16_t onTime;
     uint16_t offTime;
     uint8_t brightness;
+    uint8_t brightnessStep = 1;
 
     void Task(void *pvParameters);
 };

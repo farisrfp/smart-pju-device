@@ -26,13 +26,17 @@ class cSensor {
 
     // Sensor data function stubs
     float getTemperature(void);
-    float getVoltage(void);
+    uint8_t getVoltage(void);
     uint16_t getCurrent(void);
     uint32_t getUnixTime(void);
     uint8_t getLightLevel(void);
 
-    // turn on relay
-    bool turnRelay(bool);
+    // turn PJU on/off
+    void updateStatus();
+
+    // update PJU dimmer
+    void updateDimmer();
+
     /**
      * @brief Initialize the sensor
      */
@@ -50,12 +54,12 @@ class cSensor {
 
     // Sensor status flags
     bool data;
-    bool relay = true;
+    bool status = true;
     uint8_t dimmer = 0;
 
     // Sensor data
     float temperature_deg_c;  // outdoor air temperature in °C
-    float voltage_v;          // battery voltage
+    uint8_t voltage_v;        // battery voltage
     uint16_t current_m_a;     // supply voltage
     uint32_t unix_time;       // unix time
     uint8_t light_level;      // light level

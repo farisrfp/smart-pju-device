@@ -16,7 +16,7 @@ const Navbar = () => {
 			<Link to="/" onClick={() => setActive('home')}>
 				<Squares2X2Icon className={`w-8 ${active === 'home' ? 'text-bluish' : 'text-white'}`} />
 			</Link>
-			<Link to="/lamp" onClick={() => setActive('lamp')}>
+			<Link to="/pju" onClick={() => setActive('lamp')}>
 				<LightBulbIcon className={`w-8 ${active === 'lamp' ? 'text-bluish' : 'text-white'}`} />
 			</Link>
 			<Link to="/upload" onClick={() => setActive('upload')}>

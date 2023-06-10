@@ -6,10 +6,9 @@ import Card from '../components/Card';
 import DateTime from '../components/DateTime';
 import GlowingText from '../components/utils/GlowingText';
 
-import xcamp from '../asset/Group 20.png';
+import xcamp from '../assets/xcamp2.png';
 
 const Home = () => {
-	// const websocket = useRef(null);
 	const [vol, setVol] = useState(220);
 	const [cur, setCur] = useState(1.22);
 	const [temp, setTemp] = useState(25);
@@ -40,11 +39,12 @@ const Home = () => {
 		axios
 			.get('/sensor')
 			.then(res => {
-				const { voltage, current, temperature, light } = res.data;
+				const { voltage, current, temperature, light, rtc } = res.data;
 				setVol(voltage);
-				setCur(current);
+				setCur(current / 1000);
 				setTemp(temperature);
 				setLight(light);
+				setRtc(rtc);
 			})
 			.catch(err => {
 				console.log(err);
@@ -53,11 +53,11 @@ const Home = () => {
 
 	return (
 		<div className="relative mx-auto w-[350px] pt-10">
-			<img src={xcamp} alt="xcamp" className="absolute right-3 top-5 w-32" />
+			{/* <img src={xcamp} alt="xcamp" className="absolute right-3 top-5 w-32" /> */}
+			<img src={'./xcamp2.png'} alt="xcamp" className="absolute right-3 top-5 w-32" />
 			{/* WELCOME */}
 			<GlowingText
 				blur="blur-[2px]"
-				// eslint-disable-next-line react/jsx-closing-bracket-location
 				className="gradient-purple mb-6 bg-clip-text text-4xl font-extrabold text-transparent">
 				WELCOME!
 			</GlowingText>

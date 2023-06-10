@@ -27,10 +27,15 @@ void initBoard() {
     FastLED.addLeds<WS2812B, WS2812B_PIN, GRB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
 
-    // Turn relay on
+    // Turn status on
     digitalWrite(RELAY_PIN, LOW);
 
-    leds[0] = CRGB::Blue;
-    leds[1] = CRGB::Red;
-    FastLED.show();
+    led1.setFlicker(CRGB::Red, 100, 100);
+    led2.setFlicker(CRGB::Blue, 100, 100);
+    delay(600);
+    led1.setFlicker(CRGB::Orange, 100, 100);
+    led2.setFlicker(CRGB::HotPink, 100, 100);
+    delay(600);
+    led1.turnOff();
+    led2.turnOff();
 }
