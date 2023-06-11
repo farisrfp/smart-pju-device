@@ -16,10 +16,9 @@ static int joinStatus = EV_JOINING;
 static const unsigned TX_INTERVAL = 15;
 
 void os_getArtEui(u1_t *buf) {
-    preferences.begin("lorawan", false);
     uint8_t artEui[8];
 
-    if (preferences.getBytes("artEui", artEui, 8) != 0) {
+    if (EEPROM.readBytes(ADDR_APPEUI, artEui, 8) == 8) {
         memcpy(buf, artEui, 8);
     } else {
         memcpy_P(buf, APPEUI, 8);
@@ -27,10 +26,9 @@ void os_getArtEui(u1_t *buf) {
 }
 
 void os_getDevEui(u1_t *buf) {
-    preferences.begin("lorawan", false);
     uint8_t devEui[8];
 
-    if (preferences.getBytes("devEui", devEui, 8)) {
+    if (EEPROM.readBytes(ADDR_DEVEUI, devEui, 8) == 8) {
         memcpy(buf, devEui, 8);
     } else {
         memcpy_P(buf, DEVEUI, 8);
@@ -38,9 +36,9 @@ void os_getDevEui(u1_t *buf) {
 }
 
 void os_getDevKey(u1_t *buf) {
-    preferences.begin("lorawan", false);
     uint8_t appKey[16];
-    if (preferences.getBytes("appKey", appKey, 16) != 0) {
+
+    if (EEPROM.readBytes(ADDR_APPKEY, appKey, 16) == 16) {
         memcpy(buf, appKey, 16);
     } else {
         memcpy_P(buf, APPKEY, 16);

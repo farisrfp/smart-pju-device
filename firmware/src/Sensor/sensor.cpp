@@ -12,10 +12,8 @@ void cSensor::begin() {
     I2C_RTC.begin(I2C_SDA, I2C_SCL, 100000);
     rtc.begin(&I2C_RTC);
 
-    preferences.begin("sensor", false);
-
-    uint16_t currentZP = preferences.getUShort("CURRENT", ACS712_ZP);
-    uint16_t voltageSensitivity = preferences.getUShort("VOLTAGE", VOLTAGE_SENSITIVITY);
+    uint16_t currentZP = EEPROM.readUShort(ADDR_CURRENT);
+    uint16_t voltageSensitivity = EEPROM.readUShort(ADDR_VOLTAGE);
 
     acs712.setZeroPoint(currentZP);
     zmpt101b.setSensitivity(voltageSensitivity);
@@ -85,7 +83,7 @@ cSensor::getCurrent(void) {
 uint32_t
 cSensor::getUnixTime(void) {
 #ifdef DUMMY_DATA
-    uint32_t unixtime = 1684120499;
+    uint32_t unixtime = 1686456495 + (millis() / 1000);
 #else
     // Get current time
     datetime = rtc.now();
@@ -144,6 +142,6 @@ void cSensor::updateDimmer() {
 // Print Sensor Data
 void cSensor::printData(void) {
     // Print Data Sensor
-    DEBUG_PRINTF("[SENSOR] ESP32 Temp: %.1f°C | Time = %d | %.2f V | %d mA | %.1f°C | %d Lux | Status = %d | Dimmer = %d\n",
-                 temperatureRead(), unix_time, voltage_v, current_m_a, light_level, temperature_deg_c, mySensor.status, mySensor.dimmer);
+    DEBUG_PRINTF("[SENSOR] ESP32: %.1f°C | Time = %d | %d V | %d mA | %.1f°C | %d Lux | Status = %d | Dimmer = %d\n",
+                 temperatureRead(), unix_time, voltage_v, current_m_a, temperature_deg_c, light_level, status, dimmer);
 }

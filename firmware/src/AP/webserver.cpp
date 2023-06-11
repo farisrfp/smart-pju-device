@@ -58,6 +58,36 @@ void wsInit(void) {
         request->send(200, "application/json", jsonStr);
     });
 
+    server.on("/setting/sensor", HTTP_GET, [](AsyncWebServerRequest *request) {
+        uint16_t currentZP = EEPROM.readUShort(ADDR_CURRENT);
+        uint16_t voltageSensitivity = EEPROM.readUShort(ADDR_VOLTAGE);
+
+        String jsonStr = "{\"type\":\"message\",\"volt_sens\":" + String(voltageSensitivity) + ",\"curr_sens\":" + String(currentZP) + "}";
+
+        request->send(200, "application/json", jsonStr);
+    });
+
+    server.on(
+        "/setting/sensor", HTTP_POST, [](AsyncWebServerRequest *request) {
+            if (request->hasParam("volt_sens", true)) {
+                uint16_t voltageSensitivity = request->getParam("volt_sens", true)->value().toInt();
+                EEPROM.writeUShort(ADDR_VOLTAGE, voltageSensitivity);
+                zmpt101b.setSensitivity(voltageSensitivity);
+                DEBUG_PRINTF("[AP] voltage_sens changed to %d\n", voltageSensitivity);
+            }
+
+            if (request->hasParam("curr_sens", true)) {
+                uint16_t currentZP = request->getParam("curr_sens", true)->value().toInt();
+                EEPROM.writeUShort(ADDR_CURRENT, currentZP);
+                acs712.setZeroPoint(currentZP);
+                DEBUG_PRINTF("[AP] current_sens changed to %d\n", currentZP);
+            }
+
+            EEPROM.commit();
+
+            request->send(200, "application/json", "{\"type\":\"message\",\"message\":\"OK\"}");
+        });
+
     File root = LittleFS.open("/");
     while (File file = root.openNextFile()) {
         String filename = "/" + String(file.name());

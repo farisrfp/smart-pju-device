@@ -30,7 +30,7 @@ void LEDTask::Task(void *pvParameters) {
 
                 if (brightness >= 255 || brightness <= 0) {
                     fadeTime = brightness >= 255 ? offTime : onTime;
-                    brightnessStep = -brightnessStep
+                    brightnessStep = -brightnessStep;
                 }
 
                 FastLED.show();
@@ -69,7 +69,7 @@ void LEDTask::Task(void *pvParameters) {
     }
 }
 
-void LEDTask::setFade(uint8_t color, uint16_t fadeInTime, uint16_t fadeOutTime, uint8_t brightness) {
+void LEDTask::setFade(uint8_t color, uint16_t fadeInTime, uint16_t fadeOutTime) {
     this->mode = FADE;
     this->color = color;
     this->onTime = fadeInTime;

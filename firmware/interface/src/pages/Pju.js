@@ -81,9 +81,9 @@ const PJU = () => {
 					<div className="flex h-full items-center justify-between">
 						<div className="flex items-center">
 							<div className="relative h-fit w-fit">
-								<div className={`absolute -inset-0 z-10 rounded-sm bg-bluish blur-sm`} />
+								<div className={`gradient-blue absolute -inset-0 z-10 rounded-lg blur-[3px]`} />
 								<div
-									className={`relative z-20 flex h-14 w-14 items-center justify-center rounded-lg bg-bluish`}>
+									className={`gradient-blue relative z-20 flex h-12 w-12 items-center justify-center rounded-lg`}>
 									<PowerSettingsNewIcon fontSize="large" />
 								</div>
 							</div>

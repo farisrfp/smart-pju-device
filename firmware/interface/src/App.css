@@ -14,35 +14,26 @@
 	font-family: 'Axiata';
 	src: local('AxiataItalic'), url('./fonts/AxiataItalic.OTF') format('opentype');
 } */
-
-.emulated-flex-gap.emulated-flex-gap {
-	--gap: 12px;
-	display: inline-flex;
-	flex-wrap: wrap;
-	margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
-	width: calc(100% + var(--gap));
+@font-face {
+	font-family: 'Inter';
+	src: local('InterExtraBold'), url('./fonts/InterExtraBold.ttf') format('truetype');
 }
 
-.emulated-flex-gap > * {
-	margin: var(--gap) 0 0 var(--gap);
+.background-techdays {
+	background: url('./assets/background.png') no-repeat;
+	background-size: cover;
+	background-position: center;
+	/* background-rotate */
 }
 
 .gradient-purple {
 	background: linear-gradient(99deg, #6c25e0 7.5%, #c54eed 61.74%, #e55df1 101.67%);
 }
 
-.test {
-	position: relative;
-	background-color: #e55df1;
+.gradient-blue {
+	background: linear-gradient(250.35deg, #22e6ce -1.73%, #3479ff 80.38%);
 }
 
-.test::after {
-	/* get CONTENT text */
-	content: attr(data-content);
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	bottom: 10px;
-	right: 10px;
-	background-color: #6c25e0;
+.gradient-techdays {
+	background: linear-gradient(85.76deg, #c83681 -1.38%, #15488a 54.53%, #632b90 105.97%);
 }

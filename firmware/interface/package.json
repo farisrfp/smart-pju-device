@@ -7,6 +7,7 @@
 		"@emotion/react": "^11.7.1",
 		"@emotion/styled": "^11.6.0",
 		"@fseehawer/react-circular-slider": "^2.6.1",
+		"@headlessui/react": "^1.7.15",
 		"@heroicons/react": "^2.0.18",
 		"@mui/icons-material": "^5.11.16",
 		"@mui/material": "^5.2.4",

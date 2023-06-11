@@ -1,8 +1,5 @@
 #include "boards.h"
 
-// Memory
-Preferences preferences;
-
 // Global Object/Variable
 cSensor mySensor;
 
@@ -16,6 +13,17 @@ LEDTask led1(0);
 LEDTask led2(1);
 
 void initBoard() {
+    // Initialize EEPROM
+    if (!EEPROM.begin(EEPROM_SIZE)) {
+        DEBUG_PRINTF("Failed to initialise EEPROM\n");
+        while (1)
+            ;
+    }
+
+    // EEPROM.writeUShort(ADDR_CURRENT, ACS712_ZP);
+    // EEPROM.writeUShort(ADDR_VOLTAGE, VOLTAGE_SENSITIVITY);
+    // EEPROM.commit();
+
     pinMode(LED_BOARD, OUTPUT);
     pinMode(RELAY_PIN, OUTPUT);
     // DIMER PIN as PWM Pin

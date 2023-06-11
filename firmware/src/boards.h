@@ -3,18 +3,24 @@
 
 #include <ACS712.h>
 #include <Arduino.h>
+#include <EEPROM.h>
 #include <FastLED.h>
-#include <Preferences.h>
 #include <RTClib.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <ZMPT101B.h>
 
-extern Preferences preferences;
-
 // Calibration Data
 #define ACS712_ZP 2400
 #define VOLTAGE_SENSITIVITY 1200.0f
+
+// EEPROM Address
+#define EEPROM_SIZE 512
+#define ADDR_CURRENT 0
+#define ADDR_VOLTAGE 2
+#define ADDR_APPEUI 4
+#define ADDR_DEVEUI 12
+#define ADDR_APPKEY 20
 
 // Debug printing
 #define DEBUG_PORT Serial

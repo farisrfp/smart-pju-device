@@ -5,24 +5,28 @@ import { Bolt, DeviceThermostat, Flare, Power } from '@mui/icons-material';
 const pickedType = {
 	voltage: {
 		color: 'bg-bluish',
+		nilai: val => parseInt(val),
 		besaran: 'V',
 		label: 'Voltage',
 		icon: <Bolt className="text-white" />,
 	},
 	current: {
 		color: 'bg-purplish',
+		nilai: val => parseFloat(val / 1000).toFixed(2),
 		besaran: 'A',
 		label: 'Current',
 		icon: <Power className="text-white" />,
 	},
 	temperature: {
 		color: 'bg-pinkish',
+		nilai: val => parseInt(val),
 		besaran: '°C',
 		label: 'Temperature',
 		icon: <DeviceThermostat className="text-white" />,
 	},
 	'light level': {
 		color: 'bg-orangish',
+		nilai: val => parseInt(val),
 		besaran: 'lux',
 		label: 'Light Level',
 		icon: <Flare className="text-white" />,
@@ -46,7 +50,7 @@ const Card = ({ type, value }) => {
 				{/* Value */}
 				<div className="w-8/12 ">
 					<p className="text-right text-xl font-bold text-white">
-						{value} {pickedType[type].besaran}
+						{pickedType[type].nilai(value)} {pickedType[type].besaran}
 					</p>
 				</div>
 				{/* Label */}
