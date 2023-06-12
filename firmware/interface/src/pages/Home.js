@@ -53,29 +53,35 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="relative mx-auto w-[350px] pt-10">
-			<img src={xcamp} alt="xcamp" className="absolute right-3 top-5 w-32" />
-			{/* <img src={'./xcamp2.png'} alt="xcamp" className="absolute right-3 top-5 w-32" /> */}
-			{/* WELCOME */}
-			<GlowingText
-				blur="blur-[2px]"
-				className="gradient-purple mb-6 bg-clip-text text-4xl font-extrabold text-transparent">
-				WELCOME!
-			</GlowingText>
-			<GlowingText
-				blur="blur-[2px]"
-				className="mb-8 ml-8 text-4xl font-extrabold tracking-widest text-white">
-				X-LIGHT
-			</GlowingText>
-			{/* GRID */}
-			<div className="grid grid-cols-2 gap-x-3 gap-y-5">
-				<DateTime unix={rtc} />
+		<>
+			<div className="py-5" />
+			<div className="relative mx-auto h-[75%] w-[350px] pt-10">
+				<img src={xcamp} alt="xcamp" className="absolute right-3 top-0 w-36" />
+				{/* <img src={'./xcamp2.png'} alt="xcamp" className="absolute right-3 top-5 w-32" /> */}
+				{/* WELCOME */}
+				<div className="flex h-[25%] flex-col justify-evenly ">
+					<GlowingText
+						blur="blur-[2px]"
+						className="gradient-purple bg-clip-text text-4xl font-extrabold text-transparent">
+						WELCOME!
+					</GlowingText>
+					<GlowingText
+						blur="blur-[2px]"
+						className="ml-8 text-4xl font-extrabold tracking-widest text-white">
+						X-LIGHT PJU
+					</GlowingText>
+				</div>
 
-				{CardItem.map((item, index) => (
-					<Card key={index} type={item.type} value={item.value} />
-				))}
+				{/* GRID */}
+				<div className="grid h-[75%] grid-cols-2 gap-y-3 gap-x-2">
+					<DateTime unix={rtc} />
+
+					{CardItem.map((item, index) => (
+						<Card key={index} type={item.type} value={item.value} />
+					))}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

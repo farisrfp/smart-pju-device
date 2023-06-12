@@ -88,6 +88,65 @@ void wsInit(void) {
             request->send(200, "application/json", "{\"type\":\"message\",\"message\":\"OK\"}");
         });
 
+    server.on("/setting/lorawan", HTTP_GET, [](AsyncWebServerRequest *request) {
+        uint8_t appEui[8];
+        uint8_t devEui[8];
+        uint8_t appKey[16];
+
+        os_getArtEui(appEui);
+
+        os_getDevEui(devEui);
+
+        os_getDevKey(appKey);
+
+        StaticJsonDocument<256> jsonLoRa;
+        jsonLoRa["type"] = "message";
+        jsonLoRa["dev_eui"] = String(devEui[0], HEX) + String(devEui[1], HEX) + String(devEui[2], HEX) + String(devEui[3], HEX) + String(devEui[4], HEX) + String(devEui[5], HEX) + String(devEui[6], HEX) + String(devEui[7], HEX);
+        jsonLoRa["app_eui"] = String(appEui[0], HEX) + String(appEui[1], HEX) + String(appEui[2], HEX) + String(appEui[3], HEX) + String(appEui[4], HEX) + String(appEui[5], HEX) + String(appEui[6], HEX) + String(appEui[7], HEX);
+        jsonLoRa["app_key"] = String(appKey[0], HEX) + String(appKey[1], HEX) + String(appKey[2], HEX) + String(appKey[3], HEX) + String(appKey[4], HEX) + String(appKey[5], HEX) + String(appKey[6], HEX) + String(appKey[7], HEX) + String(appKey[8], HEX) + String(appKey[9], HEX) + String(appKey[10], HEX) + String(appKey[11], HEX) + String(appKey[12], HEX) + String(appKey[13], HEX) + String(appKey[14], HEX) + String(appKey[15], HEX);
+
+        String jsonStr;
+        serializeJson(jsonLoRa, jsonStr);
+
+        request->send(200, "application/json", jsonStr);
+    });
+
+    server.on("/setting/lorawan", HTTP_POST, [](AsyncWebServerRequest *request) {
+        if (request->hasParam("app_eui", true)) {
+            String appEui = request->getParam("app_eui", true)->value();
+            uint8_t appEuiBytes[8];
+            for (int i = 0; i < 8; ++i) {
+                appEuiBytes[i] = strtoul(appEui.substring(i * 2, i * 2 + 2).c_str(), NULL, 16);
+            }
+            EEPROM.writeBytes(ADDR_APPEUI, appEuiBytes, 8);
+            DEBUG_PRINTF("[AP] appEui changed to %s\n", appEui.c_str());
+        }
+
+        if (request->hasParam("dev_eui", true)) {
+            String devEui = request->getParam("dev_eui", true)->value();
+            uint8_t devEuiBytes[8];
+            for (int i = 0; i < 8; ++i) {
+                devEuiBytes[i] = strtoul(devEui.substring(i * 2, i * 2 + 2).c_str(), NULL, 16);
+            }
+            EEPROM.writeBytes(ADDR_DEVEUI, devEuiBytes, 8);
+            DEBUG_PRINTF("[AP] devEui changed to %s\n", devEui.c_str());
+        }
+
+        if (request->hasParam("app_key", true)) {
+            String appKey = request->getParam("app_key", true)->value();
+            uint8_t appKeyBytes[16];
+            for (int i = 0; i < 16; ++i) {
+                appKeyBytes[i] = strtoul(appKey.substring(i * 2, i * 2 + 2).c_str(), NULL, 16);
+            }
+            EEPROM.writeBytes(ADDR_APPKEY, appKeyBytes, 16);
+            DEBUG_PRINTF("[AP] appKey changed to %s\n", appKey.c_str());
+        }
+
+        EEPROM.commit();
+
+        request->send(200, "application/json", "{\"type\":\"message\",\"message\":\"OK\"}");
+    });
+
     File root = LittleFS.open("/");
     while (File file = root.openNextFile()) {
         String filename = "/" + String(file.name());

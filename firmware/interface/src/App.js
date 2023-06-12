@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/Login';
+// import Login from './pages/Login';
 
 import Home from './pages/Home';
 import Upload from './pages/Upload';
@@ -27,7 +27,6 @@ function App() {
 				<Login />
 			</div> */}
 			<div className="relative h-screen bg-gradient-to-br from-primary via-secondary to-primary font-axiata">
-				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/pju" element={<PJU />} />
@@ -37,6 +36,7 @@ function App() {
 					<Route path="/setting/lorawan" element={<Lorawan />} />
 					<Route path="/setting/about" element={<About />} />
 				</Routes>
+				<Navbar />
 			</div>
 		</>
 	);

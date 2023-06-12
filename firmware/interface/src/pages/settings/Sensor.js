@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { KeyboardArrowLeftOutlined } from '@mui/icons-material';
+import Form from '../../components/Form';
 
 import Button from '../../components/Button';
 
@@ -58,30 +59,23 @@ const Sensor = () => {
 							Sensor
 						</h1>
 					</div>
+
 					{/* Voltage */}
-					<div className="mb-5 flex h-14 items-center rounded-lg bg-primary px-3 text-sm">
-						<p className="w-1/2 text-white">Voltage Sensitivity</p>
-						{/* input */}
-						<input
-							type="number"
-							className="h-8 w-1/2 rounded-lg bg-tertiary text-center text-white"
-							value={voltage}
-							// set as integer
-							onChange={e => setVoltage(parseInt(e.target.value))}
-						/>
-					</div>
+					<Form
+						label="Voltage Sensitivity"
+						value={voltage}
+						variant={0}
+						onChange={e => setVoltage(e.target.value)}
+					/>
 					{/* Current */}
-					<div className="flex h-14 items-center rounded-lg bg-primary px-3 text-sm">
-						<p className="w-1/2 text-white">Current Sensitivity</p>
-						{/* input */}
-						<input
-							type="number"
-							value={current}
-							className="h-8 w-1/2 rounded-lg bg-tertiary text-center text-white"
-							onChange={e => setCurrent(parseInt(e.target.value))}
-						/>
-					</div>
-					<div className="pb-5" />
+					<Form
+						label="Current Sensitivity"
+						value={current}
+						variant={0}
+						onChange={e => setVoltage(e.target.value)}
+					/>
+
+					<div className="pb-3" />
 				</div>
 				<Button className={'mt-5 bg-tertiary px-8'} onClick={() => saveInfo(voltage, current)}>
 					SAVE

@@ -12,7 +12,7 @@ const Navbar = () => {
 	const [active, setActive] = useState('home');
 
 	return (
-		<div className="fixed bottom-5 left-1/2 flex w-[350px] -translate-x-1/2 transform justify-around rounded-2xl bg-primary px-10 py-4">
+		<div className="relative left-1/2 mt-5 flex w-[350px] -translate-x-1/2 transform justify-around rounded-2xl bg-primary px-10 py-4">
 			<Link to="/" onClick={() => setActive('home')}>
 				<Squares2X2Icon className={`w-8 ${active === 'home' ? 'text-bluish' : 'text-white'}`} />
 			</Link>
